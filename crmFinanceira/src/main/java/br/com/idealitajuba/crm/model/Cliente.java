@@ -17,6 +17,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Classe que modela um cliente ativo ou inativo ou potencial cliente.
+ * @author Leandro Duarte
+ *
+ */
 @Entity
 @Table(name = "cliente")
 public class Cliente extends Pessoa {

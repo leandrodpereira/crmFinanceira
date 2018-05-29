@@ -1,5 +1,6 @@
 package br.com.idealitajuba.crm.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,9 +16,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Classe que modela o contato feito pelo usuario ao cliente.
+ * @author Leandro Duarte
+ *
+ */
 @Entity
 @Table(name = "contato")
-public class Contato {
+public class Contato implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private long id;
 	private Date dataHoraContato;

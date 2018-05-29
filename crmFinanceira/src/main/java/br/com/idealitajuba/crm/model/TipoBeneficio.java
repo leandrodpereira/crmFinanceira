@@ -1,5 +1,7 @@
 package br.com.idealitajuba.crm.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Classe que modela os tipos de benefícios recebidos pelos clientes.
+ * @author Leandro Duarte
+ *
+ */
 @Entity
 @Table(name = "tipo_beneficio")
-public class TipoBeneficio {
+public class TipoBeneficio implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	
 	private long id;
 	private long codigo;

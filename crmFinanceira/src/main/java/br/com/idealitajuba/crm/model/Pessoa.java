@@ -1,5 +1,7 @@
 package br.com.idealitajuba.crm.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,17 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Classe abstrata do tipo Pessoa.
+ * @author Leandro Duarte
+ *
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L;
 	
 	private long id;
 	private String nome;

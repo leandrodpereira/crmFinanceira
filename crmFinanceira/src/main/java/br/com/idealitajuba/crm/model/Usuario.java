@@ -6,6 +6,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+/**
+ * Classe que modela o usuario do sistema.
+ * @author Leandro Duarte
+ *
+ */
 @Entity
 @Table(name="usuario")
 public class Usuario extends Pessoa {
