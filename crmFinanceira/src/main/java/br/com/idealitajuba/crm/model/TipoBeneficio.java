@@ -20,27 +20,27 @@ import javax.validation.constraints.Size;
 @Table(name = "tipo_beneficio")
 public class TipoBeneficio implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	private static final Long serialVersionUID = 1L;
 	
-	private long id;
-	private long codigo;
+	private Long id;
+	private Long codigo;
 	private String descricao;
 	
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
 	@NotNull	
 	@Column(nullable = false)
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	
