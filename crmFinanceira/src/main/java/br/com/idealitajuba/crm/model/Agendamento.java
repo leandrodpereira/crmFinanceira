@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,8 +27,11 @@ public class Agendamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private Date dataHoraAgendamento;
+	private Date dataAgendamento;
+	private Date horaAgendamento;
 	private boolean concluido;
+	
+	private Contato contato;
 	
 	@Id
 	@GeneratedValue
@@ -38,14 +43,26 @@ public class Agendamento implements Serializable {
 	}
 	
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "data_hora_agendamento", nullable = false)
-	public Date getDataHoraAgendamento() {
-		return dataHoraAgendamento;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_agendamento", nullable = false)
+	public Date getDataAgendamento() {
+		return dataAgendamento;
 	}
-	public void setDataHoraAgendamento(Date dataHoraAgendamento) {
-		this.dataHoraAgendamento = dataHoraAgendamento;
+	public void setDataAgendamento(Date dataAgendamento) {
+		this.dataAgendamento = dataAgendamento;
 	}
+	
+	@NotNull
+	@Temporal(TemporalType.TIME)
+	@Column(name = "hora_agendamento", nullable = false)
+	public Date getHoraAgendamento() {
+		return horaAgendamento;
+	}
+	public void setHoraAgendamento(Date horaAgendamento) {
+		this.horaAgendamento = horaAgendamento;
+	}	
+
+	
 	@NotNull
 	@Column(nullable =	false, columnDefinition = "boolean default false")
 	public boolean isConcluido() {
@@ -55,6 +72,17 @@ public class Agendamento implements Serializable {
 		this.concluido = concluido;
 	}
 	
+	@OneToOne
+	@JoinColumn(name = "contato_id")
+	public Contato getContato() {
+		return contato;
+	}
+	
+	
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,6 +90,7 @@ public class Agendamento implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,5 +108,4 @@ public class Agendamento implements Serializable {
 		return true;
 	}
 	
-
 }

@@ -24,7 +24,11 @@ public class CadastroTipoBeneficio implements Serializable{
 	public void salvar(TipoBeneficio tb) throws BusinessException{
 		this.tbr.guardar(tb);
 	}
-	
+	/**
+	 * RN01 - Não é possível excluir Tipo que possui Cliente associado.
+	 * @param tb
+	 * @throws BusinessException
+	 */
 	@Transactional
 	public void excluir(TipoBeneficio tb) throws BusinessException{
 		tb = this.tbr.porId(tb.getId());

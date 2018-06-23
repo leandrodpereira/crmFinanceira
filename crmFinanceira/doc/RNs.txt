@@ -1,0 +1,4 @@
+CadastroTipoBeneficio:
+RN01 - Não é possível excluir Tipo que possui Cliente associado.
+
+---
