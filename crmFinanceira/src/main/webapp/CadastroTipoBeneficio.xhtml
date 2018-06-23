@@ -9,8 +9,9 @@
 </h:head>
 <h:body>
 	<h:form>
-		<p:messages showDetail="false" showSummary="true" />
-		<p:panelGrid columns="2" >
+		<p:messages showDetail="false" showSummary="true" closable="true"
+			autoUpdate="true" />
+		<p:panelGrid columns="2">
 			<p:outputLabel value="Código" for="codigo" />
 			<p:inputText id="codigo"
 				value="#{cadastroTipoBeneficioMBean.tb.codigo}" />
