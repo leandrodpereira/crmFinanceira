@@ -33,6 +33,7 @@ public class Cliente extends Pessoa {
 	private String telefone;
 	private String celular;
 	private String email;
+	private Long numeroBeneficio;
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
@@ -112,6 +113,17 @@ public class Cliente extends Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@NotEmpty
+	@Size(max = 10)
+	@Column(length = 10, nullable = false)
+	public Long getNumeroBeneficio() {
+		return numeroBeneficio;
+	}
+	
+	public void setNumeroBeneficio(Long numeroBeneficio) {
+		this.numeroBeneficio = numeroBeneficio;
+	}
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -143,6 +155,6 @@ public class Cliente extends Pessoa {
 
 	public void setTipoBeneficio(TipoBeneficio tipoBeneficio) {
 		this.tipoBeneficio = tipoBeneficio;
-	}
+	}	
 
 }

@@ -31,7 +31,7 @@ public class Contato implements Serializable{
 	private Date dataHoraContato;
 	private String Observacoes;
 	
-	private ContatoStatusEnum status;
+	private TipoContatoStatus status;
 	
 	private Usuario usuario;
 	private Cliente cliente;
@@ -63,13 +63,12 @@ public class Contato implements Serializable{
 		Observacoes = observacoes;
 	}
 	
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	public ContatoStatusEnum getStatus() {
+	@ManyToOne
+	@JoinColumn(name = "tipo_contato_status_id")	
+	public TipoContatoStatus getStatus() {
 		return status;
 	}
-	public void setStatus(ContatoStatusEnum status) {
+	public void setStatus(TipoContatoStatus status) {
 		this.status = status;
 	}
 	
