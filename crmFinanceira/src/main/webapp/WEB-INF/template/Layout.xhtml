@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="titulo">Ideal Itajubá</ui:insert>
+	</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+</h:head>
+<h:body>
+	<header>
+		<!-- <h:graphicImage library="img" name="logo.png" /> -->
+		<h1>Ideal Itajubá, o crédito ideal pra você!</h1>		
+	</header>
+
+	<h:form>
+		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
+			<p:submenu label="Cadastros">				
+				<p:menuitem value="Tipo de Benefício"
+					action="/CadastroTipoBeneficio?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Consultas">
+				
+			</p:submenu>
+			<p:submenu label="Sistema">
+				
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+	<footer> CRM - Ideal Itajubá </footer>
+</h:body>
+
+</html>

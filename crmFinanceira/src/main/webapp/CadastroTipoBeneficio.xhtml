@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title></title>
-</h:head>
-<h:body>
-	<h:form>
-		<p:messages showDetail="false" showSummary="true" closable="true"
-			autoUpdate="true" />
-		<p:panelGrid columns="2">
-			<p:outputLabel value="Código" for="codigo" />
-			<p:inputText id="codigo"
-				value="#{cadastroTipoBeneficioMBean.tb.codigo}" />
-			<p:outputLabel value="Descrição" for="descricao" />
-			<p:inputText id="descricao"
-				value="#{cadastroTipoBeneficioMBean.tb.descricao}" />
-			<p:outputLabel />
-			<p:commandButton value="Salvar"
-				action="#{cadastroTipoBeneficioMBean.salvar}" icon="ui-icon-disk"
-				update="@form" />
-		</p:panelGrid>
-	</h:form>
-</h:body>
-
-</html>
+	<ui:define name="corpo">
+		<h2>Cadastro do Tipo de Benefício</h2>
+		<h:form>
+			<p:messages showDetail="false" showSummary="true" closable="true"
+				autoUpdate="true" />
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Código" for="codigo" />
+				<p:inputText id="codigo"
+					value="#{cadastroTipoBeneficioMBean.tb.codigo}" />
+				<p:outputLabel value="Descrição" for="descricao" />
+				<p:inputText id="descricao"
+					value="#{cadastroTipoBeneficioMBean.tb.descricao}" />
+				<p:outputLabel />
+				<p:commandButton value="Salvar"
+					action="#{cadastroTipoBeneficioMBean.salvar}" icon="ui-icon-disk"
+					update="@form" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
