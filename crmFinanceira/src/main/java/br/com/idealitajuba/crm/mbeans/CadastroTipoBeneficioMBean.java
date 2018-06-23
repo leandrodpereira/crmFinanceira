@@ -1,4 +1,4 @@
-package br.com.idealitajuba.crm.beans;
+package br.com.idealitajuba.crm.mbeans;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import br.com.idealitajuba.crm.model.TipoBeneficio;
 
 @Named
 @ViewScoped
-public class CadastroTipoBeneficioBean implements Serializable {
+public class CadastroTipoBeneficioMBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

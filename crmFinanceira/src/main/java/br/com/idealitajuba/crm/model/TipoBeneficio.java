@@ -51,7 +51,7 @@ public class TipoBeneficio implements Serializable{
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = descricao.toUpperCase();
 	}
 	
 	@Override
