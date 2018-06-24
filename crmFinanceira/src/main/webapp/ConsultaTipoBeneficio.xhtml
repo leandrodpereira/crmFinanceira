@@ -15,7 +15,7 @@
 				autoUpdate="true" />
 			<p:dataTable value="#{consultaTipoBeneficioMBean.tipos}" var="tipo"
 				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
-				paginatorPosition="bottom">
+				paginatorPosition="bottom" emptyMessage="Sem registros para mostrar">
 				<p:column headerText="Código" sortBy="#{tipo.codigo}" width="70">
 					<h:outputText value="#{tipo.codigo}" />
 				</p:column>
@@ -31,9 +31,16 @@
 						process="@this" update="@form"
 						action="#{consultaTipoBeneficioMBean.excluir}">
 						<f:setPropertyActionListener value="#{tipo}"
-							target="#{consultaTipoBeneficioMBean.tbSelecionado}" />						
+							target="#{consultaTipoBeneficioMBean.tbSelecionado}" />
+						<p:confirm header="Exclusão" message="Confirma a exclusão?"
+							icon="ui-icon-alert" />
 					</p:commandButton>
-
+					<p:confirmDialog global="true">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</h:form>

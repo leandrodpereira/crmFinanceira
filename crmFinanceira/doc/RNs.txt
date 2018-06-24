@@ -2,3 +2,7 @@ CadastroTipoBeneficio:
 RN01 - Não é possível excluir Tipo que possui Cliente associado.
 
 ---
+CadastroTipoContatoStatu:
+RN01 - Não é possível excluir Tipo que possui Contato associado.
+
+---

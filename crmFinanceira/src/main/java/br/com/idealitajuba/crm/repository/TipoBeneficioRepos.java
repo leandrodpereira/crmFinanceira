@@ -53,7 +53,7 @@ public class TipoBeneficioRepos implements Serializable {
 	 */
 	public boolean verificaClienteTipoBeneficio(Long id) {
 		TypedQuery<Cliente> query =
-				this.em.createQuery("from Cliente c where c.tipoBeneficio="+id,Cliente.class);
+				this.em.createQuery("from Cliente c where c.tipoBeneficio.id="+id,Cliente.class);
 		return query.getResultList().isEmpty();
 	}
 
