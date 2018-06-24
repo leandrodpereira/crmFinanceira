@@ -23,6 +23,10 @@ public class CadastroTipoBeneficioMBean implements Serializable {
 	
 	private TipoBeneficio tb =  new TipoBeneficio();
 	
+	public void preCadastro() {
+		if(this.tb == null) this.tb = new TipoBeneficio();
+	}
+	
 	public void salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {

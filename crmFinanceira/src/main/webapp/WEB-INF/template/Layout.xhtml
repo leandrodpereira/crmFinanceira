@@ -6,27 +6,26 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><ui:insert name="titulo">Ideal Itajubá</ui:insert>
-	</title>
+	<title><ui:insert name="titulo">Ideal Itajubá</ui:insert></title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <h:body>
 	<header>
 		<!-- <h:graphicImage library="img" name="logo.png" /> -->
-		<h1>Ideal Itajubá, o crédito ideal pra você!</h1>		
+		<h1>Ideal Itajubá, o crédito ideal pra você!</h1>
 	</header>
 
 	<h:form>
 		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
-			<p:submenu label="Cadastros">				
-				<p:menuitem value="Tipo de Benefício"
-					action="/CadastroTipoBeneficio?faces-redirect=true" />
-			</p:submenu>
-			<p:submenu label="Consultas">
-				
-			</p:submenu>
+			<p:submenu label="Clientes" />
+			<p:submenu label="Contatos" />
 			<p:submenu label="Sistema">
-				
+				<p:submenu label="Tipo de Beneficio">
+					<p:menuitem value="Inserir"
+						action="/CadastroTipoBeneficio?faces-redirect=true" />
+					<p:menuitem value="Listar/Alterar"
+						action="/ConsultaTipoBeneficio?faces-redirect=true" />
+				</p:submenu>
 			</p:submenu>
 		</p:menubar>
 	</h:form>

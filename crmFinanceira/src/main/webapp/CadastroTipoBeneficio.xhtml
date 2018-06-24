@@ -4,9 +4,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">	
 	<ui:define name="corpo">
-		<h2>Cadastro do Tipo de Benefício</h2>
+		<f:metadata>
+			<o:viewParam name="id" value="#{cadastroTipoBeneficioMBean.tb}"/>
+			<f:viewAction action="#{cadastroTipoBeneficioMBean.preCadastro}"></f:viewAction>
+		</f:metadata>
+		<h2>Cadastro do Tipo de Benefício</h2>		
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />

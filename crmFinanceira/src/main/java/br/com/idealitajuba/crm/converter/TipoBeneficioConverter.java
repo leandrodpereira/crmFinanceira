@@ -32,7 +32,8 @@ public class TipoBeneficioConverter implements Converter{
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value != null) {
-			return ((TipoBeneficio) value).getId().toString();
+			TipoBeneficio tb = ((TipoBeneficio) value);
+			return tb.getId() == null ? null : tb.getId().toString();
 		}
 		return null;
 	}

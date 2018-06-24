@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:metadata>
+		<f:viewAction action="#{consultaTipoBeneficioMBean.mostrarTodos}" />
+	</f:metadata>
+	<ui:define name="corpo">
+		<h2>Listas/Alterar Tipos de Benefício</h2>
+		<h:form>
+			<p:messages showDetail="false" showSummary="true" closable="true"
+				autoUpdate="true" />
+			<p:dataTable value="#{consultaTipoBeneficioMBean.tipos}" var="tipo"
+				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
+				paginatorPosition="bottom">
+				<p:column headerText="Código" sortBy="#{tipo.codigo}" width="70">
+					<h:outputText value="#{tipo.codigo}" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{tipo.descricao}" />
+				</p:column>
+				<p:column headerText="Ações" width="70">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/CadastroTipoBeneficio">
+						<f:param name="id" value="#{tipo.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						process="@this" update="@form"
+						action="#{consultaTipoBeneficioMBean.excluir}">
+						<f:setPropertyActionListener value="#{tipo}"
+							target="#{consultaTipoBeneficioMBean.tbSelecionado}" />						
+					</p:commandButton>
+
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
