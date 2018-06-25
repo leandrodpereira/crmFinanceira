@@ -40,7 +40,7 @@ public class TipoContatoStatus implements Serializable{
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = descricao.toUpperCase();
 	}
 	
 	@Override

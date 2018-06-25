@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	<ui:define name="corpo">
+		<f:metadata>
+			<o:viewParam name="id" value="#{cadastroTipoContatoStatusMBean.tcs}" />
+			<f:viewAction action="#{cadastroTipoContatoStatusMBean.preCadastro}"></f:viewAction>
+		</f:metadata>
+		<h2>Cadastro do Tipo de Status de um Contato</h2>
+		<h:form>
+			<p:messages showDetail="false" showSummary="true" closable="true"
+				autoUpdate="true" />
+			<p:panelGrid columns="2">				
+				<p:outputLabel value="Descrição" for="descricao" />
+				<p:inputText id="descricao"
+					value="#{cadastroTipoContatoStatusMBean.tcs.descricao}" />
+				<p:outputLabel />
+				<p:commandButton value="Salvar"
+					action="#{cadastroTipoContatoStatusMBean.salvar}"
+					icon="ui-icon-disk" update="@form" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

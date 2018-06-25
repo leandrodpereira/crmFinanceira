@@ -53,7 +53,7 @@ public class TipoContatoStatusRepos implements Serializable {
 	 * @author Leandro Duarte
 	 */
 	public boolean verificaTipoContatoStatus(Long id) {
-		TypedQuery<Contato> query = this.em.createQuery("from Contato c where c.tipoContatoStatus.id=" + id, Contato.class);
+		TypedQuery<Contato> query = this.em.createQuery("from Contato c where c.status.id=" + id, Contato.class);
 		return query.getResultList().isEmpty();
 	}
 
