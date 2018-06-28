@@ -18,9 +18,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tipo_beneficio")
-public class TipoBeneficio implements Serializable{
+public class TipoBeneficio implements Serializable{	
 	
-	private static final Long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 	
 	private Long id;
 	private Long codigo;
@@ -58,7 +58,7 @@ public class TipoBeneficio implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 	@Override
@@ -70,10 +70,12 @@ public class TipoBeneficio implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		TipoBeneficio other = (TipoBeneficio) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
+	}	
 	
 }

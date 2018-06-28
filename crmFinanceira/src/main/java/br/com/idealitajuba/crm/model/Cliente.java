@@ -83,7 +83,7 @@ public class Cliente extends Pessoa {
 		this.renda = renda;
 	}
 
-	@NotEmpty
+	
 	@Size(max = 13)
 	@Column(length = 13, nullable = false)
 	public String getTelefone() {
@@ -94,7 +94,7 @@ public class Cliente extends Pessoa {
 		this.telefone = telefone;
 	}
 
-	@NotEmpty
+	
 	@Size(max = 14)
 	@Column(length = 14, nullable = false)
 	public String getCelular() {
@@ -156,5 +156,7 @@ public class Cliente extends Pessoa {
 	public void setTipoBeneficio(TipoBeneficio tipoBeneficio) {
 		this.tipoBeneficio = tipoBeneficio;
 	}	
+	
+	
 
 }

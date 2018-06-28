@@ -37,7 +37,7 @@ public class CadastroClienteMBean implements Serializable {
 	
 	public void preCadastro() {
 		if(this.c == null) this.c = new Cliente();
-		this.tipos = tbr.todos();
+		this.setTipos(tbr.todos());
 	}
 	
 	public void salvar() {
@@ -69,7 +69,11 @@ public class CadastroClienteMBean implements Serializable {
 	}
 
 	public List<TipoBeneficio> getTipos() {
-		return this.tipos;
-	}	
+		return tipos;
+	}
+
+	public void setTipos(List<TipoBeneficio> tipos) {
+		this.tipos = tipos;
+	}
 	
 }

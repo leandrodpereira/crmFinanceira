@@ -16,25 +16,29 @@
 				autoUpdate="true" />
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}" />
+				<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
+					maxlength="60" />
 				<p:outputLabel value="Sexo" for="sexo" />
 				<p:selectOneButton value="#{cadastroClienteMBean.c.sexo}" id="sexo">
 					<f:selectItems value="#{cadastroClienteMBean.sexo}" var="sexo"
 						itemValue="#{sexo}" itemLabel="#{sexo.descricao}" />
 				</p:selectOneButton>
 				<p:outputLabel value="CPF" for="cpf" />
-				<p:inputText id="cpf" value="#{cadastroClienteMBean.c.cpf}" />
+				<p:inputText id="cpf" value="#{cadastroClienteMBean.c.cpf}"
+					title="Digite apenas números. Ex: 11111111111" />
 				<p:outputLabel value="RG" for="rg" />
 				<p:inputText id="rg" value="#{cadastroClienteMBean.c.rg}" />
 				<p:outputLabel value="Data de Nascimento" for="dataNascimento" />
 				<p:calendar size="12" pattern="dd/MM/yyyy"
 					value="#{cadastroClienteMBean.c.dataNascimento}"
-					id="dataNascimento">
+					id="dataNascimento" mask="true" navigator="true">
 				</p:calendar>
 				<p:outputLabel value="Telefone Fixo" for="fone" />
-				<p:inputText id="fone" value="#{cadastroClienteMBean.c.telefone}" />
+				<p:inputMask mask="(99)9999-9999" id="fone"
+					value="#{cadastroClienteMBean.c.telefone}" />
 				<p:outputLabel value="Celular" for="cel" />
-				<p:inputText id="cel" value="#{cadastroClienteMBean.c.celular}" />
+				<p:inputMask mask="(99)99999-9999" id="cel"
+					value="#{cadastroClienteMBean.c.celular}" />
 				<p:outputLabel value="E-mail" for="mail" />
 				<p:inputText id="mail" value="#{cadastroClienteMBean.c.email}" />
 				<p:outputLabel value="Renda" for="renda" />
@@ -53,15 +57,24 @@
 				<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoBeneficio}"
 					id="tipo" filter="true" filterMatchMode="contains">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-					<f:selectItems value="#{cadastroClienteMBean.tipos}"
-						var="tipoB" itemValue="#{tipoB}" itemLabel="#{tipoB.descricao}" />
+					<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
+						itemValue="#{tipoB}" itemLabel="#{tipoB.descricao}" />
 				</p:selectOneMenu>
 				<p:outputLabel value="Número do Benefício" for="nbe" />
 				<p:inputText id="nbe"
 					value="#{cadastroClienteMBean.c.numeroBeneficio}" />
 				<p:commandButton value="Salvar"
 					action="#{cadastroClienteMBean.salvar}" icon="ui-icon-disk"
-					update="@form" />
+					update="@form">
+					<p:confirm header="Cadastro"
+						message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
