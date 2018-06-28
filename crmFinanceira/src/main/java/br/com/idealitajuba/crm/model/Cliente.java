@@ -26,6 +26,7 @@ import javax.validation.constraints.Size;
 @Table(name = "cliente")
 public class Cliente extends Pessoa {
 
+	private static final long serialVersionUID = 1L;
 	private String cpf;
 	private String rg;
 	private Date dataNascimento;
@@ -37,7 +38,6 @@ public class Cliente extends Pessoa {
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
-
 	private TipoBeneficio tipoBeneficio;
 
 	@NotEmpty
@@ -58,7 +58,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setRg(String rg) {
-		this.rg = rg;
+		this.rg = rg.toUpperCase();
 	}
 
 	@NotNull
@@ -111,11 +111,10 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 	
-	@NotEmpty
-	@Size(max = 10)
+	@NotNull	
 	@Column(length = 10, nullable = false)
 	public Long getNumeroBeneficio() {
 		return numeroBeneficio;
@@ -146,9 +145,10 @@ public class Cliente extends Pessoa {
 	public void setFontePagadora(FontePagadoraEnum fontePagadora) {
 		this.fontePagadora = fontePagadora;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "tipo_beneficio_id")
+	
+	@NotNull
+	@ManyToOne (optional = false)
+	@JoinColumn(name = "tipo_beneficio_id", nullable = false)
 	public TipoBeneficio getTipoBeneficio() {
 		return tipoBeneficio;
 	}

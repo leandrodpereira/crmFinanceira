@@ -17,7 +17,11 @@
 
 	<h:form>
 		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
-			<p:submenu label="Clientes" />
+			<p:submenu label="Clientes">
+				<p:menuitem value="Inserir"
+					action="/CadastroCliente?faces-redirect=true" />
+				<p:menuitem value="Listar/Alterar" />
+			</p:submenu>
 			<p:submenu label="Contatos" />
 			<p:submenu label="Sistema">
 				<p:submenu label="Tipo de Beneficio">

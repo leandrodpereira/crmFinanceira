@@ -6,3 +6,8 @@ CadastroTipoContatoStatu:
 RN01 - Não é possível excluir Tipo que possui Contato associado.
 
 ---
+
+CadastroCliente
+RN01 - Não é possível excluir Cliente que possui Contato associado.
+
+---
