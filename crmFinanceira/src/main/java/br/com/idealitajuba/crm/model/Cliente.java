@@ -35,6 +35,7 @@ public class Cliente extends Pessoa {
 	private String celular;
 	private String email;
 	private Long numeroBeneficio;
+	private String observacoes;
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
@@ -155,8 +156,16 @@ public class Cliente extends Pessoa {
 
 	public void setTipoBeneficio(TipoBeneficio tipoBeneficio) {
 		this.tipoBeneficio = tipoBeneficio;
+	}
+
+	@Size(max = 60)
+	@Column(length = 60, nullable =	true)
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}	
-	
-	
 
 }

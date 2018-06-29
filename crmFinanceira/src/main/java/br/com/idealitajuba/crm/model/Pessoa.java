@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -26,7 +25,7 @@ public abstract class Pessoa implements Serializable{
 	
 	private Long id;
 	private String nome;
-	private boolean ativo;
+	private boolean ativo = true;
 	
 	@Id
 	@GeneratedValue
@@ -46,8 +45,7 @@ public abstract class Pessoa implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome.toUpperCase();
 	}
-	
-	@NotNull
+		
 	@Column(nullable =	false, columnDefinition = "boolean default true")
 	public boolean isAtivo() {
 		return ativo;

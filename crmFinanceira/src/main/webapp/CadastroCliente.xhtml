@@ -14,7 +14,7 @@
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="6" >
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
 					maxlength="60" />
@@ -24,7 +24,7 @@
 						itemValue="#{sexo}" itemLabel="#{sexo.descricao}" />
 				</p:selectOneButton>
 				<p:outputLabel value="CPF" for="cpf" />
-				<p:inputText id="cpf" value="#{cadastroClienteMBean.c.cpf}"
+				<p:inputText id="cpf" maxlength="11" value="#{cadastroClienteMBean.c.cpf}"
 					title="Digite apenas números. Ex: 11111111111" />
 				<p:outputLabel value="RG" for="rg" />
 				<p:inputText id="rg" value="#{cadastroClienteMBean.c.rg}" />
@@ -61,8 +61,11 @@
 						itemValue="#{tipoB}" itemLabel="#{tipoB.descricao}" />
 				</p:selectOneMenu>
 				<p:outputLabel value="Número do Benefício" for="nbe" />
-				<p:inputText id="nbe"
+				<p:inputText id="nbe" maxlength="12" title="Digite apenas números."
 					value="#{cadastroClienteMBean.c.numeroBeneficio}" />
+				<p:outputLabel value="Observações" for="obs"/>
+				<p:inputTextarea id="obs" value="#{cadastroClienteMBean.c.observacoes}"/>
+			</p:panelGrid>	
 				<p:commandButton value="Salvar"
 					action="#{cadastroClienteMBean.salvar}" icon="ui-icon-disk"
 					update="@form">
@@ -75,7 +78,7 @@
 					<p:commandButton value="Não" type="button"
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
-			</p:panelGrid>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
