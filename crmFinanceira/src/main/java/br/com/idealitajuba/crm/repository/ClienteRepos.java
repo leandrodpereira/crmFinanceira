@@ -56,5 +56,9 @@ public class ClienteRepos implements Serializable {
 		TypedQuery<Contato> query = this.em.createQuery("from Contato c where c.cliente.id=" + id, Contato.class);
 		return query.getResultList().isEmpty();
 	}
+	
+	public Cliente porCpf(String cpf) {
+		return this.em.createQuery("from Cliente c where c.cpf="+cpf, Cliente.class).getSingleResult();		
+	}
 
 }

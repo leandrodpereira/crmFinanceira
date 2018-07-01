@@ -1,0 +1,3 @@
+CadastroCliente:
+-Campo Renda
+-Unique CPF
