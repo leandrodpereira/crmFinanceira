@@ -1,6 +1,7 @@
 package br.com.idealitajuba.crm.mbeans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -24,12 +25,16 @@ public class ConsultaClienteMBean implements Serializable {
 	@Inject
 	private CadastroCliente cc;
 	
-	private String cpf;
-
+	private String cpf, nome;
 	private Cliente clienteSelecionado;
+	private List<Cliente> clientes;
 
 	public void mostrarPorCpf() {
-		this.clienteSelecionado = cr.porCpf(this.cpf);		
+		this.clientes = cr.porCpf(this.cpf);		
+	}
+	
+	public void mostrarPorNome() {
+		this.clientes = cr.porNome(this.nome);
 	}
 
 	public void excluir() {
@@ -59,6 +64,22 @@ public class ConsultaClienteMBean implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}	
 
 }

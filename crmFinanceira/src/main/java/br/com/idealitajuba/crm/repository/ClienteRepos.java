@@ -45,8 +45,8 @@ public class ClienteRepos implements Serializable {
 	}
 
 	/**
-	 * Método que verfica se existem ocorrências de Contatos associadas a um Cliente.
-	 * Útil para verificar antes de exlcuir um tipo. *
+	 * Método que verfica se existem ocorrências de Contatos associadas a um
+	 * Cliente. Útil para verificar antes de exlcuir um tipo. *
 	 * 
 	 * @param id
 	 * @return true se a lista estiver vazia.
@@ -56,9 +56,22 @@ public class ClienteRepos implements Serializable {
 		TypedQuery<Contato> query = this.em.createQuery("from Contato c where c.cliente.id=" + id, Contato.class);
 		return query.getResultList().isEmpty();
 	}
-	
-	public Cliente porCpf(String cpf) {
-		return this.em.createQuery("from Cliente c where c.cpf="+cpf, Cliente.class).getSingleResult();		
+
+	/**
+	 * Busca por CFP
+	 * 
+	 * @param cpf
+	 * @return
+	 */
+	public List<Cliente> porCpf(String cpf) {
+		TypedQuery<Cliente> query = this.em.createQuery("from Cliente c where c.cpf=" + cpf, Cliente.class);
+		return query.getResultList();
+	}
+
+	public List<Cliente> porNome(String nome) {
+		TypedQuery<Cliente> query = this.em.createQuery("from Cliente c where upper(c.nome) like upper(:nome)", Cliente.class);
+		query.setParameter("nome", "%" + nome + "%");
+		return query.getResultList();
 	}
 
 }
