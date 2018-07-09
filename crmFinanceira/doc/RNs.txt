@@ -9,5 +9,5 @@ RN01 - Não é possível excluir Tipo que possui Contato associado.
 
 CadastroCliente
 RN01 - Não é possível excluir Cliente que possui Contato associado.
-
+RN02 - Não é possível cadastrar Clientes que possuem o mesmo CPF.
 ---

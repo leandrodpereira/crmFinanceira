@@ -20,10 +20,18 @@ public class CadastroCliente implements Serializable{
 	@Inject
 	private ClienteRepos cr;
 	
+	/**
+	 * RN02 - Não é possível cadastrar Clientes que possuem o mesmo CPF.
+	 * @param c
+	 * @throws BusinessException
+	 */
 	@Transactional
 	public void salvar(Cliente c) throws BusinessException{
+		if(!this.cr.verificaUnicoCpf(c.getCpf()))
+			throw new BusinessException("CPF: "+c.getCpf()+" já cadastrado, favor verifique.");
 		this.cr.guardar(c);
 	}
+	
 	/**
 	 * RN01 - Não é possível excluir Cliente que possui Contato associado.
 	 * @param c

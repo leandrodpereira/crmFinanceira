@@ -22,24 +22,25 @@ import br.com.idealitajuba.crm.repository.TipoBeneficioRepos;
 public class CadastroClienteMBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private CadastroCliente cc;
-	
+
 	@Inject
 	private TipoBeneficioRepos tbr;
-	
-	private Cliente c =  new Cliente();
-	
+
+	private Cliente c = new Cliente();
+
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
 	private List<TipoBeneficio> tipos;
-	
+
 	public void preCadastro() {
-		if(this.c == null) this.c = new Cliente();
+		if (this.c == null)
+			this.c = new Cliente();
 		this.setTipos(tbr.todos());
 	}
-	
+
 	public void salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
@@ -58,7 +59,8 @@ public class CadastroClienteMBean implements Serializable {
 	}
 
 	public void setC(Cliente c) {
-		this.c = c;	}
+		this.c = c;
+	}
 
 	public SexoEnum[] getSexo() {
 		return SexoEnum.values();
@@ -75,5 +77,5 @@ public class CadastroClienteMBean implements Serializable {
 	public void setTipos(List<TipoBeneficio> tipos) {
 		this.tipos = tipos;
 	}
-	
+
 }

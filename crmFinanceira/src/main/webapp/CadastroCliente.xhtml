@@ -26,7 +26,7 @@
 				<p:outputLabel value="CPF" for="cpf" />
 				<p:inputText id="cpf" maxlength="11"
 					value="#{cadastroClienteMBean.c.cpf}"
-					title="Digite apenas números. Ex: 11111111111" />
+					title="Digite apenas números. Ex: 11111111111"/>
 				<p:outputLabel value="RG" for="rg" />
 				<p:inputText id="rg" value="#{cadastroClienteMBean.c.rg}" />
 				<p:outputLabel value="Data de Nascimento" for="dataNascimento" />
@@ -67,8 +67,9 @@
 				<p:outputLabel value="Observações" for="obs" />
 				<p:inputTextarea id="obs"
 					value="#{cadastroClienteMBean.c.observacoes}" />
+				<p:selectBooleanCheckbox value="#{cadastroClienteMBean.c.ativo}"
+					id="ativo" required="true" itemLabel="Cliente Ideal Itajubá" />
 			</p:panelGrid>
-			<br />
 			<br />
 			<p:commandButton value="Salvar"
 				action="#{cadastroClienteMBean.salvar}" icon="ui-icon-disk"

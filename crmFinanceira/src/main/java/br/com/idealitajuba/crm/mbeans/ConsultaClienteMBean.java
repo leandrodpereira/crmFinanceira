@@ -24,15 +24,15 @@ public class ConsultaClienteMBean implements Serializable {
 	private ClienteRepos cr;
 	@Inject
 	private CadastroCliente cc;
-	
+
 	private String cpf, nome;
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes;
 
 	public void mostrarPorCpf() {
-		this.clientes = cr.porCpf(this.cpf);		
+		this.clientes = cr.porCpf(this.cpf);
 	}
-	
+
 	public void mostrarPorNome() {
 		this.clientes = cr.porNome(this.nome);
 	}
@@ -40,14 +40,14 @@ public class ConsultaClienteMBean implements Serializable {
 	public void excluir() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
-			this.cc.excluir(clienteSelecionado);			
+			this.cc.excluir(clienteSelecionado);
 			context.addMessage(null, new FacesMessage("Cliente excluído com sucesso!"));
 		} catch (BusinessException e) {
 			FacesMessage mensagem = new FacesMessage(e.getMessage());
 			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, mensagem);
 		}
-	}
+	}	
 
 	public Cliente getClienteSelecionado() {
 		return clienteSelecionado;
@@ -57,7 +57,6 @@ public class ConsultaClienteMBean implements Serializable {
 		this.clienteSelecionado = clienteSelecionado;
 	}
 
-	
 	public String getCpf() {
 		return cpf;
 	}
@@ -80,6 +79,8 @@ public class ConsultaClienteMBean implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
+
+	
 
 }

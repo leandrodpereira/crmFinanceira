@@ -1,6 +1,7 @@
 package br.com.idealitajuba.crm.model;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,13 +31,14 @@ public class Cliente extends Pessoa {
 	private static final long serialVersionUID = 1L;
 	private String cpf;
 	private String rg;
-	private Date dataNascimento;
+	private Date dataNascimento;	
 	private BigDecimal renda;
 	private String telefone;
 	private String celular;
 	private String email;
 	private Long numeroBeneficio;
 	private String observacoes;
+	private Long idade;
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
@@ -74,7 +77,8 @@ public class Cliente extends Pessoa {
 	}
 
 	@NotNull
-	@DecimalMin("0")
+	@DecimalMin("1")
+	@DecimalMax("1000000")
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getRenda() {
 		return renda;
@@ -166,6 +170,19 @@ public class Cliente extends Pessoa {
 
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+
+	@Column(nullable =	false, columnDefinition = "long default 0")
+	public Long getIdade() {	
+		if(this.idade != null) {
+			this.idade  = (Calendar.getInstance().getTimeInMillis() - this.getDataNascimento().getTime()) + 3600000;
+			return (idade/31536000000L);
+		}
+		return idade;				
+	}
+
+	public void setIdade(Long idade) {
+		this.idade = idade;
 	}	
 
 }

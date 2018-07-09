@@ -25,7 +25,7 @@ public abstract class Pessoa implements Serializable{
 	
 	private Long id;
 	private String nome;
-	private boolean ativo = true;
+	private boolean ativo;
 	
 	@Id
 	@GeneratedValue

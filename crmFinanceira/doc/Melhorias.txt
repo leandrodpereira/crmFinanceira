@@ -1,4 +1,2 @@
-CadastroCliente:
--Campo Renda
--Unique CPF
--Ativo (verificar se é cliente)
+Clientes:
+-Idade
