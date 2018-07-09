@@ -64,14 +64,14 @@
 						<f:param name="id" value="#{tipo.id}" />
 					</p:button>
 					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/CadastroTipoBeneficio">
-						<f:param name="id" value="#{tipo.id}" />
+						outcome="/CadastroCliente">
+						<f:param name="id" value="#{c.id}" />
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						process="@this" update="@form"
-						action="#{consultaTipoBeneficioMBean.excluir}">
-						<f:setPropertyActionListener value="#{tipo}"
-							target="#{consultaTipoBeneficioMBean.tbSelecionado}" />
+						action="#{consultaClienteMBean.excluir}">
+						<f:setPropertyActionListener value="#{c}"
+							target="#{consultaClienteMBean.clienteSelecionado}" />
 						<p:confirm header="Exclusão" message="Confirma a exclusão?"
 							icon="ui-icon-alert" />
 					</p:commandButton>

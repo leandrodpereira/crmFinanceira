@@ -27,28 +27,30 @@ public class CadastroClienteMBean implements Serializable {
 	private CadastroCliente cc;
 
 	@Inject
-	private TipoBeneficioRepos tbr;
+	private TipoBeneficioRepos tbr;	
 
 	private Cliente c = new Cliente();
-
+	
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
 	private List<TipoBeneficio> tipos;
 
 	public void preCadastro() {
-		if (this.c == null)
-			this.c = new Cliente();
+		if (this.c == null) {
+			this.c = new Cliente();	
+		}
+				
 		this.setTipos(tbr.todos());
 	}
 
-	public void salvar() {
+	public void salvar(){
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.salvar(this.c);
 			this.c = new Cliente();
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
-		} catch (BusinessException e) {
-			FacesMessage msg = new FacesMessage(e.getMessage());
+		} catch (Exception e) {
+			FacesMessage msg = new FacesMessage("Erro ao realizar cadastro, consulte se o CPF não está duplicado.");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}

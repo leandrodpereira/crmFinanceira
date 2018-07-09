@@ -37,7 +37,7 @@ public class ConsultaClienteMBean implements Serializable {
 		this.clientes = cr.porNome(this.nome);
 	}
 
-	public void excluir() {
+	public String excluir() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.excluir(clienteSelecionado);
@@ -47,7 +47,8 @@ public class ConsultaClienteMBean implements Serializable {
 			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, mensagem);
 		}
-	}	
+		return "/ConsultaCliente?faces-redirect=true";
+	}
 
 	public Cliente getClienteSelecionado() {
 		return clienteSelecionado;
@@ -80,7 +81,5 @@ public class ConsultaClienteMBean implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	
 
 }
