@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
@@ -38,7 +39,7 @@ public class Cliente extends Pessoa {
 	private String email;
 	private Long numeroBeneficio;
 	private String observacoes;
-	private Long idade;
+	private Long idade = 0L;
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
@@ -172,7 +173,7 @@ public class Cliente extends Pessoa {
 		this.observacoes = observacoes;
 	}
 
-	@Column(nullable =	false, columnDefinition = "long default 0")
+	@Transient	
 	public Long getIdade() {	
 		if(this.idade != null) {
 			this.idade  = (Calendar.getInstance().getTimeInMillis() - this.getDataNascimento().getTime()) + 3600000;
