@@ -57,17 +57,6 @@ public class ClienteRepos implements Serializable {
 	}
 	
 	/**
-	 * Método que verfica a unicidade do CPF
-	 * @param cpf
-	 * @return true se a lista estiver vazia
-	 * @author Leandro Duarte
-	 */
-	public boolean verificaUnicoCpf(String cpf) {
-		TypedQuery<Cliente> query = this.em.createQuery("from Cliente c where c.cpf=" + cpf, Cliente.class);
-		return query.getResultList().isEmpty();
-	}
-
-	/**
 	 * Busca por CFP	 * 
 	 * @param cpf
 	 * @return
