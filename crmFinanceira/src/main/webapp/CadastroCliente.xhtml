@@ -11,10 +11,10 @@
 			<f:viewAction action="#{cadastroClienteMBean.preCadastro}"></f:viewAction>
 		</f:metadata>
 		<h2>Cadastro de Clientes</h2>
-		<h:form>
+		<h:form >
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
-			<p:panelGrid columns="6">
+			<p:panelGrid columns="6" >
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
 					maxlength="60" />

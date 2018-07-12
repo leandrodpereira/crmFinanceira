@@ -14,7 +14,7 @@
 			<p:panelGrid columns="3" >
 				<p:outputLabel value="CPF" for="cpf" />
 				<p:inputText id="cpf" value="#{consultaClienteMBean.cpf}"
-					immediate="true" maxlength="11" size="11" title="Digite apenas números"
+					immediate="true" maxlength="11" size="21" title="Digite apenas números"
 					required="true"
 					requiredMessage="Entre com o CPF que deseja buscar." />
 				<p:commandButton icon="ui-icon-search" title="Buscar"
@@ -27,7 +27,7 @@
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{consultaClienteMBean.nome}"
 					immediate="true" title="Digite o nome ou parte dele."
-					required="true" 
+					required="true" size="20"
 					requiredMessage="Entre com o nome ou parte dele que deseja buscar." />
 				<p:commandButton icon="ui-icon-search" title="Buscar"
 					action="#{consultaClienteMBean.mostrarPorNome}" update="@all" />
@@ -56,10 +56,10 @@
 				</p:column>
 				<p:column headerText="Ações" width="133">
 					<p:button icon="ui-icon-info" title="Mais informações"
-						outcome="/CadastroTipoBeneficio">
-						<f:param name="id" value="#{tipo.id}" />
+						outcome="/ConsultaIndividualCliente">
+						<f:param name="id" value="#{c.id}" />
 					</p:button>
-					<p:button icon="ui-icon-star" title="Contato"
+					<p:button icon="ui-icon-star" title="Realizar contato"
 						outcome="/CadastroTipoBeneficio">
 						<f:param name="id" value="#{tipo.id}" />
 					</p:button>

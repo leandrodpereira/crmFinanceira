@@ -61,9 +61,8 @@ public class ClienteRepos implements Serializable {
 	 * @param cpf
 	 * @return
 	 */
-	public List<Cliente> porCpf(String cpf) {
-		TypedQuery<Cliente> query = this.em.createQuery("from Cliente c where c.cpf=" + cpf, Cliente.class);
-		return query.getResultList();
+	public Cliente porCpf(String cpf) {
+		return this.em.createQuery("from Cliente c where c.cpf=" + cpf, Cliente.class).getSingleResult();		
 	}
 	
 	/**

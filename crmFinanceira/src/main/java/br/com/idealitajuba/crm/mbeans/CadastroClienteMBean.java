@@ -15,6 +15,7 @@ import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.model.FontePagadoraEnum;
 import br.com.idealitajuba.crm.model.SexoEnum;
 import br.com.idealitajuba.crm.model.TipoBeneficio;
+import br.com.idealitajuba.crm.repository.ClienteRepos;
 import br.com.idealitajuba.crm.repository.TipoBeneficioRepos;
 
 @Named
@@ -28,18 +29,22 @@ public class CadastroClienteMBean implements Serializable {
 
 	@Inject
 	private TipoBeneficioRepos tbr;	
+	
+	@Inject
+	private ClienteRepos cr;
 
 	private Cliente c = new Cliente();
 	
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
 	private List<TipoBeneficio> tipos;
+	private String msgCliente;
 
 	public void preCadastro() {
 		if (this.c == null) {
 			this.c = new Cliente();	
 		}
-				
+		this.isCliente();		
 		this.setTipos(tbr.todos());
 	}
 
@@ -50,10 +55,16 @@ public class CadastroClienteMBean implements Serializable {
 			this.c = new Cliente();
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("Erro ao realizar cadastro, consulte se o CPF não está duplicado.");
+			String clienteDuplicado = cr.porCpf(c.getCpf()).getNome();
+			FacesMessage msg = new FacesMessage("Erro ao realizar cadastro, CPF "
+					+ "já cadastrado para o (a) cliente "+clienteDuplicado+".");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
+	}
+	
+	public void isCliente() {
+		this.msgCliente = this.c.isAtivo()?" é nosso cliente!":" ainda não é nosso cliente. :(";
 	}
 
 	public Cliente getC() {
@@ -79,5 +90,14 @@ public class CadastroClienteMBean implements Serializable {
 	public void setTipos(List<TipoBeneficio> tipos) {
 		this.tipos = tipos;
 	}
+
+	public String getMsgCliente() {
+		return msgCliente;
+	}
+
+	public void setMsgCliente(String msgCliente) {
+		this.msgCliente = msgCliente;
+	}
+		
 
 }

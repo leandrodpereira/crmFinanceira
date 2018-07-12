@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	<ui:define name="corpo">
+		<f:metadata>
+			<o:viewParam name="id" value="#{cadastroClienteMBean.c}" />
+			<f:viewAction action="#{cadastroClienteMBean.preCadastro}"></f:viewAction>
+		</f:metadata>
+		<h2>Detalhes do Cliente</h2>
+		<h3>Sr(a). #{cadastroClienteMBean.c.nome} #{cadastroClienteMBean.msgCliente}</h3>
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome completo:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.nome}" />
+				<p:outputLabel value="Idade:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.idade} anos" />
+				<p:outputLabel value="Sexo:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.sexo}" />
+				<p:outputLabel value="CPF:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.cpf}" />
+				<p:outputLabel value="RG:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.rg}" />
+				<p:outputLabel value="Data de Nascimento:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:outputLabel>
+				<p:outputLabel value="Número do Benefício:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.numeroBeneficio}" />
+				<p:outputLabel value="Telefone Fixo:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.telefone}" />
+				<p:outputLabel value="Celular:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.celular}" />
+				<p:outputLabel value="E-mail:" />
+				<p:link value="#{cadastroClienteMBean.c.email}" href="mailto:#{cadastroClienteMBean.c.email}" />
+				<p:outputLabel value="Renda:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.renda}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</p:outputLabel>
+				<p:outputLabel value="Fonte Pagadora:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.fontePagadora}" />
+				<p:outputLabel value="Tipo de Beneficio:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.tipoBeneficio.descricao}" />
+				<p:outputLabel value="Observações:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.observacoes}" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
