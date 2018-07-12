@@ -22,7 +22,7 @@ public class CadastroUsuario implements Serializable {
 	private UsuarioRepos ur;
 
 	@Transactional
-	public void salvar(Usuario u) throws Exception {
+	public void salvar(Usuario u) throws BusinessException {
 		this.ur.guardar(u);
 
 	}

@@ -30,7 +30,7 @@ public class Usuario extends Pessoa {
 	}
 	
 	@NotEmpty
-	@Size(min = 8)
+	@Size(min = 6, max = 10)
 	@Column(nullable =	false)
 	public String getSenha() {
 		return senha;

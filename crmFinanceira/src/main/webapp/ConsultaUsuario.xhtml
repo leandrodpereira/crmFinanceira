@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:metadata>
+		<f:viewAction action="#{consultaUsuarioMBean.mostrarTodos}" />
+	</f:metadata>
+	<ui:define name="corpo">
+		<h2>Listas/Alterar Usuários</h2>
+		<h:form>
+			<p:messages showDetail="false" showSummary="true" closable="true"
+				autoUpdate="true" />
+			<p:dataTable value="#{consultaUsuarioMBean.usuarios}" var="usuario"
+				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
+				paginatorPosition="bottom" emptyMessage="Sem registros para mostrar">
+				<p:column headerText="Código" sortBy="#{usuario.id}" width="70">
+					<h:outputText value="#{usuario.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+				<p:column headerText="Login">
+					<h:outputText value="#{usuario.login}" />
+				</p:column>
+				<p:column headerText="Ativo">
+					<p:selectBooleanCheckbox  value="#{usuario.ativo}" disabled="true" />
+				</p:column>
+				<p:column headerText="Ações" width="70">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/CadastroUsuario">
+						<f:param name="id" value="#{usuario.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						process="@this" update="@form"
+						action="#{consultaUsuarioMBean.excluir}">
+						<f:setPropertyActionListener value="#{usuario}"
+							target="#{consultaUsuarioMBean.usuarioSelecionado}" />
+						<p:confirm header="Exclusão" message="Confirma a exclusão?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

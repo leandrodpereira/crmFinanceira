@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	<ui:define name="corpo">
+		<f:metadata>
+			<o:viewParam name="id" value="#{cadastroUsuarioMBean.u}" />
+			<f:viewAction action="#{cadastroUsuarioMBean.preCadastro}"></f:viewAction>
+		</f:metadata>
+		<h2>Cadastro de Usuários</h2>
+		<h:form>
+			<p:messages showDetail="false" showSummary="true" closable="true"
+				autoUpdate="true" />
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" value="#{cadastroUsuarioMBean.u.nome}"
+					maxlength="60" />
+				<p:outputLabel value="Login" for="login" />
+				<p:inputText id="login" maxlength="10"
+					value="#{cadastroUsuarioMBean.u.login}" />
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password id="senha" value="#{cadastroUsuarioMBean.u.senha}"/>
+				<p:selectBooleanCheckbox value="#{cadastroUsuarioMBean.u.ativo}"
+					id="ativo" required="true" itemLabel="Ativo" />
+			</p:panelGrid>
+			<br />
+			<p:commandButton value="Salvar"
+				action="#{cadastroUsuarioMBean.salvar}" icon="ui-icon-disk"
+				update="@form">
+				<p:confirm header="Cadastro"
+					message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
+			</p:commandButton>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
