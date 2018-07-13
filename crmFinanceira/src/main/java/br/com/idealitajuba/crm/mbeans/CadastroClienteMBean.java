@@ -9,7 +9,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.idealitajuba.crm.business.BusinessException;
 import br.com.idealitajuba.crm.business.CadastroCliente;
 import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.model.FontePagadoraEnum;
@@ -50,14 +49,19 @@ public class CadastroClienteMBean implements Serializable {
 
 	public void salvar(){
 		FacesContext context = FacesContext.getCurrentInstance();
+		FacesMessage msg;
 		try {
 			this.cc.salvar(this.c);
 			this.c = new Cliente();
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
 		} catch (Exception e) {
 			String clienteDuplicado = cr.porCpf(c.getCpf()).getNome();
-			FacesMessage msg = new FacesMessage("Erro ao realizar cadastro, CPF "
-					+ "já cadastrado para o (a) cliente "+clienteDuplicado+".");
+			if (!clienteDuplicado.equals("")) {
+				msg = new FacesMessage("Erro ao realizar cadastro, CPF "
+						+ "já cadastrado para o (a) cliente "+clienteDuplicado+".");
+			}else {
+				msg = new FacesMessage(" Um erro ocorreu, transação não realizada.");
+			}			
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}

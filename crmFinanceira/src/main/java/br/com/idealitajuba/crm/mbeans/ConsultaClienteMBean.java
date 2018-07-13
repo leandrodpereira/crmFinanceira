@@ -30,7 +30,7 @@ public class ConsultaClienteMBean implements Serializable {
 	private List<Cliente> clientes;
 
 	public void mostrarPorCpf() {
-		this.clientes = cr.porCpf(this.cpf);
+		this.clientes = cr.porCpfLista(this.cpf);
 	}
 
 	public void mostrarPorNome() {
