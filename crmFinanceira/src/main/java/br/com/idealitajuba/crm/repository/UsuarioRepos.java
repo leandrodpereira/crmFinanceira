@@ -55,9 +55,7 @@ public class UsuarioRepos implements Serializable {
 			Query query = this.em.createQuery("from Usuario u where u.login = :login");
 			query.setParameter("login",  login );
 			return (Usuario) query.getSingleResult();
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
+		}catch (Exception e) {}
 		
 		return null;	 
 	}

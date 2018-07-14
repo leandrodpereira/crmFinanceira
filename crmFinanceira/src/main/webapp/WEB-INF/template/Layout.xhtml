@@ -16,7 +16,7 @@
 	</header>
 
 	<h:form>
-		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
+		<p:menubar style="margin-top: -20px; margin-bottom: 20px" >
 			<p:submenu label="Clientes">
 				<p:menuitem value="Inserir"
 					action="/CadastroCliente?faces-redirect=true" />
@@ -42,8 +42,9 @@
 						action="/CadastroUsuario?faces-redirect=true" />
 					<p:menuitem value="Listar/Alterar"
 						action="/ConsultaUsuario?faces-redirect=true" />
-				</p:submenu>
+				</p:submenu>				
 			</p:submenu>
+			<p:menuitem value="Sair" action="#{loginMBean.fazLogout}"/>				
 		</p:menubar>
 	</h:form>
 	<div id="conteudo">

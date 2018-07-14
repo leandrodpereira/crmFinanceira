@@ -10,12 +10,11 @@
 </h:head>
 
 <h:body>
-
 	
 		<h1>Login</h1>
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" 
-			autoUpdate="true" />
+			autoUpdate="true" closable="true"/>
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Usuário" for="usuario" />
 				<p:inputText id="usuario" value="#{loginMBean.login}" />
@@ -25,8 +24,6 @@
 				<p:commandButton value="Acessar" action="#{loginMBean.fazLogin}" />
 			</p:panelGrid>
 		</h:form>
-
-	
 
 </h:body>
 

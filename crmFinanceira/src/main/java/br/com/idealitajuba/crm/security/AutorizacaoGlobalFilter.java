@@ -24,7 +24,7 @@ import br.com.idealitajuba.crm.mbeans.LoginMBean;
 @WebFilter("*.xhtml")
 public class AutorizacaoGlobalFilter implements Filter {
 	
-	@Inject //Verificar a Inseção de Usuario
+	@Inject
 	private LoginMBean loginMBean;
 	
 	@Override
@@ -33,7 +33,6 @@ public class AutorizacaoGlobalFilter implements Filter {
 
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpServletRequest request = (HttpServletRequest) req;
-
 		
 		
 		if ((loginMBean == null || !loginMBean.isLogado()) && !request.getRequestURI().endsWith("/Login.xhtml")
