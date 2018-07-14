@@ -2,6 +2,7 @@ package br.com.idealitajuba.crm.security;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -22,7 +23,10 @@ import br.com.idealitajuba.crm.mbeans.LoginMBean;
 
 @WebFilter("*.xhtml")
 public class AutorizacaoGlobalFilter implements Filter {
-
+	
+	@Inject //Verificar a Inseção de Usuario
+	private LoginMBean loginMBean;
+	
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
@@ -30,8 +34,8 @@ public class AutorizacaoGlobalFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpServletRequest request = (HttpServletRequest) req;
 
-		LoginMBean loginMBean = (LoginMBean) ((HttpServletRequest) request).getSession().getAttribute("loginMBean");
-
+		
+		
 		if ((loginMBean == null || !loginMBean.isLogado()) && !request.getRequestURI().endsWith("/Login.xhtml")
 				&& !request.getRequestURI().contains("/javax.faces.resource/")) {
 			response.sendRedirect(request.getContextPath() + "/Login.xhtml");

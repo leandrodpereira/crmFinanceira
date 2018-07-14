@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.idealitajuba.crm.model.Contato;
@@ -42,6 +43,23 @@ public class UsuarioRepos implements Serializable {
 	public List<Usuario> todos() {
 		TypedQuery<Usuario> query = this.em.createQuery("from Usuario", Usuario.class);
 		return query.getResultList();
+	}
+	
+	/**
+	 * Método que busca por Login
+	 * @param login
+	 * @return Usuario
+	 */	
+	public Usuario porLogin(String login) {
+		try {
+			Query query = this.em.createQuery("from Usuario u where u.login = :login");
+			query.setParameter("login",  login );
+			return (Usuario) query.getSingleResult();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;	 
 	}
 
 	/**

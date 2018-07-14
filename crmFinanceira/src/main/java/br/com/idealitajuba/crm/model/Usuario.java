@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
  * @author Leandro Duarte
  *
  */
+
 @Entity
 @Table(name="usuario")
 public class Usuario extends Pessoa {
