@@ -67,6 +67,9 @@ public class CadastroClienteMBean implements Serializable {
 		}
 	}
 	
+	/**
+	 * Método que identifica quem é ou não cliente da empresa.
+	 */
 	public void isCliente() {
 		this.msgCliente = this.c.isAtivo()?" é nosso cliente!":" ainda não é nosso cliente. :(";
 	}

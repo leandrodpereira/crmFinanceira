@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	<ui:define name="corpo">
+		<f:metadata>
+			<o:viewParam name="id" value="#{cadastroContatoMBean.cli}" />
+			<f:viewAction action="#{cadastroContatoMBean.preCadastro}"></f:viewAction>
+		</f:metadata>
+		<h2>Registro de Contato</h2>
+		<h:form>
+			<p:messages showDetail="false" showSummary="true" closable="true"
+				autoUpdate="true" />
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Cliente: " />
+				<p:outputLabel id="nome"
+					value="#{cadastroContatoMBean.con.cliente.nome}" />
+				<p:outputLabel value="Usuário responsável pelo contato: " />
+				<p:outputLabel value="#{cadastroContatoMBean.con.usuario.nome}" />
+				<p:outputLabel value="Data/Hora do Contato:  " />
+				<p:outputLabel value="#{cadastroContatoMBean.con.dataHoraContato}">
+					<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+				</p:outputLabel>
+				<p:outputLabel value="Observações do contato:  " for="obs" />
+				<p:inputTextarea id="obs"
+					value="#{cadastroContatoMBean.con.observacoes}"  required="true"/>
+				<p:outputLabel value="Status do Contato: " for="status" />
+				<p:selectOneMenu value="#{cadastroContatoMBean.con.status}"
+					id="status" filter="true" filterMatchMode="contains" required="true">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItems value="#{cadastroContatoMBean.tipoStatus}" var="statusBen"
+						itemValue="#{statusBen}" itemLabel="#{statusBen.descricao}"  />
+				</p:selectOneMenu>
+			</p:panelGrid>
+			<br />
+			<p:commandButton value="Salvar"
+				action="#{cadastroContatoMBean.salvar}" icon="ui-icon-disk"
+				update="@form">
+				<p:confirm header="Cadastro"
+					message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
+			</p:commandButton>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

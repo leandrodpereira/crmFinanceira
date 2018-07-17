@@ -5,8 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,9 +25,9 @@ public class Contato implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
+	private Long id;
 	private Date dataHoraContato;
-	private String Observacoes;
+	private String observacoes;
 	
 	private TipoContatoStatus status;
 	
@@ -38,10 +36,10 @@ public class Contato implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -57,10 +55,10 @@ public class Contato implements Serializable{
 	
 	@Column(nullable = true)
 	public String getObservacoes() {
-		return Observacoes;
+		return observacoes;
 	}
 	public void setObservacoes(String observacoes) {
-		Observacoes = observacoes;
+		this.observacoes = observacoes.toUpperCase();
 	}
 	
 	@ManyToOne
