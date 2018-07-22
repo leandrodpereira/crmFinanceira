@@ -44,19 +44,17 @@ public class CadastroContatoMBean implements Serializable {
 		this.con.setDataHoraContato(Calendar.getInstance().getTime());
 	}
 
-	public void salvar() {
+	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.salvar(this.con);
-			this.con = new Contato();
-			this.cli = new Cliente();
-			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
+			context.addMessage(null, new FacesMessage("Contato registrado com sucesso!"));
 		} catch (BusinessException e) {
 			FacesMessage msg = new FacesMessage(e.getMessage());
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
-
+		return "";
 	}
 
 	public Contato getCon() {
@@ -82,6 +80,5 @@ public class CadastroContatoMBean implements Serializable {
 	public void setTipoStatus(List<TipoContatoStatus> tipoStatus) {
 		this.tipoStatus = tipoStatus;
 	}
-	
-	
+
 }

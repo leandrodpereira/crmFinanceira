@@ -40,7 +40,7 @@ public class ContatoRepos implements Serializable {
 	}
 
 	public List<Contato> todos() {
-		TypedQuery<Contato> query = this.em.createQuery("from Cliente", Contato.class);
+		TypedQuery<Contato> query = this.em.createQuery("from Contato", Contato.class);
 		return query.getResultList();
 	}
 
