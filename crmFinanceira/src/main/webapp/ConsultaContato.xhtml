@@ -38,7 +38,7 @@
 				<p:column headerText="Ações" width="70">
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/CadastroContato">
-						<f:param name="id" value="#{contato.id}" />
+						<f:param name="idContato" value="#{contato.id}" />
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						process="@this" update="@form"
