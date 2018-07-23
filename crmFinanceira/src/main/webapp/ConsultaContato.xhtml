@@ -16,11 +16,8 @@
 			<p:dataTable value="#{consultaContatoMBean.contatos}" var="contato"
 				border="1" cellspacing="0" cellpadding="2" paginator="true"
 				rows="10" paginatorPosition="bottom"
-				emptyMessage="Sem registros para mostrar">
-				<p:column headerText="Código" sortBy="#{contato.id}" width="70">
-					<h:outputText value="#{contato.id}" />
-				</p:column>
-				<p:column headerText="Cliente" sortBy="#{contato.cliente.nome}">
+				emptyMessage="Sem registros para mostrar">				
+				<p:column headerText="Cliente" sortBy="#{contato.cliente.nome}" width="250">
 					<h:outputText value="#{contato.cliente.nome}" />
 				</p:column>
 				<p:column headerText="Data/Hora" sortBy="#{contato.dataHoraContato}"
@@ -34,6 +31,9 @@
 				</p:column>
 				<p:column headerText="Observações">
 					<h:outputText value="#{contato.observacoes}" />
+				</p:column>
+				<p:column headerText="Usuario" width="70">
+					<h:outputText value="#{contato.usuario.login}" />
 				</p:column>
 				<p:column headerText="Ações" width="70">
 					<p:button icon="ui-icon-pencil" title="Editar"

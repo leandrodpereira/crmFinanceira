@@ -48,5 +48,30 @@
 				<p:outputLabel value="#{cadastroClienteMBean.c.observacoes}" />
 			</p:panelGrid>
 		</h:form>
+		<br/>
+		<h2>Contatos realizados com o cliente #{cadastroClienteMBean.c.nome}</h2>
+		<br/>
+		<h:form>
+			<p:dataTable value="#{cadastroClienteMBean.contatos}" var="contato"
+				border="1" cellspacing="0" cellpadding="2" paginator="true"
+				rows="5" paginatorPosition="bottom"
+				emptyMessage="Nenhum contato foi realizado com este cliente">				
+				<p:column headerText="Data/Hora" sortBy="#{contato.dataHoraContato}"
+						width="130">
+					<h:outputText value="#{contato.dataHoraContato}">
+						<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Status" width="200">
+					<h:outputText value="#{contato.status.descricao}" />
+				</p:column>
+				<p:column headerText="Observações">
+					<h:outputText value="#{contato.observacoes}" />
+				</p:column>
+				<p:column headerText="Usuario" width="70">
+					<h:outputText value="#{contato.usuario.login}" />
+				</p:column>				
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

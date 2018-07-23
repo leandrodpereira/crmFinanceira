@@ -39,7 +39,7 @@ public class CadastroContatoMBean implements Serializable {
 			this.con = new Contato();
 		}
 		this.tipoStatus = tcsr.todos();
-		this.con.setCliente(cli);
+		if(con.getCliente() == null) this.con.setCliente(cli);
 		this.con.setUsuario(login.getUsuario());
 		this.con.setDataHoraContato(Calendar.getInstance().getTime());
 	}

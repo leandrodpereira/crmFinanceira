@@ -11,10 +11,12 @@ import javax.inject.Named;
 
 import br.com.idealitajuba.crm.business.CadastroCliente;
 import br.com.idealitajuba.crm.model.Cliente;
+import br.com.idealitajuba.crm.model.Contato;
 import br.com.idealitajuba.crm.model.FontePagadoraEnum;
 import br.com.idealitajuba.crm.model.SexoEnum;
 import br.com.idealitajuba.crm.model.TipoBeneficio;
 import br.com.idealitajuba.crm.repository.ClienteRepos;
+import br.com.idealitajuba.crm.repository.ContatoRepos;
 import br.com.idealitajuba.crm.repository.TipoBeneficioRepos;
 
 @Named
@@ -31,12 +33,16 @@ public class CadastroClienteMBean implements Serializable {
 	
 	@Inject
 	private ClienteRepos cr;
+	
+	@Inject
+	private ContatoRepos cre;
 
-	private Cliente c = new Cliente();
+	private Cliente c = new Cliente();	
 	
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
 	private List<TipoBeneficio> tipos;
+	private List<Contato> contatos;
 	private String msgCliente;
 
 	public void preCadastro() {
@@ -45,6 +51,7 @@ public class CadastroClienteMBean implements Serializable {
 		}
 		this.isCliente();		
 		this.setTipos(tbr.todos());
+		this.setContatos(cre.porCliente(c));
 	}
 
 	public void salvar(){
@@ -104,6 +111,14 @@ public class CadastroClienteMBean implements Serializable {
 
 	public void setMsgCliente(String msgCliente) {
 		this.msgCliente = msgCliente;
+	}
+
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
 	}
 		
 

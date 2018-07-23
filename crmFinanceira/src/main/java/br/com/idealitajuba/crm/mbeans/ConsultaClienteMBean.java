@@ -36,18 +36,22 @@ public class ConsultaClienteMBean implements Serializable {
 	public void mostrarPorNome() {
 		this.clientes = cr.porNome(this.nome);
 	}
+	
+	public void mostrarTodos() {
+		this.clientes = cr.todos();
+	}
 
-	public String excluir() {
+	public void excluir() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.excluir(clienteSelecionado);
+			this.mostrarTodos();
 			context.addMessage(null, new FacesMessage("Cliente excluído com sucesso!"));
 		} catch (BusinessException e) {
 			FacesMessage mensagem = new FacesMessage(e.getMessage());
 			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, mensagem);
-		}
-		return "/ConsultaCliente?faces-redirect=true";
+		}		
 	}
 
 	public Cliente getClienteSelecionado() {

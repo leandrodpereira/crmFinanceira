@@ -1,12 +1,8 @@
 package br.com.idealitajuba.crm.business;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 
 import javax.inject.Inject;
-
-import com.mysql.jdbc.exceptions.jdbc4.MySQLDataException;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.repository.ClienteRepos;
@@ -41,7 +37,7 @@ public class CadastroCliente implements Serializable {
 	public void excluir(Cliente c) throws BusinessException {
 		c = this.cr.porId(c.getId());
 		if (!this.cr.verificaCliente(c.getId()))
-			throw new BusinessException("Não é possível excluir Cliente que " + "possui Contato associado.");
+			throw new BusinessException("Não é possível excluir Cliente que possui Contato associado.");
 		this.cr.remover(c);
 	}
 }
