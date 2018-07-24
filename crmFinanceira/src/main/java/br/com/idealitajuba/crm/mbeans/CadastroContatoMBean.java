@@ -55,7 +55,8 @@ public class CadastroContatoMBean implements Serializable {
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
-		return "";
+		if(this.con.getStatus().getId() == 72 )return "/CadastroAgendamento?faces-redirect=true";
+		else return "";
 	}
 
 	public Contato getCon() {

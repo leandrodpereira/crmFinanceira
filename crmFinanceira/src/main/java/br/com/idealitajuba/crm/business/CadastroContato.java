@@ -28,7 +28,7 @@ public class CadastroContato implements Serializable {
 	}
 
 	/**
-	 * RN01 - Não é possível excluir Contato que possui Agendamento associado.	 * 
+	 * RN01 - Não é possível excluir Contato que possui Agendamento associado.	  
 	 * @param c
 	 * @throws BusinessException
 	 */
