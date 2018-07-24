@@ -1,6 +1,7 @@
 package br.com.idealitajuba.crm.mbeans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -27,9 +28,19 @@ public class ConsultaContatoMBean implements Serializable {
 
 	private Contato contatoSelecionado;
 	private List<Contato> contatos;
+	
+	private Date dataInicio;
+	private Date dataFim;
 
+	/**
+	 * Lista todos Contatos
+	 */
 	public void mostrarTodos() {
 		this.setContatos(cr.todos());
+	}
+	
+	public void mostrarPorIntervalo() {
+		this.setContatos(cr.porData(dataInicio, dataFim));
 	}
 
 	public void excluir() {
@@ -59,6 +70,22 @@ public class ConsultaContatoMBean implements Serializable {
 
 	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
 	}
 
 }

@@ -1,6 +1,9 @@
 package br.com.idealitajuba.crm.security;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -40,6 +43,9 @@ public class AutorizacaoGlobalFilter implements Filter {
 			response.sendRedirect(request.getContextPath() + "/Login.xhtml");
 		} else {
 			chain.doFilter(req, res);
+			Date d = Calendar.getInstance().getTime();
+			System.out.println(new 
+					SimpleDateFormat("dd-MM-yyyy hh:mm").format(d.getTime()));
 		}
 
 	}

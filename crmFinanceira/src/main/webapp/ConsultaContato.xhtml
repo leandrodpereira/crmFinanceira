@@ -10,9 +10,27 @@
 	</f:metadata>
 	<ui:define name="corpo">
 		<h2>Listas/Alterar Contatos</h2>
-		<h:form>
-			<p:messages showDetail="false" showSummary="true" closable="true"
+		<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
+		<h:form>
+			<h3>Pesquisa por datas (intervalo)</h3>
+			<p:panelGrid columns="5" >
+				<p:outputLabel value="Data Inicial" for="dataInicio" />
+				<p:calendar size="12" pattern="dd/MM/yyyy"
+					value="#{consultaContatoMBean.dataInicio}"
+					id="dataInicio" mask="true" navigator="true" required="true">
+				</p:calendar>
+				<p:outputLabel value="Data Final" for="dataFim" />
+				<p:calendar size="12" pattern="dd/MM/yyyy"
+					value="#{consultaContatoMBean.dataFim}"
+					id="dataFim" mask="true" navigator="true" required="true">
+				</p:calendar>
+				<p:commandButton icon="ui-icon-search" title="Buscar"
+					action="#{consultaContatoMBean.mostrarPorIntervalo}" update="@all" />
+			</p:panelGrid>
+		</h:form>
+		<br /><br />
+		<h:form>			
 			<p:dataTable value="#{consultaContatoMBean.contatos}" var="contato"
 				border="1" cellspacing="0" cellpadding="2" paginator="true"
 				rows="10" paginatorPosition="bottom"

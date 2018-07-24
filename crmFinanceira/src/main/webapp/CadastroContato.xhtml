@@ -23,7 +23,7 @@
 				<p:outputLabel value="#{cadastroContatoMBean.con.usuario.nome}" />
 				<p:outputLabel value="Data/Hora do Contato:  " />
 				<p:outputLabel value="#{cadastroContatoMBean.con.dataHoraContato}">
-					<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" locale="pt_BR"/>
 				</p:outputLabel>
 				<p:outputLabel value="Observações do contato:  " for="obs" />
 				<p:inputTextarea id="obs"

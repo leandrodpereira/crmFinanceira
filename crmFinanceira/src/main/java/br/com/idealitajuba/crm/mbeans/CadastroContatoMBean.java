@@ -2,6 +2,7 @@ package br.com.idealitajuba.crm.mbeans;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -33,7 +34,7 @@ public class CadastroContatoMBean implements Serializable {
 	private Contato con = new Contato();
 	private Cliente cli = new Cliente();
 	private List<TipoContatoStatus> tipoStatus;
-
+	
 	public void preCadastro() {
 		if (this.con == null) {
 			this.con = new Contato();
