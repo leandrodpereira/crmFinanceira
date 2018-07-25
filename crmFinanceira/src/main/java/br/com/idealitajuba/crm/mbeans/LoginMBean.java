@@ -42,7 +42,7 @@ public class LoginMBean implements Serializable {
 				mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 				context.addMessage(null, mensagem);
 
-			} else if (usuario.getLogin().equals(this.login) && usuario.getSenha().equals(this.senha)) {
+			} else if (usuario.getLogin().equals(this.login) && usuario.getSenha().equals(this.senha) && usuario.isAtivo()) {
 
 				this.logado = true;
 				return "/Home?faces-redirect=true";

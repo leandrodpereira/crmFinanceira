@@ -7,15 +7,17 @@
 
 <h:head>
 	<title>Login</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
-
+<header>	
+</header>
+<div class="login-dialog"> <h:graphicImage library="img" name="logo.jpg" /></div>
 <h:body>
-	
-		<h1>Login</h1>
+	<div class="login-dialog">		
 		<h:form>
-			<p:messages showDetail="false" showSummary="true" 
-			autoUpdate="true" closable="true"/>
-			<p:panelGrid columns="2">
+			<p:messages showDetail="false" showSummary="true" autoUpdate="true"
+				closable="true" />
+			<p:panelGrid columns="2" styleClass="grid-login">
 				<p:outputLabel value="Usuário" for="usuario" />
 				<p:inputText id="usuario" value="#{loginMBean.login}" />
 				<p:outputLabel value="Senha" for="senha" />
@@ -24,7 +26,7 @@
 				<p:commandButton value="Acessar" action="#{loginMBean.fazLogin}" />
 			</p:panelGrid>
 		</h:form>
-
+	</div>
 </h:body>
 
 </html>

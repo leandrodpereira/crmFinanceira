@@ -43,9 +43,7 @@ public class AutorizacaoGlobalFilter implements Filter {
 			response.sendRedirect(request.getContextPath() + "/Login.xhtml");
 		} else {
 			chain.doFilter(req, res);
-			Date d = Calendar.getInstance().getTime();
-			System.out.println(new 
-					SimpleDateFormat("dd-MM-yyyy hh:mm").format(d.getTime()));
+			Date d = Calendar.getInstance().getTime();			
 		}
 
 	}

@@ -25,6 +25,8 @@ public class ConsultaContatoMBean implements Serializable {
 	private ContatoRepos cr;
 	@Inject
 	private CadastroContato cc;
+	@Inject
+	private LoginMBean login;
 
 	private Contato contatoSelecionado;
 	private List<Contato> contatos;
@@ -42,7 +44,15 @@ public class ConsultaContatoMBean implements Serializable {
 	public void mostrarPorIntervalo() {
 		this.setContatos(cr.porData(dataInicio, dataFim));
 	}
-
+	
+	public void mostrarAgendamentoPendentePorUsuario() {
+		this.setContatos(cr.porAgendamentoPendenteUsuario(login.getUsuario()));
+	}
+	
+	public void mostrarAgendamentoPendente() {
+		this.setContatos(cr.porAgendamentoPendente());
+	}
+	
 	public void excluir() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {

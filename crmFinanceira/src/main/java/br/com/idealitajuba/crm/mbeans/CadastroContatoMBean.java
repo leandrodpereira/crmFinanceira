@@ -2,14 +2,16 @@ package br.com.idealitajuba.crm.mbeans;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.component.panelgrid.PanelGrid;
 
 import br.com.idealitajuba.crm.business.BusinessException;
 import br.com.idealitajuba.crm.business.CadastroContato;
@@ -34,18 +36,34 @@ public class CadastroContatoMBean implements Serializable {
 	private Contato con = new Contato();
 	private Cliente cli = new Cliente();
 	private List<TipoContatoStatus> tipoStatus;
+
+	private PanelGrid agenda;
 	
+		
+	/**
+	 * 
+	 * @param event
+	 */
+	public void mostraAgenda(AjaxBehaviorEvent event) {
+		if (this.con.getStatus().getId() == 72)	this.agenda.setRendered(true);					
+		else {
+			this.agenda.setRendered(false);
+			this.con.setConcluido(true);
+		}
+	}
+
 	public void preCadastro() {
 		if (this.con == null) {
 			this.con = new Contato();
 		}
 		this.tipoStatus = tcsr.todos();
-		if(con.getCliente() == null) this.con.setCliente(cli);
+		if (con.getCliente() == null)
+			this.con.setCliente(cli);
 		this.con.setUsuario(login.getUsuario());
 		this.con.setDataHoraContato(Calendar.getInstance().getTime());
 	}
 
-	public String salvar() {
+	public void salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.salvar(this.con);
@@ -55,8 +73,7 @@ public class CadastroContatoMBean implements Serializable {
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
-		if(this.con.getStatus().getId() == 72 )return "/CadastroAgendamento?faces-redirect=true";
-		else return "";
+
 	}
 
 	public Contato getCon() {
@@ -81,6 +98,14 @@ public class CadastroContatoMBean implements Serializable {
 
 	public void setTipoStatus(List<TipoContatoStatus> tipoStatus) {
 		this.tipoStatus = tipoStatus;
+	}
+
+	public PanelGrid getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(PanelGrid agenda) {
+		this.agenda = agenda;
 	}
 
 }

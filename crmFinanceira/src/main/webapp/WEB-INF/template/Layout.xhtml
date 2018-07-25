@@ -12,12 +12,19 @@
 <h:body>
 	<header>
 		<!-- <h:graphicImage library="img" name="logo.png" /> -->
-		<h1>Ideal Itajubá, o crédito ideal pra você!</h1>
+		<h1>
+			<strong>Ideal Itajubá, o crédito IDEAL para você!</strong>
+		</h1>
 	</header>
 
 	<h:form>
-		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
-			<p:submenu label="Clientes">
+		<p:menubar style="margin-top: -20px; margin-bottom: 20px; font-size: 18px;">
+			<p:menuitem title="Home" outcome="/Home?faces-redirect=true">
+				<h:link title="Home">
+					<h:graphicImage library="img" name="home.png" height="35" />
+				</h:link>
+			</p:menuitem>
+			<p:submenu label="Clientes" >
 				<p:menuitem value="Inserir"
 					action="/CadastroCliente?faces-redirect=true" />
 				<p:menuitem value="Listar/Alterar"
@@ -26,6 +33,8 @@
 			<p:submenu label="Contatos">
 				<p:menuitem value="Listar/Alterar"
 					action="/ConsultaContato?faces-redirect=true" />
+				<p:menuitem value="Agendamentos"
+					action="/Pendencias?faces-redirect=true" />
 			</p:submenu>
 			<p:submenu label="Sistema">
 				<p:submenu label="Tipo de Beneficio">
@@ -47,7 +56,7 @@
 						action="/ConsultaUsuario?faces-redirect=true" />
 				</p:submenu>
 			</p:submenu>
-			<p:menuitem value="Sair" action="#{loginMBean.fazLogout}" />
+			<p:menuitem value="Sair de #{loginMBean.usuario.login}" action="#{loginMBean.fazLogout}" />
 		</p:menubar>
 	</h:form>
 	<div id="conteudo">

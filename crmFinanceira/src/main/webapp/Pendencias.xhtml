@@ -4,13 +4,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://omnifaces.org/ui">
 	<f:metadata>
 		<f:viewAction
-			action="#{consultaContatoMBean.mostrarAgendamentoPendentePorUsuario}" />
+			action="#{consultaContatoMBean.mostrarAgendamentoPendente}" />
 	</f:metadata>
-	<ui:define name="corpo">
-		<h2>Bem vindo #{loginMBean.usuario.nome} !</h2>
+	<ui:define name="corpo">		
 		<h:form>
 			<h3>Agendamentos Pendentes</h3>
 			<p:dataTable value="#{consultaContatoMBean.contatos}" var="contato"
@@ -24,13 +24,13 @@
 					width="200">
 					<h:outputText value="#{contato.cliente.telefone} -- #{contato.cliente.celular}" />
 				</p:column>
-				<p:column headerText="Data"
+				<p:column headerText="Data" 
 					sortBy="#{contato.dataAgendamento}" width="70">
 					<h:outputText value="#{contato.dataAgendamento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="Hora"
+				<p:column headerText="Hora" 
 					sortBy="#{contato.horaAgendamento}" width="70">
 					<h:outputText value="#{contato.horaAgendamento}">
 						<f:convertDateTime pattern="HH:mm" />
@@ -38,6 +38,9 @@
 				</p:column>
 				<p:column headerText="Observações">
 					<h:outputText value="#{contato.observacoes}" />
+				</p:column>
+				<p:column headerText="Usuário" width="50">
+					<h:outputText value="#{contato.usuario.login}" />
 				</p:column>
 				<p:column  width="153">
 					<p:button icon="ui-icon-circle-check" 

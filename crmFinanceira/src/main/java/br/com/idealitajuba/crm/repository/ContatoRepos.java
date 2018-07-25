@@ -2,6 +2,7 @@ package br.com.idealitajuba.crm.repository;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +10,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.idealitajuba.crm.model.Agendamento;
 import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.model.Contato;
+import br.com.idealitajuba.crm.model.Usuario;
 
 /**
  * Classe com pricipais métodos de acesso a dados.
@@ -75,18 +76,30 @@ public class ContatoRepos implements Serializable {
 	}
 	
 	/**
-	 * Método que verfica se existem agendamentos associados a um Contato. Útil para
-	 * verificar antes de exlcuir .
-	 * 
-	 * @param id
-	 * @return true se a lista estiver vazia.
-	 * @author Leandro Duarte
+	 * Método que mostra os contatos com agendamento pendentes por usuario no dia presente.
+	 * @param dataInicio
+	 * @param dataFim
+	 * @return
 	 */
-	public boolean verificaAgendamento(Long id) {
-		TypedQuery<Agendamento> query = this.em.createQuery("from Agendamento a where a.contato.id=" + id,
-				Agendamento.class);
-		return query.getResultList().isEmpty();
-	}	
-	
+	public List<Contato> porAgendamentoPendenteUsuario(Usuario u) {
+		TypedQuery<Contato> query = this.em.createQuery("from Contato c where "
+				+ "c.status.id=72 and c.usuario.id="+u.getId()
+				+" and date_format(c.dataAgendamento,'%d/%m/%Y') = '"
+				+new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime())+"'",
+				Contato.class);
+		return query.getResultList();
+	}
 
+	
+	/**
+	 * Método que mostra os contatos com agendamento pendentes.
+	 * @param dataInicio
+	 * @param dataFim
+	 * @return
+	 */
+	public List<Contato> porAgendamentoPendente() {
+		TypedQuery<Contato> query = this.em.createQuery("from Contato c where "
+				+ "c.status.id=72" ,Contato.class);
+		return query.getResultList();
+	}
 }
