@@ -1,6 +1,7 @@
 package br.com.idealitajuba.crm.mbeans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -9,6 +10,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.idealitajuba.crm.business.BusinessException;
 import br.com.idealitajuba.crm.business.CadastroCliente;
 import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.model.Contato;
@@ -29,32 +31,33 @@ public class CadastroClienteMBean implements Serializable {
 	private CadastroCliente cc;
 
 	@Inject
-	private TipoBeneficioRepos tbr;	
-	
+	private TipoBeneficioRepos tbr;
+
 	@Inject
 	private ClienteRepos cr;
-	
+
 	@Inject
 	private ContatoRepos cre;
 
-	private Cliente c = new Cliente();	
-	
+	private Cliente c = new Cliente();
+
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
 	private List<TipoBeneficio> tipos;
 	private List<Contato> contatos;
 	private String msgCliente;
+	private Date hoje;
 
 	public void preCadastro() {
 		if (this.c == null) {
-			this.c = new Cliente();	
+			this.c = new Cliente();
 		}
-		this.isCliente();		
+		this.isCliente();
 		this.setTipos(tbr.todos());
 		this.setContatos(cre.porCliente(c));
 	}
 
-	public void salvar(){
+	public void salvar() throws BusinessException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage msg;
 		try {
@@ -64,21 +67,23 @@ public class CadastroClienteMBean implements Serializable {
 		} catch (Exception e) {
 			String clienteDuplicado = cr.porCpf(c.getCpf()).getNome();
 			if (!clienteDuplicado.equals("")) {
-				msg = new FacesMessage("Erro ao realizar cadastro, CPF "
-						+ "já cadastrado para o (a) cliente "+clienteDuplicado+".");
-			}else {
+				msg = new FacesMessage("Erro ao realizar cadastro, CPF " + "já cadastrado para o (a) cliente "
+						+ clienteDuplicado + ".");
+			} else {
 				msg = new FacesMessage(" Um erro ocorreu, transação não realizada.");
-			}			
+			}
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
 	}
+
 	
+
 	/**
 	 * Método que identifica quem é ou não cliente da empresa.
 	 */
 	public void isCliente() {
-		this.msgCliente = this.c.isAtivo()?" é nosso cliente!":" ainda não é nosso cliente. :(";
+		this.msgCliente = this.c.isAtivo() ? " é nosso cliente!" : " ainda não é nosso cliente. :(";
 	}
 
 	public Cliente getC() {
@@ -120,6 +125,12 @@ public class CadastroClienteMBean implements Serializable {
 	public void setContatos(List<Contato> contatos) {
 		this.contatos = contatos;
 	}
-		
 
+	public Date getHoje() {
+		return new Date();
+	}
+
+	public void setHoje(Date hoje) {
+		this.hoje = hoje;
+	}
 }

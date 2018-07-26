@@ -26,6 +26,8 @@ public class ContatoRepos implements Serializable {
 
 	private EntityManager em;
 
+	final String status = "AGENDAMENTO";
+
 	@Inject
 	public ContatoRepos(EntityManager em) {
 		this.em = em;
@@ -49,7 +51,8 @@ public class ContatoRepos implements Serializable {
 	}
 
 	/**
-	 * Método que retorna os contatos feitos a um cliente
+	 * Método que retorna os contatos feitos a um cliente.
+	 * 
 	 * @param cliente
 	 * @return lista de Contatos
 	 * @author Leandro Duarte
@@ -61,45 +64,48 @@ public class ContatoRepos implements Serializable {
 	}
 
 	/**
-	 * Método que retorna os contatos feitos num intervalo de datas
+	 * Método que retorna os contatos feitos num intervalo de datas.
+	 * 
 	 * @param dataInicio
 	 * @param dataFim
 	 * @return lista de Contatos
 	 * @author Leandro Duarte
 	 */
 	public List<Contato> porData(Date dataInicio, Date dataFim) {
-		TypedQuery<Contato> query = this.em.createQuery("from Contato c where "
-				+ "date_format(c.dataHoraContato,'%d/%m/%Y') between '" + new SimpleDateFormat("dd/MM/yyyy").format(dataInicio)
-				+"' and '"+ new SimpleDateFormat("dd/MM/yyyy").format(dataFim)+"'",
-				Contato.class);
+		TypedQuery<Contato> query = this.em
+				.createQuery("from Contato c where " + "date_format(c.dataHoraContato,'%d/%m/%Y') between '"
+						+ new SimpleDateFormat("dd/MM/yyyy").format(dataInicio) + "' and '"
+						+ new SimpleDateFormat("dd/MM/yyyy").format(dataFim) + "'", Contato.class);
 		return query.getResultList();
 	}
-	
+
 	/**
-	 * Método que mostra os contatos com agendamento pendentes por usuario no dia presente.
+	 * Método que mostra os contatos com agendamento pendentes por usuario no dia
+	 * presente.
+	 * 
 	 * @param dataInicio
 	 * @param dataFim
 	 * @return
 	 */
 	public List<Contato> porAgendamentoPendenteUsuario(Usuario u) {
-		TypedQuery<Contato> query = this.em.createQuery("from Contato c where "
-				+ "c.status.id=72 and c.usuario.id="+u.getId()
-				+" and date_format(c.dataAgendamento,'%d/%m/%Y') = '"
-				+new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime())+"'",
+		TypedQuery<Contato> query = this.em.createQuery(
+				"from Contato c where " + "c.status.descricao='" + status + "' and c.usuario.id=" + u.getId()
+						+ " and date_format(c.dataAgendamento,'%d/%m/%Y') = '"
+						+ new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()) + "'",
 				Contato.class);
 		return query.getResultList();
 	}
 
-	
 	/**
 	 * Método que mostra os contatos com agendamento pendentes.
+	 * 
 	 * @param dataInicio
 	 * @param dataFim
 	 * @return
 	 */
 	public List<Contato> porAgendamentoPendente() {
-		TypedQuery<Contato> query = this.em.createQuery("from Contato c where "
-				+ "c.status.id=72" ,Contato.class);
+		TypedQuery<Contato> query = this.em.createQuery("from Contato c where " + "c.status.descricao='" + status + "'",
+				Contato.class);
 		return query.getResultList();
 	}
 }

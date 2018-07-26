@@ -4,35 +4,41 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 	<ui:define name="corpo">
 		<f:metadata>
 			<o:viewParam name="id" value="#{cadastroClienteMBean.c}" />
 			<f:viewAction action="#{cadastroClienteMBean.preCadastro}"></f:viewAction>
 		</f:metadata>
 		<h2>Cadastro de Clientes</h2>
-		<h:form >
+		<h:form>
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
-			<p:panelGrid columns="6" >
+			<p:panelGrid columns="6">
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
-					maxlength="60" />
+					maxlength="60" required="true" />
 				<p:outputLabel value="Sexo" for="sexo" />
-				<p:selectOneButton value="#{cadastroClienteMBean.c.sexo}" id="sexo">
+				<p:selectOneButton value="#{cadastroClienteMBean.c.sexo}" id="sexo"
+					required="true">
 					<f:selectItems value="#{cadastroClienteMBean.sexo}" var="sexo"
 						itemValue="#{sexo}" itemLabel="#{sexo.descricao}" />
 				</p:selectOneButton>
 				<p:outputLabel value="CPF" for="cpf" />
 				<p:inputText id="cpf" maxlength="11"
 					value="#{cadastroClienteMBean.c.cpf}"
-					title="Digite apenas números. Ex: 11111111111"/>
+					title="Digite apenas números. Ex: 11111111111" required="true" />
 				<p:outputLabel value="RG" for="rg" />
-				<p:inputText id="rg" value="#{cadastroClienteMBean.c.rg}" />
+				<p:inputText id="rg" value="#{cadastroClienteMBean.c.rg}"
+					title="Digite apenas letras e números, sem traços e pontos. Ex: MG1111111"
+					maxlength="13" />
 				<p:outputLabel value="Data de Nascimento" for="dataNascimento" />
-				<p:calendar size="12" pattern="dd/MM/yyyy"
+				<p:calendar size="12" pattern="dd/MM/yyyy" required="true"
 					value="#{cadastroClienteMBean.c.dataNascimento}"
-					id="dataNascimento" mask="true" navigator="true">
+					id="dataNascimento" mask="true" navigator="true"
+					yearRange="c-110:c+0" locale="pt"
+					maxdate="#{cadastroClienteMBean.hoje}">
 				</p:calendar>
 				<p:outputLabel value="Telefone Fixo" for="fone" />
 				<p:inputMask mask="(99)9999-9999" id="fone"
@@ -44,26 +50,26 @@
 				<p:inputText id="mail" value="#{cadastroClienteMBean.c.email}" />
 				<p:outputLabel value="Renda" for="renda" />
 				<p:inputText size="12" value="#{cadastroClienteMBean.c.renda}"
-					id="renda">
-					<f:convertNumber locale="pt_BR" maxFractionDigits="2"
-						minFractionDigits="2" />
+					id="renda" required="true">
+					<f:convertNumber locale="pt_BR" minFractionDigits="2"
+						maxFractionDigits="2"/>
 				</p:inputText>
 				<p:outputLabel value="Fonte Pagadora" for="fonte" />
 				<p:selectOneButton value="#{cadastroClienteMBean.c.fontePagadora}"
-					id="fonte">
+					id="fonte" required="true">
 					<f:selectItems value="#{cadastroClienteMBean.fonte}" var="fonte"
 						itemValue="#{fonte}" itemLabel="#{fonte.descricao}" />
 				</p:selectOneButton>
 				<p:outputLabel value="Tipo de Beneficio" for="tipo" />
 				<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoBeneficio}"
-					id="tipo" filter="true" filterMatchMode="contains">
+					id="tipo" filter="true" filterMatchMode="contains" required="true">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 					<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
-						itemValue="#{tipoB}" itemLabel="#{tipoB.descricao}" />
+						itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
 				</p:selectOneMenu>
 				<p:outputLabel value="Número do Benefício" for="nbe" />
 				<p:inputText id="nbe" maxlength="12" title="Digite apenas números."
-					value="#{cadastroClienteMBean.c.numeroBeneficio}" />
+					value="#{cadastroClienteMBean.c.numeroBeneficio}" required="true"/>
 				<p:outputLabel value="Observações" for="obs" />
 				<p:inputTextarea id="obs"
 					value="#{cadastroClienteMBean.c.observacoes}" />
@@ -83,6 +89,8 @@
 				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			</p:confirmDialog>
+			<br /> <br />
+			<p:outputLabel value="Os campos com * são obrigatórios."/>
 		</h:form>
 	</ui:define>
 </ui:composition>

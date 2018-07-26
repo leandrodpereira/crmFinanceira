@@ -57,7 +57,7 @@ public class ClienteRepos implements Serializable {
 	}
 	
 	/**
-	 * Busca por CFP	 * 
+	 * Busca por CFP	  
 	 * @param cpf
 	 * @return
 	 */

@@ -12,7 +12,7 @@
 	<ui:define name="corpo">
 		<h2>Bem vindo #{loginMBean.usuario.nome} !</h2>
 		<h:form>
-			<h3>Agendamentos Pendentes</h3>
+			<h3>Agendamentos Pendentes Hoje</h3>
 			<p:dataTable value="#{consultaContatoMBean.contatos}" var="contato"
 				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
 				paginatorPosition="bottom" emptyMessage="Sem agendamentos">

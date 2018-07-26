@@ -9,19 +9,22 @@
 	<title>Login</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
-<header>	
-</header>
-<div class="login-dialog"> <h:graphicImage library="img" name="logo.jpg" /></div>
+<header> </header>
+<div class="login-dialog">
+	<h:graphicImage library="img" name="logo.jpg" />
+</div>
 <h:body>
-	<div class="login-dialog">		
+	<div class="login-dialog">
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" autoUpdate="true"
 				closable="true" />
 			<p:panelGrid columns="2" styleClass="grid-login">
 				<p:outputLabel value="Usuário" for="usuario" />
-				<p:inputText id="usuario" value="#{loginMBean.login}" />
+				<p:inputText id="usuario" value="#{loginMBean.login}"
+					required="true" requiredMessage="É preciso digitar seu login." />
 				<p:outputLabel value="Senha" for="senha" />
-				<p:password id="senha" value="#{loginMBean.senha}" />
+				<p:password id="senha" value="#{loginMBean.senha}" required="true"
+					requiredMessage="É preciso digitar sua senha." />
 				<p:outputLabel />
 				<p:commandButton value="Acessar" action="#{loginMBean.fazLogin}" />
 			</p:panelGrid>

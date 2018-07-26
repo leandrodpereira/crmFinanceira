@@ -18,13 +18,14 @@
 	</header>
 
 	<h:form>
-		<p:menubar style="margin-top: -20px; margin-bottom: 20px; font-size: 18px;">
-			<p:menuitem title="Home" outcome="/Home?faces-redirect=true">
-				<h:link title="Home">
+		<p:menubar
+			style="margin-top: -20px; margin-bottom: 20px; font-size: 18px;">
+			<p:menuitem title="Home">
+				<h:link title="Home" outcome="/Home?faces-redirect=true">
 					<h:graphicImage library="img" name="home.png" height="35" />
 				</h:link>
 			</p:menuitem>
-			<p:submenu label="Clientes" >
+			<p:submenu label="Clientes">
 				<p:menuitem value="Inserir"
 					action="/CadastroCliente?faces-redirect=true" />
 				<p:menuitem value="Listar/Alterar"
@@ -56,7 +57,8 @@
 						action="/ConsultaUsuario?faces-redirect=true" />
 				</p:submenu>
 			</p:submenu>
-			<p:menuitem value="Sair de #{loginMBean.usuario.login}" action="#{loginMBean.fazLogout}" />
+			<p:menuitem value="Sair de #{loginMBean.usuario.login}"
+				action="#{loginMBean.fazLogout}" />
 		</p:menubar>
 	</h:form>
 	<div id="conteudo">

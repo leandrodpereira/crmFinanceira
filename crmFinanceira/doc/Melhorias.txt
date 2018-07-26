@@ -1,2 +1,11 @@
-Clientes:
--Aprimorar msg de violação de unique
+Alterar ID do status agendamento pela descricao OK
+Limitar campo RG (igual cpf) OK
+Ajustar o min e max data de nascimento OK
+mostrar campos requeridos no cadastro de cliente OK
+mudar pesquisa tipo de beneficio para numero e mostrar numero na pesquisa OK
+required no login OK
+add msg de exlcusao de cliente, desative o cliente
+quando for editar o contato e ele for agendamento carregar o campo data e home
+travar todas as alterações de sistema para o admin
+Colocar um icone de processando enquanto faz o login
+Testar cobrança por requisições

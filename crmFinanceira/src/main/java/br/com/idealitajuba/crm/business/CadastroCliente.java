@@ -1,6 +1,7 @@
 package br.com.idealitajuba.crm.business;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -9,8 +10,7 @@ import br.com.idealitajuba.crm.repository.ClienteRepos;
 import br.com.idealitajuba.crm.util.Transactional;
 
 /**
- * Classe que implementa as regras de negócio.
- * 
+ * Classe que implementa as regras de negócio. 
  * @author Leandro Duarte
  *
  */
@@ -21,15 +21,14 @@ public class CadastroCliente implements Serializable {
 	@Inject
 	private ClienteRepos cr;
 
+	
 	@Transactional
-	public void salvar(Cliente c) throws Exception {
+	public void salvar(Cliente c) throws BusinessException {		
 		this.cr.guardar(c);
-
 	}
 
 	/**
-	 * RN01 - Não é possível excluir Cliente que possui Contato associado.
-	 * 
+	 * RN01 - Não é possível excluir Cliente que possui Contato associado. 
 	 * @param c
 	 * @throws BusinessException
 	 */

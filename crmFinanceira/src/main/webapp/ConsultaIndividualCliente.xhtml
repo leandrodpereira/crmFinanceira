@@ -38,7 +38,7 @@
 				<p:link value="#{cadastroClienteMBean.c.email}" href="mailto:#{cadastroClienteMBean.c.email}" />
 				<p:outputLabel value="Renda:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.renda}">
-					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+					<f:convertNumber type="currency" maxFractionDigits="2" minFractionDigits="2" />
 				</p:outputLabel>
 				<p:outputLabel value="Fonte Pagadora:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.fontePagadora}" />
