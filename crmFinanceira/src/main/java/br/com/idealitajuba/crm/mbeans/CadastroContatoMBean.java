@@ -112,8 +112,10 @@ public class CadastroContatoMBean implements Serializable {
 	}
 
 	public boolean iscarregaAgenda() {
-		if (this.con.getStatus().getDescricao().equals("AGENDAMENTO"))
-			return true;
+		if(this.con.getStatus() != null){
+			if (this.con.getStatus().getDescricao().equals("AGENDAMENTO"))
+				return true;
+		}		
 		return false;
 	}
 
