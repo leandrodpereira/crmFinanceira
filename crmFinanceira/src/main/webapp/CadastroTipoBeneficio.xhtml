@@ -4,14 +4,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:o="http://omnifaces.org/ui">	
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 	<ui:define name="corpo">
 		<f:metadata>
-			<o:viewParam name="id" value="#{cadastroTipoBeneficioMBean.tb}"/>
+			<o:viewParam name="id" value="#{cadastroTipoBeneficioMBean.tb}" />
 			<f:viewAction action="#{cadastroTipoBeneficioMBean.preCadastro}"></f:viewAction>
 		</f:metadata>
-		<h2>Cadastro do Tipo de Benefício</h2>		
+		<h2>Cadastro do Tipo de Benefício</h2>
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
@@ -21,12 +20,21 @@
 					value="#{cadastroTipoBeneficioMBean.tb.codigo}" />
 				<p:outputLabel value="Descrição" for="descricao" />
 				<p:inputText id="descricao"
-					value="#{cadastroTipoBeneficioMBean.tb.descricao}" />
-				<p:outputLabel />
-				<p:commandButton value="Salvar"
-					action="#{cadastroTipoBeneficioMBean.salvar}" icon="ui-icon-disk"
-					update="@form" />
+					value="#{cadastroTipoBeneficioMBean.tb.descricao}" />				
 			</p:panelGrid>
+			<br />
+			<p:commandButton value="Salvar"
+				action="#{cadastroTipoBeneficioMBean.salvar}" icon="ui-icon-disk"
+				update="@form">
+				<p:confirm header="Cadastro"
+					message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
+			</p:commandButton>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

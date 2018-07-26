@@ -38,7 +38,7 @@ public class LoginMBean implements Serializable {
 
 			if (this.usuario == null) {
 
-				FacesMessage mensagem = new FacesMessage("Usuário não cadastrado, procure o administrador do sistema.");
+				FacesMessage mensagem = new FacesMessage("Usuário não cadastrado.");
 				mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 				context.addMessage(null, mensagem);
 

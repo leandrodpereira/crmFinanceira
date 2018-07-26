@@ -21,23 +21,26 @@ public class CadastroUsuario implements Serializable {
 
 	@Inject
 	private UsuarioRepos ur;
-	
+
 	@Inject
-	private LoginMBean l;	
+	private LoginMBean l;
 
 	/**
-	 * RN01 - Não é possível excluir Cliente que possui Contato associado.	 * 
+	 * RN01 - Não é possível excluir Cliente que possui Contato associado. *
+	 * 
 	 * @param c
 	 * @throws BusinessException
 	 */
 	@Transactional
 	public void excluir(Usuario u) throws BusinessException {
 		u = this.ur.porId(u.getId());
-		if (!this.ur.verificaUsuario(u.getId()) || !this.l.getLogin().equals("admin"))
+		if (!this.l.getLogin().equals("admin"))
+			throw new BusinessException("Apenas o Administrador do sistema pode realizar esta operação.");
+		if (!this.ur.verificaUsuario(u.getId()))
 			throw new BusinessException("Não é possível excluir Usuário que possui Contato associado.");
 		this.ur.remover(u);
 	}
-	
+
 	/**
 	 * 
 	 * @param u

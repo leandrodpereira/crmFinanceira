@@ -13,8 +13,7 @@
 		</f:metadata>
 		<h2>Registro de Contato</h2>
 		<h:form>
-			<p:messages showDetail="false" showSummary="true" closable="true"
-				autoUpdate="true" />
+			<p:messages showSummary="true" closable="true" autoUpdate="true" />
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Cliente: " />
 				<p:outputLabel id="nome"
@@ -43,7 +42,7 @@
 			<br />
 			<h:panelGroup id="pagenda">
 				<p:panelGrid columns="2" binding="#{cadastroContatoMBean.agenda}"
-					rendered="false">
+					rendered="#{cadastroContatoMBean.carregaAgenda}">
 					<p:outputLabel value="Data: " for="data" />
 					<p:calendar size="12" pattern="dd/MM/yyyy"
 						value="#{cadastroContatoMBean.con.dataAgendamento}" id="data"

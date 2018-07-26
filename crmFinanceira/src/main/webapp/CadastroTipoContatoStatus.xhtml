@@ -14,15 +14,24 @@
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
-			<p:panelGrid columns="2">				
+			<p:panelGrid columns="2">
 				<p:outputLabel value="Descrição" for="descricao" />
 				<p:inputText id="descricao"
 					value="#{cadastroTipoContatoStatusMBean.tcs.descricao}" />
-				<p:outputLabel />
-				<p:commandButton value="Salvar"
-					action="#{cadastroTipoContatoStatusMBean.salvar}"
-					icon="ui-icon-disk" update="@form" />
 			</p:panelGrid>
+			<br />
+			<p:commandButton value="Salvar"
+				action="#{cadastroTipoContatoStatusMBean.salvar}"
+				icon="ui-icon-disk" update="@form">
+				<p:confirm header="Cadastro"
+					message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
+			</p:commandButton>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -36,22 +36,26 @@ public class CadastroContatoMBean implements Serializable {
 	private Contato con = new Contato();
 	private Cliente cli = new Cliente();
 	private List<TipoContatoStatus> tipoStatus;
+	
+	private boolean carregaAgenda;
 
 	private PanelGrid agenda;
-	
-		
+
 	/**
+	 * Listen para mostrar a data/hora para agendar
 	 * 
 	 * @param event
 	 */
 	public void mostraAgenda(AjaxBehaviorEvent event) {
-		if (this.con.getStatus().getId() == 72)	this.agenda.setRendered(true);					
+		if (this.con.getStatus().getDescricao().equals("AGENDAMENTO"))
+			this.agenda.setRendered(true);
 		else {
 			this.agenda.setRendered(false);
 			this.con.setConcluido(true);
 		}
 	}
-
+	
+	
 	public void preCadastro() {
 		if (this.con == null) {
 			this.con = new Contato();
@@ -66,14 +70,13 @@ public class CadastroContatoMBean implements Serializable {
 	public void salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
-			this.cc.salvar(this.con);
+			this.cc.salvar(this.con);			
 			context.addMessage(null, new FacesMessage("Contato registrado com sucesso!"));
 		} catch (BusinessException e) {
 			FacesMessage msg = new FacesMessage(e.getMessage());
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
-		}
-
+		}		
 	}
 
 	public Contato getCon() {
@@ -107,5 +110,13 @@ public class CadastroContatoMBean implements Serializable {
 	public void setAgenda(PanelGrid agenda) {
 		this.agenda = agenda;
 	}
+
+	public boolean iscarregaAgenda() {
+		if (this.con.getStatus().getDescricao().equals("AGENDAMENTO"))
+			return true;
+		return false;
+	}
+
+	
 
 }
