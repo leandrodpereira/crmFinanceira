@@ -14,12 +14,11 @@ header {
 	background-color: #FF6600;
 	color: #FFF;
 	box-shadow: 0px 2px 2px #ccc;
-	font-family: "Arial Black";	
+	font-family: "Arial Black";
 }
 
 #conteudo {
 	padding: 0px 8px;
-	
 }
 
 footer {
@@ -37,13 +36,20 @@ h1 {
 	margin: 0px;
 	margin-bottom: 10px
 }
+
 .login-dialog {
 	width: 260px;
 	margin: auto;
 	margin-top: 0px;
 }
 
-
+.ajax-status {
+	position: fixed;
+	top: 100px;
+	right: 10px;
+	width: 50px;
+	height: 50px
+}
 
 .grid-login {
 	background-color: #f2f2f2;

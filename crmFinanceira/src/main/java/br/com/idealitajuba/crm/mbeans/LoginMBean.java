@@ -45,7 +45,7 @@ public class LoginMBean implements Serializable {
 			} else if (usuario.getLogin().equals(this.login) && usuario.getSenha().equals(this.senha) && usuario.isAtivo()) {
 
 				this.logado = true;
-				return "/Home?faces-redirect=true";
+				return "/Home?faces-redirect=true";				
 
 			} else {
 

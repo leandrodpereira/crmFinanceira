@@ -10,24 +10,32 @@
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
 <header> </header>
-<div class="login-dialog">
-	<h:graphicImage library="img" name="logo.jpg" />
-</div>
+<p:ajaxStatus styleClass="ajax-status">
+	<f:facet name="start">
+		<h:graphicImage library="img" name="loading.gif" />
+	</f:facet>
+	<f:facet name="complete">
+		<h:outputText value="" />
+	</f:facet>
+</p:ajaxStatus>
+
 <h:body>
+
 	<div class="login-dialog">
+		<h:graphicImage library="img" name="logo.jpg" />
 		<h:form>
-			<p:messages showDetail="false" showSummary="true" autoUpdate="true"
-				closable="true" />
-			<p:panelGrid columns="2" styleClass="grid-login">
+			<p:messages autoUpdate="true" closable="true" />
+			<h:panelGrid columns="2" styleClass="grid-login">
 				<p:outputLabel value="Usuário" for="usuario" />
 				<p:inputText id="usuario" value="#{loginMBean.login}"
 					required="true" requiredMessage="É preciso digitar seu login." />
 				<p:outputLabel value="Senha" for="senha" />
 				<p:password id="senha" value="#{loginMBean.senha}" required="true"
 					requiredMessage="É preciso digitar sua senha." />
-				<p:outputLabel />
-				<p:commandButton value="Acessar" action="#{loginMBean.fazLogin}" />
-			</p:panelGrid>
+			</h:panelGrid>
+			<br />			
+			<p:commandButton icon=" ui-icon-unlocked" value="Acessar"
+				action="#{loginMBean.fazLogin}" />			
 		</h:form>
 	</div>
 </h:body>

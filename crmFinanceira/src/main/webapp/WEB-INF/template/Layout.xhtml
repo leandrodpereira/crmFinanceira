@@ -9,14 +9,20 @@
 	<title><ui:insert name="titulo">Ideal Itajubá</ui:insert></title>
 	<h:outputStylesheet library="css" name="estilo.css" />
 </h:head>
-<h:body >
+<h:body>
 	<header>
-		<!-- <h:graphicImage library="img" name="logo.png" /> -->
 		<h1>
 			<strong>Ideal Itajubá, o crédito IDEAL para você!</strong>
 		</h1>
 	</header>
-
+	<p:ajaxStatus styleClass="ajax-status">
+		<f:facet name="start">
+			<h:graphicImage library="img" name="loading.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
 	<h:form>
 		<p:menubar
 			style="margin-top: -20px; margin-bottom: 20px; font-size: 18px;">

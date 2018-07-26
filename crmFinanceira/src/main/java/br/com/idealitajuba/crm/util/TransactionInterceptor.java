@@ -8,6 +8,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.sound.midi.ControllerEventListener;
 
 /**
  * A classe responsável pelas interceptações das transações.
@@ -44,6 +45,7 @@ public class TransactionInterceptor implements Serializable {
 			if (trx != null && trx.isActive() && criador) {
 				trx.commit();
 			}
+			
 		}
 
 	}

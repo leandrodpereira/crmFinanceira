@@ -7,5 +7,5 @@ required no login OK
 add msg de exlcusao de cliente, desative o cliente OK
 travar todas as alterações de sistema para o admin OK
 quando for editar o contato e ele for agendamento carregar o campo data e home OK
-Colocar um icone de processando enquanto faz o login
+Colocar um icone de processando enquanto faz o login OK
 Testar cobrança por requisições
