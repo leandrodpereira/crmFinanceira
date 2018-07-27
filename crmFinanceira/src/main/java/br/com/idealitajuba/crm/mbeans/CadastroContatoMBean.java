@@ -47,7 +47,7 @@ public class CadastroContatoMBean implements Serializable {
 	 * @param event
 	 */
 	public void mostraAgenda(AjaxBehaviorEvent event) {
-		if (this.con.getStatus().getDescricao().equals("AGENDAMENTO"))
+		if (this.con.getStatus().isPendencia())
 			this.agenda.setRendered(true);
 		else {
 			this.agenda.setRendered(false);
@@ -113,7 +113,7 @@ public class CadastroContatoMBean implements Serializable {
 
 	public boolean iscarregaAgenda() {
 		if(this.con.getStatus() != null){
-			if (this.con.getStatus().getDescricao().equals("AGENDAMENTO"))
+			if (this.con.getStatus().isPendencia())
 				return true;
 		}		
 		return false;

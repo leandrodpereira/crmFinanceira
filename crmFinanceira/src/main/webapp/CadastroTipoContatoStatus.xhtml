@@ -18,6 +18,10 @@
 				<p:outputLabel value="Descrição" for="descricao" />
 				<p:inputText id="descricao"
 					value="#{cadastroTipoContatoStatusMBean.tcs.descricao}" />
+				<p:outputLabel value="Gera Pendência?" for="pendencia" />
+				<p:selectBooleanCheckbox
+					value="#{cadastroTipoContatoStatusMBean.tcs.pendencia}"
+					id="pendencia" required="true"  />
 			</p:panelGrid>
 			<br />
 			<p:commandButton value="Salvar"

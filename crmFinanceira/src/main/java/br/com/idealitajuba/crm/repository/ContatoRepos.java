@@ -24,9 +24,7 @@ public class ContatoRepos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private EntityManager em;
-
-	final String status = "AGENDAMENTO";
+	private EntityManager em;	
 
 	@Inject
 	public ContatoRepos(EntityManager em) {
@@ -89,7 +87,7 @@ public class ContatoRepos implements Serializable {
 	 */
 	public List<Contato> porAgendamentoPendenteUsuario(Usuario u) {
 		TypedQuery<Contato> query = this.em.createQuery(
-				"from Contato c where " + "c.status.descricao='" + status + "' and c.usuario.id=" + u.getId()
+				"from Contato c where " + "c.status.pendencia='1' and c.usuario.id=" + u.getId()
 						+ " and date_format(c.dataAgendamento,'%d/%m/%Y') = '"
 						+ new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()) + "'",
 				Contato.class);
@@ -104,7 +102,7 @@ public class ContatoRepos implements Serializable {
 	 * @return
 	 */
 	public List<Contato> porAgendamentoPendente() {
-		TypedQuery<Contato> query = this.em.createQuery("from Contato c where " + "c.status.descricao='" + status + "'",
+		TypedQuery<Contato> query = this.em.createQuery("from Contato c where " + "c.status.pendencia='1'",
 				Contato.class);
 		return query.getResultList();
 	}
