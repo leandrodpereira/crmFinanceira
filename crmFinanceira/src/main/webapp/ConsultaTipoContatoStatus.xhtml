@@ -14,14 +14,17 @@
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
 			<p:dataTable value="#{consultaTipoContatoStatusMBean.tipos}" var="tipo"
-				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
+				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="10"
 				paginatorPosition="bottom" emptyMessage="Sem registros para mostrar">
 				<p:column headerText="Id" sortBy="#{tipo.id}" width="70">
 					<h:outputText value="#{tipo.id}" />
 				</p:column>
 				<p:column headerText="Descrição">
 					<h:outputText value="#{tipo.descricao}" />
-				</p:column>
+				</p:column>	
+						<p:column headerText="Pendência">
+					<p:selectBooleanCheckbox  value="#{tipo.pendencia}" disabled="true" />
+					</p:column>	
 				<p:column headerText="Ações" width="70">
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/CadastroTipoContatoStatus">
