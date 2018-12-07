@@ -40,6 +40,13 @@ public class Cliente extends Pessoa {
 	private Long numeroBeneficio;
 	private String observacoes;
 	private Long idade = 0L;
+	private String logradouro;
+	private String numero;
+	private String bairro;
+	private String complemento;
+	private String cep;
+	private String cidade;
+	private String estado;
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;

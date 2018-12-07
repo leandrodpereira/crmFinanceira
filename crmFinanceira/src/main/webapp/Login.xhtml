@@ -22,7 +22,7 @@
 <h:body>
 
 	<div class="login-dialog">
-		<h:graphicImage library="img" name="logo.jpg" />
+		<h:graphicImage library="img" name="logo.jpg" styleClass="logo" />
 		<h:form>
 			<p:messages autoUpdate="true" closable="true" />
 			<h:panelGrid columns="2" styleClass="grid-login">
@@ -33,9 +33,9 @@
 				<p:password id="senha" value="#{loginMBean.senha}" required="true"
 					requiredMessage="É preciso digitar sua senha." />
 			</h:panelGrid>
-			<br />			
+			<br />
 			<p:commandButton icon=" ui-icon-unlocked" value="Acessar"
-				action="#{loginMBean.fazLogin}" />			
+				action="#{loginMBean.fazLogin}" />
 		</h:form>
 	</div>
 </h:body>
