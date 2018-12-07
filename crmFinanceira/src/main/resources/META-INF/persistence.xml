@@ -8,9 +8,9 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost/crmFinanceira" />
+				value="jdbc:mysql://localhost/crmfinanceira" />
 			<property name="javax.persistence.jdbc.user"
-				value="crmFinanceira" />
+				value="crmfinanceira" />
 			<property name="javax.persistence.jdbc.password"
 				value="p41nh0$$$@" />
 			<property name="javax.persistence.jdbc.driver"
@@ -19,7 +19,7 @@
 				value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
 		</properties>
 	</persistence-unit>
 </persistence>
