@@ -20,6 +20,7 @@ import br.com.idealitajuba.crm.model.TipoBeneficio;
 import br.com.idealitajuba.crm.repository.ClienteRepos;
 import br.com.idealitajuba.crm.repository.ContatoRepos;
 import br.com.idealitajuba.crm.repository.TipoBeneficioRepos;
+import br.com.idealitajuba.crm.util.Estado;
 
 @Named
 @ViewScoped
@@ -47,6 +48,7 @@ public class CadastroClienteMBean implements Serializable {
 	private List<Contato> contatos;
 	private String msgCliente;
 	private Date hoje;
+	private List<String> estados;
 
 	public void preCadastro() {
 		if (this.c == null) {
@@ -55,6 +57,7 @@ public class CadastroClienteMBean implements Serializable {
 		this.isCliente();
 		this.setTipos(tbr.todos());
 		this.setContatos(cre.porCliente(c));
+		this.estados = Estado.ESTADOS;
 	}
 
 	public void salvar() throws BusinessException {
@@ -84,7 +87,7 @@ public class CadastroClienteMBean implements Serializable {
 	public void isCliente() {
 		this.msgCliente = this.c.isAtivo() ? " é nosso cliente!" : " não é nosso cliente. :(";
 	}
-
+	
 	public Cliente getC() {
 		return c;
 	}
@@ -132,4 +135,9 @@ public class CadastroClienteMBean implements Serializable {
 	public void setHoje(Date hoje) {
 		this.hoje = hoje;
 	}
+
+	public List<String> getEstados() {
+		return estados;
+	}	
+	
 }

@@ -46,34 +46,36 @@
 				<p:outputLabel value="Celular" for="cel" />
 				<p:inputMask mask="(99)99999-9999" id="cel"
 					value="#{cadastroClienteMBean.c.celular}" />
-				<p:outputLabel value="Logradouro" for="logradouro" />	
-				<p:inputText id="logradouro" value="#{cadastroClienteMBean.c.logradouro}" />				
-				<p:outputLabel value="Número" for="numero" />	
-				<p:inputText id="numero" value="#{cadastroClienteMBean.c.numero}" type="number" />				
-				<p:outputLabel value="Bairro" for="bairro" />	
-				<p:inputText id="bairro" value="#{cadastroClienteMBean.c.bairro}" />					
-				<p:outputLabel value="Complemento" for="complemento" />	
-				<p:inputText id="complemento" value="#{cadastroClienteMBean.c.complemento}" />				
-				<p:outputLabel value="CEP" for="cep" />					
+				<p:outputLabel value="Logradouro" for="logradouro" />
+				<p:inputText id="logradouro"
+					value="#{cadastroClienteMBean.c.logradouro}" />
+				<p:outputLabel value="Número" for="numero" />
+				<p:inputText id="numero" value="#{cadastroClienteMBean.c.numero}"
+					type="number" />
+				<p:outputLabel value="Bairro" for="bairro" />
+				<p:inputText id="bairro" value="#{cadastroClienteMBean.c.bairro}" />
+				<p:outputLabel value="Complemento" for="complemento" />
+				<p:inputText id="complemento"
+					value="#{cadastroClienteMBean.c.complemento}" />
+				<p:outputLabel value="CEP" for="cep" />
 				<p:inputMask mask="99999-999" id="cep"
-					value="#{cadastroClienteMBean.c.cep}" />					
-				<p:outputLabel value="Cidade" for="cidade" />	
-				<p:inputText id="cidade" value="#{cadastroClienteMBean.c.cidade}" />					
-				<p:outputLabel value="Estado" for="estado" />	
+					value="#{cadastroClienteMBean.c.cep}" />
+				<p:outputLabel value="Cidade" for="cidade" />
+				<p:inputText id="cidade" value="#{cadastroClienteMBean.c.cidade}" />
+				<p:outputLabel value="Estado" for="estado" />
 				<p:selectOneMenu value="#{cadastroClienteMBean.c.estado}"
-					id="estado" filter="true" filterMatchMode="" >
+					id="estado" filter="true" filterMatchMode="startsWith">
 					<f:selectItem itemLabel="Selecione" />
-					<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
-						itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
+					<f:selectItems value="#{cadastroClienteMBean.estados}" var="estado"
+						itemValue="#{estado}" itemLabel="#{estado}" />
 				</p:selectOneMenu>
-					
 				<p:outputLabel value="E-mail" for="mail" />
 				<p:inputText id="mail" value="#{cadastroClienteMBean.c.email}" />
 				<p:outputLabel value="Renda" for="renda" />
 				<p:inputText size="12" value="#{cadastroClienteMBean.c.renda}"
 					id="renda" required="true">
 					<f:convertNumber locale="pt_BR" minFractionDigits="2"
-						maxFractionDigits="2"/>
+						maxFractionDigits="2" />
 				</p:inputText>
 				<p:outputLabel value="Fonte Pagadora" for="fonte" />
 				<p:selectOneButton value="#{cadastroClienteMBean.c.fontePagadora}"
@@ -86,11 +88,12 @@
 					id="tipo" filter="true" filterMatchMode="contains" required="true">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 					<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
-						itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
+						itemValue="#{tipoB}"
+						itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
 				</p:selectOneMenu>
 				<p:outputLabel value="Número do Benefício" for="nbe" />
 				<p:inputText id="nbe" maxlength="12" title="Digite apenas números."
-					value="#{cadastroClienteMBean.c.numeroBeneficio}" required="true"/>
+					value="#{cadastroClienteMBean.c.numeroBeneficio}" required="true" />
 				<p:outputLabel value="Observações" for="obs" />
 				<p:inputTextarea id="obs"
 					value="#{cadastroClienteMBean.c.observacoes}" />
@@ -110,8 +113,9 @@
 				<p:commandButton value="Não" type="button"
 					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			</p:confirmDialog>
-			<br /> <br />
-			<p:outputLabel value="Os campos com * são obrigatórios."/>
+			<br />
+			<br />
+			<p:outputLabel value="Os campos com * são obrigatórios." />
 		</h:form>
 	</ui:define>
 </ui:composition>
