@@ -46,6 +46,27 @@
 				<p:outputLabel value="Celular" for="cel" />
 				<p:inputMask mask="(99)99999-9999" id="cel"
 					value="#{cadastroClienteMBean.c.celular}" />
+				<p:outputLabel value="Logradouro" for="logradouro" />	
+				<p:inputText id="logradouro" value="#{cadastroClienteMBean.c.logradouro}" />				
+				<p:outputLabel value="Número" for="numero" />	
+				<p:inputText id="numero" value="#{cadastroClienteMBean.c.numero}" type="number" />				
+				<p:outputLabel value="Bairro" for="bairro" />	
+				<p:inputText id="bairro" value="#{cadastroClienteMBean.c.bairro}" />					
+				<p:outputLabel value="Complemento" for="complemento" />	
+				<p:inputText id="complemento" value="#{cadastroClienteMBean.c.complemento}" />				
+				<p:outputLabel value="CEP" for="cep" />					
+				<p:inputMask mask="99999-999" id="cep"
+					value="#{cadastroClienteMBean.c.cep}" />					
+				<p:outputLabel value="Cidade" for="cidade" />	
+				<p:inputText id="cidade" value="#{cadastroClienteMBean.c.cidade}" />					
+				<p:outputLabel value="Estado" for="estado" />	
+				<p:selectOneMenu value="#{cadastroClienteMBean.c.estado}"
+					id="estado" filter="true" filterMatchMode="" >
+					<f:selectItem itemLabel="Selecione" />
+					<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
+						itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
+				</p:selectOneMenu>
+					
 				<p:outputLabel value="E-mail" for="mail" />
 				<p:inputText id="mail" value="#{cadastroClienteMBean.c.email}" />
 				<p:outputLabel value="Renda" for="renda" />
