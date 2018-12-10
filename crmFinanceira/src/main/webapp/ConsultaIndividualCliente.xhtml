@@ -30,6 +30,10 @@
 				</p:outputLabel>
 				<p:outputLabel value="Número do Benefício:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.numeroBeneficio}" />
+				<p:outputLabel value="Endereço:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.logradouro}, #{cadastroClienteMBean.c.numero}.  
+					#{cadastroClienteMBean.c.complemento} - #{cadastroClienteMBean.c.bairro}. CEP: #{cadastroClienteMBean.c.cep}
+					#{cadastroClienteMBean.c.cidade} - #{cadastroClienteMBean.c.estado}"/>
 				<p:outputLabel value="Telefone Fixo:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.telefone}" />
 				<p:outputLabel value="Celular:" />

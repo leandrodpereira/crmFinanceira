@@ -200,7 +200,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
+		this.logradouro = logradouro.toUpperCase();
 	}
 
 	@Size(max = 4)
@@ -220,7 +220,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.bairro = bairro.toUpperCase();
 	}
 
 	@Size(max = 60)
@@ -230,7 +230,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setComplemento(String complemento) {
-		this.complemento = complemento;
+		this.complemento = complemento.toUpperCase();
 	}
 
 	@Size(max = 9)
@@ -250,7 +250,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.cidade = cidade.toUpperCase();
 	}
 
 	@Size(max = 60)
