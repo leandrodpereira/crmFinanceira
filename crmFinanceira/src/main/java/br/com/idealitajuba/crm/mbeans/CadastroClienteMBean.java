@@ -80,6 +80,14 @@ public class CadastroClienteMBean implements Serializable {
 		}
 	}
 	
+	/**
+	 * Método usado para autocompletar a cidade digitada pelo usuário.
+	 * @param cidade
+	 * @return
+	 */
+	public List<String> autoCompletaCidade(String cidade){
+		return this.cr.cidades(cidade);
+	}
 
 	/**
 	 * Método que identifica quem é ou não cliente da empresa.

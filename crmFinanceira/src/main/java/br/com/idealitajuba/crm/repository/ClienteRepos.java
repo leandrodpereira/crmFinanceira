@@ -80,5 +80,16 @@ public class ClienteRepos implements Serializable {
 		query.setParameter("nome", "%" + nome + "%");
 		return query.getResultList();
 	}
+	
+	/**
+	 * Método usado para autocompletar as cidades já existentes
+	 * @param cidade
+	 * @return
+	 */
+	public List<String> cidades (String cidade){
+		TypedQuery<String> query = this.em.createQuery("select c.cidade from Cliente c where upper(c.cidade) like upper(:cidade)",String.class);
+		query.setParameter("cidade", "%" + cidade + "%");
+		return query.getResultList();
+	}
 
 }

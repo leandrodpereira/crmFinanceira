@@ -61,7 +61,8 @@
 				<p:inputMask mask="99999-999" id="cep"
 					value="#{cadastroClienteMBean.c.cep}" />
 				<p:outputLabel value="Cidade" for="cidade" />
-				<p:inputText id="cidade" value="#{cadastroClienteMBean.c.cidade}" />
+				<p:autoComplete id="cidade" value="#{cadastroClienteMBean.c.cidade}"
+					completeMethod="#{cadastroClienteMBean.autoCompletaCidade}" />
 				<p:outputLabel value="Estado" for="estado" />
 				<p:selectOneMenu value="#{cadastroClienteMBean.c.estado}"
 					id="estado" filter="true" filterMatchMode="startsWith">
