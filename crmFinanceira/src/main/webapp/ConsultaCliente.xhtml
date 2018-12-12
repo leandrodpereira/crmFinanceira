@@ -16,8 +16,8 @@
 			<p:panelGrid columns="3">
 				<p:outputLabel value="CPF" for="cpf" />
 				<p:inputText id="cpf" value="#{consultaClienteMBean.cpf}"
-					immediate="true" maxlength="11" size="21"
-					title="Digite apenas números" required="true"
+					immediate="true" maxlength="11" title="Digite apenas números"
+					required="true"
 					requiredMessage="Entre com o CPF que deseja buscar." />
 				<p:commandButton icon="ui-icon-search" title="Buscar"
 					action="#{consultaClienteMBean.mostrarPorCpf}" update="@all" />
@@ -26,21 +26,34 @@
 		<br />
 		<h:form>
 			<p:panelGrid columns="3">
-				<p:outputLabel value="Nome" for="nome" />
+				<p:outputLabel value="Nome  " for="nome" />
 				<p:inputText id="nome" value="#{consultaClienteMBean.nome}"
 					immediate="true" title="Digite o nome ou parte dele."
-					required="true" size="20"
+					required="true"
 					requiredMessage="Entre com o nome ou parte dele que deseja buscar." />
 				<p:commandButton icon="ui-icon-search" title="Buscar"
 					action="#{consultaClienteMBean.mostrarPorNome}" update="@all" />
 			</p:panelGrid>
 		</h:form>
 		<br />
+		<h:form>
+			<p:panelGrid columns="3">
+				<p:outputLabel value="Cidade" for="cidade" />
+				<p:autoComplete id="cidade" value="#{consultaClienteMBean.cidade}"
+					completeMethod="#{cadastroClienteMBean.autoCompletaCidade}"
+					minQueryLength="3" required="true"
+					requiredMessage="Cidade não encontrada."
+					title="Selecione a cidade desejada." forceSelection="true"  />
+				<p:commandButton icon="ui-icon-search" title="Buscar"
+					action="#{consultaClienteMBean.mostrarPorCidade}" update="@all" />
+			</p:panelGrid>
+		</h:form>
+		<br />
 		<br />
 		<h:form>
 			<p:dataTable value="#{consultaClienteMBean.clientes}" var="c"
-				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="10"
-				emptyMessage="Sem registros para mostrar">
+				border="1" cellspacing="0" cellpadding="2" paginator="true"
+				rows="10" emptyMessage="Sem registros para mostrar">
 				<p:column headerText="CPF">
 					<h:outputText value="#{c.cpf}" />
 				</p:column>
@@ -62,7 +75,7 @@
 						<f:param name="id" value="#{c.id}" />
 					</p:button>
 					<p:button icon="ui-icon-star" title="Realizar contato"
-						outcome="/CadastroContato" >
+						outcome="/CadastroContato">
 						<f:param name="id" value="#{c.id}" />
 					</p:button>
 					<p:button icon="ui-icon-pencil" title="Editar"

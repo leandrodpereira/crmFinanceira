@@ -25,7 +25,7 @@ public class ConsultaClienteMBean implements Serializable {
 	@Inject
 	private CadastroCliente cc;
 
-	private String cpf, nome;
+	private String cpf, nome, cidade;
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes;
 
@@ -39,6 +39,10 @@ public class ConsultaClienteMBean implements Serializable {
 	
 	public void mostrarTodos() {
 		this.clientes = cr.todos();
+	}
+	
+	public void mostrarPorCidade() {
+		this.clientes = cr.porCidade(this.cidade);
 	}
 
 	public void excluir() {
@@ -84,6 +88,14 @@ public class ConsultaClienteMBean implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 }

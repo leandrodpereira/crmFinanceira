@@ -71,6 +71,17 @@ public class ClienteRepos implements Serializable {
 	}
 	
 	/**
+	 * Busca por cidade
+	 * @param cidade
+	 * @return
+	 */
+	public List<Cliente> porCidade(String cidade) {
+		TypedQuery<Cliente> query = this.em.createQuery("from Cliente c where upper(c.cidade) like upper(:cidade)" , Cliente.class);
+		query.setParameter("cidade", "%" + cidade + "%");
+		return query.getResultList();
+	}
+	
+	/**
 	 * Busca por partes do nome
 	 * @param nome
 	 * @return
@@ -87,7 +98,7 @@ public class ClienteRepos implements Serializable {
 	 * @return
 	 */
 	public List<String> cidades (String cidade){
-		TypedQuery<String> query = this.em.createQuery("select c.cidade from Cliente c where upper(c.cidade) like upper(:cidade)",String.class);
+		TypedQuery<String> query = this.em.createQuery("select distinct c.cidade from Cliente c where upper(c.cidade) like upper(:cidade)",String.class);
 		query.setParameter("cidade", "%" + cidade + "%");
 		return query.getResultList();
 	}
