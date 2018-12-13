@@ -46,11 +46,11 @@
 					<p:outputLabel value="Data: " for="data" />
 					<p:calendar size="12" pattern="dd/MM/yyyy"
 						value="#{cadastroContatoMBean.con.dataAgendamento}" id="data"
-						mask="true" navigator="true" required="true">
+						mask="true" navigator="true" required="true" locale="pt">
 					</p:calendar>
 					<p:outputLabel value="Melhor horário " for="hora" />
 					<p:calendar id="hora"
-						value="#{cadastroContatoMBean.con.horaAgendamento}"
+						value="#{cadastroContatoMBean.con.horaAgendamento}" locale="pt"
 						timeOnly="true" pattern="HH:mm" stepMinute="10" required="true">
 					</p:calendar>
 				</p:panelGrid>
