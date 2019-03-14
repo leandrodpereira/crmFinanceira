@@ -63,7 +63,8 @@
 				<p:outputLabel value="Cidade" for="cidade" />
 				<p:autoComplete id="cidade" value="#{cadastroClienteMBean.c.cidade}"
 					completeMethod="#{cadastroClienteMBean.autoCompletaCidade}"
-					minQueryLength="3" title="Não utilize acentos ou outros caracteres especiais."/>
+					minQueryLength="3"
+					title="Não utilize acentos ou outros caracteres especiais." />
 				<p:outputLabel value="Estado" for="estado" />
 				<p:selectOneMenu value="#{cadastroClienteMBean.c.estado}"
 					id="estado" filter="true" filterMatchMode="startsWith">
@@ -97,7 +98,7 @@
 				<p:inputText id="nbe" maxlength="12" title="Digite apenas números."
 					value="#{cadastroClienteMBean.c.numeroBeneficio}" required="true" />
 				<p:outputLabel value="Observações" for="obs" />
-				<p:inputTextarea id="obs"
+				<p:inputTextarea id="obs" autoResize="false"
 					value="#{cadastroClienteMBean.c.observacoes}" />
 				<p:selectBooleanCheckbox value="#{cadastroClienteMBean.c.ativo}"
 					id="ativo" required="true" itemLabel="Cliente Ideal Itajubá" />

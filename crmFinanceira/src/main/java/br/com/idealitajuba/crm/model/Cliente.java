@@ -170,8 +170,7 @@ public class Cliente extends Pessoa {
 		this.tipoBeneficio = tipoBeneficio;
 	}
 
-	@Size(max = 60)
-	@Column(length = 60, nullable =	true)
+	@Column(nullable =	true)
 	public String getObservacoes() {
 		return observacoes;
 	}
