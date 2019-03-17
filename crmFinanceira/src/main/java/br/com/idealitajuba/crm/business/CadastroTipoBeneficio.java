@@ -25,6 +25,12 @@ public class CadastroTipoBeneficio implements Serializable {
 	@Inject
 	private LoginMBean l;
 
+	
+	/**
+	 * RN01 - Apenas o Administrador do sistema pode realizar esta operação.
+	 * @param tb
+	 * @throws BusinessException
+	 */
 	@Transactional
 	public void salvar(TipoBeneficio tb) throws BusinessException {		
 		if (!this.l.getLogin().equals("admin"))
@@ -33,7 +39,7 @@ public class CadastroTipoBeneficio implements Serializable {
 	}
 
 	/**
-	 * RN01 - Não é possível excluir Tipo que possui Cliente associado.	 * 
+	 * RN02 - Não é possível excluir Tipo que possui Cliente associado.	 
 	 * @param tb
 	 * @throws BusinessException
 	 */

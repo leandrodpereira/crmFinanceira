@@ -29,18 +29,14 @@ public class ConsultaClienteMBean implements Serializable {
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes;
 
-	public void mostrarPorCpf() {
-		this.clientes = cr.porCpfLista(this.cpf);
-	}
-
 	public void mostrarPorNome() {
 		this.clientes = cr.porNome(this.nome);
 	}
-	
+
 	public void mostrarTodos() {
 		this.clientes = cr.todos();
 	}
-	
+
 	public void mostrarPorCidade() {
 		this.clientes = cr.porCidade(this.cidade);
 	}
@@ -55,7 +51,7 @@ public class ConsultaClienteMBean implements Serializable {
 			FacesMessage mensagem = new FacesMessage(e.getMessage());
 			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, mensagem);
-		}		
+		}
 	}
 
 	public Cliente getClienteSelecionado() {

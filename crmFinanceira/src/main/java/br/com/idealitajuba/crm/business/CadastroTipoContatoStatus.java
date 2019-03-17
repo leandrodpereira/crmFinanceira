@@ -25,6 +25,11 @@ public class CadastroTipoContatoStatus implements Serializable {
 	@Inject
 	private LoginMBean l;
 
+	/**
+	 * RN01 - Apenas o Administrador do sistema pode realizar esta operação.
+	 * @param tcs
+	 * @throws BusinessException
+	 */
 	@Transactional
 	public void salvar(TipoContatoStatus tcs) throws BusinessException {
 		if (!this.l.getLogin().equals("admin"))
@@ -33,7 +38,7 @@ public class CadastroTipoContatoStatus implements Serializable {
 	}
 
 	/**
-	 * RN01 - Não é possível excluir Tipo que possui Contato associado.
+	 * RN02 - Não é possível excluir Tipo que possui Contato associado.
 	 * 
 	 * @param tcs
 	 * @throws BusinessException

@@ -26,8 +26,8 @@ public class CadastroUsuario implements Serializable {
 	private LoginMBean l;
 
 	/**
-	 * RN01 - Não é possível excluir Cliente que possui Contato associado. *
-	 * 
+	 * RN01 - Apenas o Administrador do sistema pode realizar esta operação.
+	 * RN02 - Não é possível excluir Cliente que possui Contato associado.  
 	 * @param c
 	 * @throws BusinessException
 	 */
