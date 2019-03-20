@@ -26,7 +26,8 @@
 				</p:outputLabel>
 				<p:outputLabel value="Observações do contato:  " for="obs" />
 				<p:inputTextarea id="obs"
-					value="#{cadastroContatoMBean.con.observacoes}" required="true" />
+					value="#{cadastroContatoMBean.con.observacoes}" autoResize="false"
+					required="true" />
 				<p:outputLabel value="Status do Contato: " for="status" />
 				<p:selectOneMenu value="#{cadastroContatoMBean.con.status}"
 					id="status" filter="true" filterMatchMode="contains"

@@ -63,13 +63,18 @@ public class CadastroClienteMBean implements Serializable {
 	public void salvar() throws BusinessException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage msg;
-
+		String aviso = "";
 		try {
 			this.cc.salvar(this.c);
 			this.c = new Cliente();
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
-		} catch (BusinessException e) {
-			msg = new FacesMessage(e.getMessage());
+		} catch (Exception e) {
+			if (cr.porCpf(c.getCpf()) != null)
+				aviso = "Erro ao realizar cadastro, CPF " + "já cadastrado para o (a) cliente "
+							+ cr.porCpf(c.getCpf()).getNome() + ".";
+			else
+				aviso = e.getMessage();
+			msg = new FacesMessage(aviso);
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
