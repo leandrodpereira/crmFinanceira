@@ -1,13 +1,25 @@
 CadastroTipoBeneficio:
-RN01 - Não é possível excluir Tipo que possui Cliente associado.
-
+RN01 - Apenas o Administrador do sistema pode realizar esta operação.
+RN02 - Não é possível excluir Tipo que possui Cliente associado.
 ---
+
 CadastroTipoContatoStatu:
-RN01 - Não é possível excluir Tipo que possui Contato associado.
-
+RN01 - Apenas o Administrador do sistema pode realizar esta operação.
+RN02 - Não é possível excluir Tipo que possui Contato associado.
 ---
 
-CadastroCliente
+CadastroCliente:
 RN01 - Não é possível excluir Cliente que possui Contato associado.
-RN02 - Não é possível cadastrar Clientes que possuem o mesmo CPF.
+RN02 - Não é possível cadastrar Clientes que possuem o mesmo CPF. (Unique na tabela cliente)
+RN03 - Não é possível cadastrar clientes com CPF inválido.
 ---
+
+CadastroContato:
+RN01 - Não é possível excluir Contato que possui Agendamento pendente.	
+---
+
+CadastroUsuario:
+RN01 - Apenas o Administrador do sistema pode realizar esta operação.
+
+
+

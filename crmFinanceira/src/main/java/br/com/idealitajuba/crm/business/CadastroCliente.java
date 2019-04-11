@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
+import br.com.caelum.stella.validation.CPFValidator;
 import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.repository.ClienteRepos;
 import br.com.idealitajuba.crm.util.Transactional;
@@ -21,9 +22,38 @@ public class CadastroCliente implements Serializable {
 	@Inject
 	private ClienteRepos cr;
 
+	/**
+	 * Metodo que valida CPF
+	 * 
+	 * @param cpf
+	 * @return
+	 */
+	public static boolean valida(String cpf) {
+		CPFValidator cpfValidator = new CPFValidator();
+		if (cpfValidator.invalidMessagesFor(cpf).isEmpty())
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 * RN03 - Não é possível cadastrar clientes com CPF inválido.
+	 * 
+	 * @param c
+	 * @throws BusinessException
+	 */
 	@Transactional
 	public void salvar(Cliente c) throws BusinessException {
-		this.cr.guardar(c);
+
+		if (!valida(c.getCpf()))
+			throw new BusinessException("CPF inválido.");
+
+		try {
+			this.cr.guardar(c);
+		} catch (Exception e) {
+
+		}
+
 	}
 
 	/**
@@ -36,8 +66,9 @@ public class CadastroCliente implements Serializable {
 	public void excluir(Cliente c) throws BusinessException {
 		c = this.cr.porId(c.getId());
 		if (!this.cr.verificaCliente(c.getId()))
-			throw new BusinessException(
-					"Não é possível excluir "+c.getNome()+", pois possui contato associado. Caso o Cliente não esteja mais ativo, desative-o pela opção de Editar");
+			throw new BusinessException("Não é possível excluir " + c.getNome()
+					+ ", pois possui contato associado. Caso o Cliente não esteja mais ativo, desative-o pela opção de Editar");
 		this.cr.remover(c);
 	}
+
 }

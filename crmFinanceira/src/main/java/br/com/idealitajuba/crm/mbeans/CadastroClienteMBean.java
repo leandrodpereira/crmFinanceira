@@ -63,29 +63,31 @@ public class CadastroClienteMBean implements Serializable {
 	public void salvar() throws BusinessException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage msg;
+		String aviso = "";
 		try {
 			this.cc.salvar(this.c);
 			this.c = new Cliente();
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
 		} catch (Exception e) {
-			String clienteDuplicado = cr.porCpf(c.getCpf()).getNome();
-			if (!clienteDuplicado.equals("")) {
-				msg = new FacesMessage("Erro ao realizar cadastro, CPF " + "já cadastrado para o (a) cliente "
-						+ clienteDuplicado + ".");
-			} else {
-				msg = new FacesMessage(" Um erro ocorreu, transação não realizada.");
-			}
+			if (cr.porCpf(c.getCpf()) != null)
+				aviso = "Erro ao realizar cadastro, CPF " + "já cadastrado para o (a) cliente "
+							+ cr.porCpf(c.getCpf()).getNome() + ".";
+			else
+				aviso = e.getMessage();
+			msg = new FacesMessage(aviso);
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			context.addMessage(null, msg);
 		}
+
 	}
-	
+
 	/**
 	 * Método usado para autocompletar a cidade digitada pelo usuário.
+	 * 
 	 * @param cidade
 	 * @return
 	 */
-	public List<String> autoCompletaCidade(String cidade){
+	public List<String> autoCompletaCidade(String cidade) {
 		return this.cr.cidades(cidade);
 	}
 
@@ -95,7 +97,7 @@ public class CadastroClienteMBean implements Serializable {
 	public void isCliente() {
 		this.msgCliente = this.c.isAtivo() ? " é nosso cliente!" : " não é nosso cliente. :(";
 	}
-	
+
 	public Cliente getC() {
 		return c;
 	}
@@ -146,6 +148,6 @@ public class CadastroClienteMBean implements Serializable {
 
 	public List<String> getEstados() {
 		return estados;
-	}	
-	
+	}
+
 }

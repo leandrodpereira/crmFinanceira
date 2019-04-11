@@ -16,9 +16,9 @@
 			<h:form>
 				<p:panelGrid columns="3">
 					<p:outputLabel value="CPF" for="cpf" />
-					<p:inputText id="cpf" value="#{consultaClienteMBean.cpf}"
-						immediate="true" maxlength="11" title="Digite apenas números"
-						required="true"
+					<p:inputMask mask="999.999.999-99" id="cpf" maxlength="14"
+						value="#{consultaClienteMBean.cpf}" immediate="true"
+						required="true" title="Digite o CPF."
 						requiredMessage="Entre com o CPF que deseja buscar." />
 					<p:commandButton icon="ui-icon-search" title="Buscar"
 						action="#{consultaClienteMBean.mostrarPorCpf}" update="@all" />
@@ -45,7 +45,7 @@
 					<p:autoComplete id="cidade" value="#{consultaClienteMBean.cidade}"
 						completeMethod="#{cadastroClienteMBean.autoCompletaCidade}"
 						minQueryLength="3" required="true"
-						requiredMessage="Cidade não encontrada."
+						requiredMessage="Entre com a Cidade que deseja buscar."
 						title="Selecione a cidade desejada." forceSelection="true" />
 					<p:commandButton icon="ui-icon-search" title="Buscar"
 						action="#{consultaClienteMBean.mostrarPorCidade}" update="@all" />

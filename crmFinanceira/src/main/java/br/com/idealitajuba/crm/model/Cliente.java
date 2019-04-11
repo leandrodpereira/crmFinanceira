@@ -53,8 +53,8 @@ public class Cliente extends Pessoa {
 	private TipoBeneficio tipoBeneficio;
 
 	@NotEmpty
-	@Size(max = 11)
-	@Column(length = 11, nullable = false, unique = true)
+	@Size(max = 14)
+	@Column(length = 14, nullable = false, unique = true)
 	public String getCpf() {
 		return cpf;
 	}
@@ -170,8 +170,7 @@ public class Cliente extends Pessoa {
 		this.tipoBeneficio = tipoBeneficio;
 	}
 
-	@Size(max = 60)
-	@Column(length = 60, nullable =	true)
+	@Column(nullable =	true)
 	public String getObservacoes() {
 		return observacoes;
 	}
