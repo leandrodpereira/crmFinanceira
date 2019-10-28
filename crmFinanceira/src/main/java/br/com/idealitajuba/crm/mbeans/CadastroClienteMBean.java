@@ -91,6 +91,18 @@ public class CadastroClienteMBean implements Serializable {
 		return this.cr.cidades(cidade);
 	}
 
+	
+	/**
+	 * Método usado para autocompletar o banco digitada pelo usuário.
+	 * 
+	 * @param banco
+	 * @return
+	 */
+	public List<String> autoCompletaBanco(String banco) {
+		return this.cr.bancos(banco);
+	}
+		
+	
 	/**
 	 * Método que identifica quem é ou não cliente da empresa.
 	 */

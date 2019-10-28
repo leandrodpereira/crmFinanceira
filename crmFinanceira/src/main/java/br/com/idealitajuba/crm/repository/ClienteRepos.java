@@ -110,5 +110,18 @@ public class ClienteRepos implements Serializable {
 		query.setParameter("cidade", "%" + cidade + "%");
 		return query.getResultList();
 	}
+	
+	/**
+	 * Método usado para autocompletar os bancos já existentes
+	 * 
+	 * @param banco
+	 * @return
+	 */
+	public List<String> bancos(String banco) {
+		TypedQuery<String> query = this.em.createQuery(
+				"select distinct c.banco from Cliente c where upper(c.banco) like upper(:banco)", String.class);
+		query.setParameter("banco", "%" + banco + "%");
+		return query.getResultList();
+	}
 
 }
