@@ -11,57 +11,85 @@
 			<f:viewAction action="#{cadastroClienteMBean.preCadastro}"></f:viewAction>
 		</f:metadata>
 		<h2>Detalhes do Cliente</h2>
-		<h3>Sr(a). #{cadastroClienteMBean.c.nome} #{cadastroClienteMBean.msgCliente}</h3>
+		<h3>Sr(a). #{cadastroClienteMBean.c.nome}
+			#{cadastroClienteMBean.msgCliente}</h3>
 		<h:form>
-			<p:panelGrid columns="2">
+			<p:commandButton value="Imprimir" type="button" icon="ui-icon-print"
+				style="display:block;margin-bottom: 20px">
+				<p:printer target="areaImpressao" />
+			</p:commandButton>
+			<p:panelGrid columns="2" id="areaImpressao">
 				<p:outputLabel value="Nome completo:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.nome}" />
+				<p:outputLabel value="Data de Nascimento:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:outputLabel>
 				<p:outputLabel value="Idade:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.idade} anos" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.idade} ANOS" />
 				<p:outputLabel value="Sexo:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.sexo}" />
 				<p:outputLabel value="CPF:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.cpf}" />
 				<p:outputLabel value="RG:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.rg}" />
-				<p:outputLabel value="Data de Nascimento:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.dataNascimento}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:outputLabel>
-				<p:outputLabel value="Número do Benefício:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.numeroBeneficio}" />
 				<p:outputLabel value="Endereço:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.logradouro}, #{cadastroClienteMBean.c.numero}.  
+				<p:outputLabel
+					value="#{cadastroClienteMBean.c.logradouro}, #{cadastroClienteMBean.c.numero}.  
 					#{cadastroClienteMBean.c.complemento} - #{cadastroClienteMBean.c.bairro}. CEP: #{cadastroClienteMBean.c.cep}
-					#{cadastroClienteMBean.c.cidade} - #{cadastroClienteMBean.c.estado}"/>
+					#{cadastroClienteMBean.c.cidade} - #{cadastroClienteMBean.c.estado}" />
 				<p:outputLabel value="Telefone Fixo:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.telefone}" />
 				<p:outputLabel value="Celular:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.celular}" />
+				<p:outputLabel value="Telefone de Recados:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.telefoneRecados}" />
 				<p:outputLabel value="E-mail:" />
-				<p:link value="#{cadastroClienteMBean.c.email}" href="mailto:#{cadastroClienteMBean.c.email}" />
-				<p:outputLabel value="Renda:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.renda}">
-					<f:convertNumber type="currency" maxFractionDigits="2" minFractionDigits="2" />
-				</p:outputLabel>
+				<p:link value="#{cadastroClienteMBean.c.email}"
+					href="mailto:#{cadastroClienteMBean.c.email}" />
+
 				<p:outputLabel value="Fonte Pagadora:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.fontePagadora}" />
 				<p:outputLabel value="Tipo de Beneficio:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.tipoBeneficio.descricao}" />
+				<p:outputLabel
+					value="#{cadastroClienteMBean.c.tipoBeneficio.descricao}" />
+
+				<p:outputLabel value="Número do Benefício:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.numeroBeneficio}" />
+				
+				<p:outputLabel value="Senha Hiscom:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.senhaHiscom}" />
+
+				<p:outputLabel value="Renda:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.renda}">
+					<f:convertNumber type="currency" locale="pt_BR"
+						maxFractionDigits="2" minFractionDigits="2" />
+				</p:outputLabel>
+
+				<p:outputLabel value="Tipo de Conta:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.tipoConta}" />
+				<p:outputLabel value="Banco:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.banco}" />
+				<p:outputLabel value="Agência:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.numeroAgencia}" />
+				<p:outputLabel value="Conta:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.numeroConta}" />
+
 				<p:outputLabel value="Observações:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.observacoes}" />
 			</p:panelGrid>
 		</h:form>
-		<br/>
-		<h2>Contatos realizados com o cliente #{cadastroClienteMBean.c.nome}</h2>
-		<br/>
+		<br />
+		<h2>Contatos realizados com o cliente
+			#{cadastroClienteMBean.c.nome}</h2>
+		<br />
 		<h:form>
 			<p:dataTable value="#{cadastroClienteMBean.contatos}" var="contato"
-				border="1" cellspacing="0" cellpadding="2" paginator="true"
-				rows="5" paginatorPosition="bottom"
-				emptyMessage="Nenhum contato foi realizado com este cliente">				
+				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
+				paginatorPosition="bottom"
+				emptyMessage="Nenhum contato foi realizado com este cliente">
 				<p:column headerText="Data/Hora" sortBy="#{contato.dataHoraContato}"
-						width="130">
+					width="130">
 					<h:outputText value="#{contato.dataHoraContato}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 					</h:outputText>
@@ -74,7 +102,7 @@
 				</p:column>
 				<p:column headerText="Usuario" width="70">
 					<h:outputText value="#{contato.usuario.login}" />
-				</p:column>				
+				</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

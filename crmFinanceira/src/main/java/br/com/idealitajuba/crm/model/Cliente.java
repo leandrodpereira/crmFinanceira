@@ -35,9 +35,10 @@ public class Cliente extends Pessoa {
 	private Date dataNascimento;	
 	private BigDecimal renda;
 	private String telefone;
+	private String telefoneRecados;
 	private String celular;
 	private String email;
-	private Long numeroBeneficio;
+	private String numeroBeneficio;
 	private String observacoes;
 	private Long idade = 0L;
 	private String logradouro;
@@ -47,6 +48,11 @@ public class Cliente extends Pessoa {
 	private String cep;
 	private String cidade;
 	private String estado;
+	private String banco;
+	private String tipoConta;
+	private String numeroAgencia;
+	private String numeroConta;
+	private String senhaHiscom;	
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
@@ -128,12 +134,12 @@ public class Cliente extends Pessoa {
 	}
 	
 	@NotNull	
-	@Column(length = 10, nullable = false)
-	public Long getNumeroBeneficio() {
+	@Column(name = "numero_beneficio", length = 30, nullable = false)
+	public String getNumeroBeneficio() {
 		return numeroBeneficio;
 	}
 	
-	public void setNumeroBeneficio(Long numeroBeneficio) {
+	public void setNumeroBeneficio(String numeroBeneficio) {
 		this.numeroBeneficio = numeroBeneficio;
 	}
 
@@ -150,7 +156,7 @@ public class Cliente extends Pessoa {
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+	@Column(name = "fonte_pagadora", nullable = false)
 	public FontePagadoraEnum getFontePagadora() {
 		return fontePagadora;
 	}
@@ -176,7 +182,7 @@ public class Cliente extends Pessoa {
 	}
 
 	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
+		this.observacoes = observacoes.toUpperCase();
 	}
 
 	@Transient	
@@ -260,6 +266,63 @@ public class Cliente extends Pessoa {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	@Size(max = 14)
+	@Column(name = "telefone_recados", nullable = false)	
+	public String getTelefoneRecados() {
+		return telefoneRecados;
+	}
+
+	public void setTelefoneRecados(String telefoneRecados) {
+		this.telefoneRecados = telefoneRecados;
+	}
+
+	@Column	
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco.toUpperCase();
+	}
+
+	@Column(name = "tipo_conta", nullable = true)	
+	public String getTipoConta() {
+		return tipoConta;
+	}
+
+	public void setTipoConta(String tipoConta) {
+		this.tipoConta = tipoConta;
+	}
+	
+	@Size(max = 10)
+	@Column(name = "numero_agencia", nullable = true)	
+	public String getNumeroAgencia() {
+		return numeroAgencia;
+	}
+
+	public void setNumeroAgencia(String numeroAgencia) {
+		this.numeroAgencia = numeroAgencia;
+	}
+
+	@Size(max = 12)
+	@Column(name = "numero_conta", nullable = true)	
+	public String getNumeroConta() {
+		return numeroConta;
+	}
+
+	public void setNumeroConta(String numeroConta) {
+		this.numeroConta = numeroConta;
+	}
+
+	@Column(name = "senha_hiscom", nullable = true)
+	public String getSenhaHiscom() {
+		return senhaHiscom;
+	}
+
+	public void setSenhaHiscom(String senhaHiscom) {
+		this.senhaHiscom = senhaHiscom;
 	}		
 
 }

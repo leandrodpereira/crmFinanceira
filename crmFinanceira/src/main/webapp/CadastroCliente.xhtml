@@ -15,7 +15,7 @@
 		<h:form>
 			<p:messages showDetail="false" showSummary="true" closable="true"
 				autoUpdate="true" />
-			<p:panelGrid columns="6">
+			<p:panelGrid columns="6" >
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
 					maxlength="60" required="true" />
@@ -45,6 +45,11 @@
 				<p:outputLabel value="Celular" for="cel" />
 				<p:inputMask mask="(99)99999-9999" id="cel"
 					value="#{cadastroClienteMBean.c.celular}" />
+
+				<p:outputLabel value="Telefone de Recados" for="telRec" />
+				<p:inputText id="telRec"
+					value="#{cadastroClienteMBean.c.telefoneRecados}" />
+
 				<p:outputLabel value="Logradouro" for="logradouro" />
 				<p:inputText id="logradouro"
 					value="#{cadastroClienteMBean.c.logradouro}" />
@@ -86,21 +91,54 @@
 						itemValue="#{fonte}" itemLabel="#{fonte.descricao}" />
 				</p:selectOneButton>
 				<p:outputLabel value="Tipo de Beneficio" for="tipo" />
-				<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoBeneficio}"
+				<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoBeneficio}" 
 					id="tipo" filter="true" filterMatchMode="contains" required="true">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 					<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
 						itemValue="#{tipoB}"
 						itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
 				</p:selectOneMenu>
+
+				<p:outputLabel value="Tipo de Conta" for="tipoConta" />
+				<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoConta}"
+					id="tipoConta">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+					<f:selectItem itemValue="CONTA CORRENTE" itemLabel="CONTA CORRENTE" />
+					<f:selectItem itemValue="POUPANÇA" itemLabel="POUPANÇA" />
+					<f:selectItem itemValue="ORDEM DE PAGAMENTO"
+						itemLabel="ORDEM DE PAGAMENTO" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Banco" for="banco" />
+				<p:autoComplete id="banco" value="#{cadastroClienteMBean.c.banco}"
+					completeMethod="#{cadastroClienteMBean.autoCompletaBanco}"
+					minQueryLength="3"
+					title="Não utilize acentos ou outros caracteres especiais." />
+
+				<p:outputLabel value="Agência" for="agencia" />
+				<p:inputText id="agencia" maxlength="10"
+					value="#{cadastroClienteMBean.c.numeroAgencia}" />
+
+
+				<p:outputLabel value="Conta" for="conta" />
+				<p:inputText id="conta" maxlength="12"
+					value="#{cadastroClienteMBean.c.numeroConta}" />
+
 				<p:outputLabel value="Número do Benefício" for="nbe" />
-				<p:inputText id="nbe" maxlength="12" title="Digite apenas números."
+				<p:inputText id="nbe" maxlength="30" title="Digite apenas números."
 					value="#{cadastroClienteMBean.c.numeroBeneficio}" required="true" />
 				<p:outputLabel value="Observações" for="obs" />
 				<p:inputTextarea id="obs" autoResize="false"
 					value="#{cadastroClienteMBean.c.observacoes}" />
+								
+				
+				<p:outputLabel value="Senha Hiscom" for="senhaHiscom" />
+				<p:inputText id="senhaHiscom"
+					value="#{cadastroClienteMBean.c.senhaHiscom}" />
+					
 				<p:selectBooleanCheckbox value="#{cadastroClienteMBean.c.ativo}"
 					id="ativo" required="true" itemLabel="Cliente Ideal Itajubá" />
+					
 			</p:panelGrid>
 			<br />
 			<p:commandButton value="Salvar"
