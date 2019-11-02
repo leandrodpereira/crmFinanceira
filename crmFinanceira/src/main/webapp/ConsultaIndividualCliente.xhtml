@@ -14,10 +14,21 @@
 		<h3>Sr(a). #{cadastroClienteMBean.c.nome}
 			#{cadastroClienteMBean.msgCliente}</h3>
 		<h:form>
-			<p:commandButton value="Imprimir" type="button" icon="ui-icon-print"
-				style="display:block;margin-bottom: 20px">
-				<p:printer target="areaImpressao" />
-			</p:commandButton>
+			<h:panelGroup>
+				<p:commandButton value="Imprimir" type="button" icon="ui-icon-print"
+					style="margin-bottom: 20px">
+					<p:printer target="areaImpressao" />
+				</p:commandButton>
+				<p:button value="Contato"
+					outcome="CadastroContato.xhtml?id=#{cadastroClienteMBean.c.id}"
+					icon="ui-icon-star" />
+
+				<p:button icon="ui-icon-pencil" value="Editar" title="Editar"
+					outcome="/CadastroCliente">
+					<f:param name="id" value="#{cadastroClienteMBean.c.id}" />
+				</p:button>
+			</h:panelGroup>
+
 			<p:panelGrid columns="2" id="areaImpressao">
 				<p:outputLabel value="Nome completo:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.nome}" />
@@ -47,25 +58,20 @@
 				<p:outputLabel value="E-mail:" />
 				<p:link value="#{cadastroClienteMBean.c.email}"
 					href="mailto:#{cadastroClienteMBean.c.email}" />
-
 				<p:outputLabel value="Fonte Pagadora:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.fontePagadora}" />
 				<p:outputLabel value="Tipo de Beneficio:" />
 				<p:outputLabel
 					value="#{cadastroClienteMBean.c.tipoBeneficio.descricao}" />
-
 				<p:outputLabel value="Número do Benefício:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.numeroBeneficio}" />
-				
-				<p:outputLabel value="Senha Hiscom:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.senhaHiscom}" />
-
+				<p:outputLabel value="#{cadastroClienteMBean.c.matricula}" />
+				<p:outputLabel value="Senha:" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.senha}" />
 				<p:outputLabel value="Renda:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.renda}">
 					<f:convertNumber type="currency" locale="pt_BR"
 						maxFractionDigits="2" minFractionDigits="2" />
 				</p:outputLabel>
-
 				<p:outputLabel value="Tipo de Conta:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.tipoConta}" />
 				<p:outputLabel value="Banco:" />
@@ -74,9 +80,8 @@
 				<p:outputLabel value="#{cadastroClienteMBean.c.numeroAgencia}" />
 				<p:outputLabel value="Conta:" />
 				<p:outputLabel value="#{cadastroClienteMBean.c.numeroConta}" />
-
 				<p:outputLabel value="Observações:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.observacoes}" />
+				<p:outputLabel value="#{cadastroClienteMBean.c.observacoes}"  /> 
 			</p:panelGrid>
 		</h:form>
 		<br />

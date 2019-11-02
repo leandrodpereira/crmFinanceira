@@ -43,17 +43,12 @@ public class CadastroCliente implements Serializable {
 	 * @throws BusinessException
 	 */
 	@Transactional
-	public void salvar(Cliente c) throws BusinessException {
+	public Cliente salvar(Cliente c) throws BusinessException {
 
 		if (!valida(c.getCpf()))
-			throw new BusinessException("CPF inválido.");
+			throw new BusinessException("CPF inválido.");		
 
-		try {
-			this.cr.guardar(c);
-		} catch (Exception e) {
-
-		}
-
+		return this.cr.guardar(c);
 	}
 
 	/**

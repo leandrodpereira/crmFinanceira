@@ -7,7 +7,7 @@ package br.com.idealitajuba.crm.model;
  */
 public enum FontePagadoraEnum {
 	
-	SIAPE ("Siape"), INSS ("Inss");
+	SIAPE ("Siape"), INSS ("Inss"), SEPLAG ("Seplag");
 	
 	private String descricao;	
 

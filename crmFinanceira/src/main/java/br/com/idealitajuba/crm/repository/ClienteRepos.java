@@ -27,8 +27,8 @@ public class ClienteRepos implements Serializable {
 		this.em = em;
 	}
 
-	public void guardar(Cliente c) {
-		this.em.merge(c);
+	public Cliente guardar(Cliente c) {
+		return this.em.merge(c);
 	}
 
 	public void remover(Cliente c) {

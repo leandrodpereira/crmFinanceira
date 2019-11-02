@@ -32,10 +32,11 @@ public class CadastroTipoBeneficio implements Serializable {
 	 * @throws BusinessException
 	 */
 	@Transactional
-	public void salvar(TipoBeneficio tb) throws BusinessException {		
+	public TipoBeneficio salvar(TipoBeneficio tb) throws BusinessException {		
 		if (!this.l.getLogin().equals("admin"))
 			throw new BusinessException("Apenas o Administrador do sistema pode realizar esta operação.");
 		this.tbr.guardar(tb);
+		return tb;
 	}
 
 	/**

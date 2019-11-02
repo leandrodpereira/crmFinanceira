@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:panelGrid columns="6">
+
+		<p:outputLabel value="Telefone Fixo" for="fone" />
+		<p:inputMask mask="(99)9999-9999" id="fone"
+			value="#{cadastroClienteMBean.c.telefone}" />
+		<p:outputLabel value="Celular" for="cel" />
+		<p:inputMask mask="(99)99999-9999" id="cel"
+			value="#{cadastroClienteMBean.c.celular}" />
+		<p:outputLabel value="Telefone de Recados" for="telRec" />
+		<p:inputText id="telRec"
+			value="#{cadastroClienteMBean.c.telefoneRecados}" />
+		<p:outputLabel value="Logradouro" for="logradouro" />
+		<p:inputText id="logradouro"
+			value="#{cadastroClienteMBean.c.logradouro}" />
+		<p:outputLabel value="Número" for="numero" />
+		<p:inputText id="numero" value="#{cadastroClienteMBean.c.numero}"
+			type="number" />
+		<p:outputLabel value="Bairro" for="bairro" />
+		<p:inputText id="bairro" value="#{cadastroClienteMBean.c.bairro}" />
+		<p:outputLabel value="Complemento" for="complemento" />
+		<p:inputText id="complemento"
+			value="#{cadastroClienteMBean.c.complemento}" />
+		<p:outputLabel value="CEP" for="cep" />
+		<p:inputMask mask="99999-999" id="cep"
+			value="#{cadastroClienteMBean.c.cep}" />
+		<p:outputLabel value="Cidade" for="cidade" />
+		<p:autoComplete id="cidade" value="#{cadastroClienteMBean.c.cidade}"
+			completeMethod="#{cadastroClienteMBean.autoCompletaCidade}"
+			minQueryLength="3"
+			title="Não utilize acentos ou outros caracteres especiais." />
+		<p:outputLabel value="Estado" for="estado" />
+		<p:selectOneMenu value="#{cadastroClienteMBean.c.estado}" id="estado"
+			filter="true" filterMatchMode="startsWith">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroClienteMBean.estados}" var="estado"
+				itemValue="#{estado}" itemLabel="#{estado}" />
+		</p:selectOneMenu>
+		<p:outputLabel value="E-mail" for="mail" />
+		<p:inputText id="mail" value="#{cadastroClienteMBean.c.email}" />
+	</p:panelGrid>
+
+</ui:composition>

@@ -30,7 +30,7 @@ public class CadastroTipoBeneficioMBean implements Serializable {
 	public void salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
-			this.ctb.salvar(this.tb);
+			this.tb = this.ctb.salvar(this.tb);
 			this.tb = new TipoBeneficio();
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
 		} catch (BusinessException e) {

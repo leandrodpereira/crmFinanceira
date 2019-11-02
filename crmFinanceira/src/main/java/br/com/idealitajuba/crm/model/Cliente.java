@@ -38,7 +38,7 @@ public class Cliente extends Pessoa {
 	private String telefoneRecados;
 	private String celular;
 	private String email;
-	private String numeroBeneficio;
+	private String matricula;
 	private String observacoes;
 	private Long idade = 0L;
 	private String logradouro;
@@ -52,11 +52,22 @@ public class Cliente extends Pessoa {
 	private String tipoConta;
 	private String numeroAgencia;
 	private String numeroConta;
-	private String senhaHiscom;	
+	private String senha;	
+	private boolean emprestimoPessoal;
 
 	private SexoEnum sexo;
 	private FontePagadoraEnum fontePagadora;
 	private TipoBeneficio tipoBeneficio;
+		
+	@Transient
+	public boolean isNovo() {
+		return getId() == null;
+	}
+	
+	@Transient
+	public boolean isExistente() {
+		return !isNovo();
+	}
 
 	@NotEmpty
 	@Size(max = 14)
@@ -133,14 +144,14 @@ public class Cliente extends Pessoa {
 		this.email = email.toLowerCase();
 	}
 	
-	@NotNull	
-	@Column(name = "numero_beneficio", length = 30, nullable = false)
-	public String getNumeroBeneficio() {
-		return numeroBeneficio;
+	
+	@Column(name = "matricula")
+	public String getMatricula() {
+		return matricula;
 	}
 	
-	public void setNumeroBeneficio(String numeroBeneficio) {
-		this.numeroBeneficio = numeroBeneficio;
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 	@NotNull
@@ -154,9 +165,9 @@ public class Cliente extends Pessoa {
 		this.sexo = sexo;
 	}
 
-	@NotNull
+	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "fonte_pagadora", nullable = false)
+	@Column(name = "fonte_pagadora")
 	public FontePagadoraEnum getFontePagadora() {
 		return fontePagadora;
 	}
@@ -165,9 +176,9 @@ public class Cliente extends Pessoa {
 		this.fontePagadora = fontePagadora;
 	}
 	
-	@NotNull
-	@ManyToOne (optional = false)
-	@JoinColumn(name = "tipo_beneficio_id", nullable = false)
+
+	@ManyToOne (optional = true)
+	@JoinColumn(name = "tipo_beneficio_id")
 	public TipoBeneficio getTipoBeneficio() {
 		return tipoBeneficio;
 	}
@@ -268,7 +279,6 @@ public class Cliente extends Pessoa {
 		this.estado = estado;
 	}
 
-	@Size(max = 14)
 	@Column(name = "telefone_recados", nullable = false)	
 	public String getTelefoneRecados() {
 		return telefoneRecados;
@@ -316,13 +326,22 @@ public class Cliente extends Pessoa {
 		this.numeroConta = numeroConta;
 	}
 
-	@Column(name = "senha_hiscom", nullable = true)
-	public String getSenhaHiscom() {
-		return senhaHiscom;
+	@Column(name = "senha", nullable = true)
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setSenhaHiscom(String senhaHiscom) {
-		this.senhaHiscom = senhaHiscom;
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	@Column(nullable =	false, name = "emprestimo_pessoal", columnDefinition = "boolean default true")
+	public boolean isEmprestimoPessoal() {
+		return emprestimoPessoal;
+	}
+
+	public void setEmprestimoPessoal(boolean emprestimoPessoal) {
+		this.emprestimoPessoal = emprestimoPessoal;
 	}		
 
 }
