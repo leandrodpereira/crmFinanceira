@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:panelGrid columns="4">
+		<p:outputLabel value="CPF" for="cpf" />
+		<p:inputMask mask="999.999.999-99" id="cpf" maxlength="14"
+			value="#{cadastroClienteMBean.c.cpf}" required="true" />
+		<p:outputLabel value="Nome" for="nome" />
+		<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
+			maxlength="60" required="true" />
+		<p:outputLabel value="Sexo" for="sexo" />
+		<p:selectOneButton value="#{cadastroClienteMBean.c.sexo}" id="sexo"
+			required="true">
+			<f:selectItems value="#{cadastroClienteMBean.sexo}" var="sexo"
+				itemValue="#{sexo}" itemLabel="#{sexo.descricao}" />
+		</p:selectOneButton>
+		<p:outputLabel value="RG" for="rg" />
+		<p:inputText id="rg" value="#{cadastroClienteMBean.c.rg}"
+			title="Digite apenas letras e números, sem traços e pontos. Ex: MG1111111"
+			maxlength="13" />
+		<p:outputLabel value="Data de Nascimento" for="dataNascimento" />
+		<p:calendar size="12" pattern="dd/MM/yyyy" required="true"
+			value="#{cadastroClienteMBean.c.dataNascimento}" id="dataNascimento"
+			mask="true" navigator="true" yearRange="c-110:c+0" locale="pt"
+			maxdate="#{cadastroClienteMBean.hoje}">
+		</p:calendar>
+
+		<p:outputLabel value="Renda" for="renda" />
+		<p:inputText size="12" value="#{cadastroClienteMBean.c.renda}"
+			id="renda" required="true">
+			<f:convertNumber locale="pt_BR" minFractionDigits="2"
+				maxFractionDigits="2" />
+		</p:inputText>
+
+		<p:selectBooleanCheckbox style="font-weight: bold;"
+			value="#{cadastroClienteMBean.c.emprestimoPessoal}" id="empessoal"
+			itemLabel="Empréstimo Pessoal">
+
+			<p:ajax event="change" process="@this" update="fonte mat tipo" />
+
+		</p:selectBooleanCheckbox>
+
+		<p:outputLabel />
+
+		<p:outputLabel value="Fonte Pagadora" for="fonte" />
+		<p:selectOneButton value="#{cadastroClienteMBean.c.fontePagadora}"
+			id="fonte" required="true"
+			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}">
+			<f:selectItems value="#{cadastroClienteMBean.fonte}" var="fonte"
+				itemValue="#{fonte}" itemLabel="#{fonte.descricao}" />
+		</p:selectOneButton>
+
+
+
+		<p:outputLabel value="Matrícula" for="mat" />
+		<p:inputText id="mat" title="Digite apenas números."
+			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}"
+			value="#{cadastroClienteMBean.c.matricula}" required="true" />
+
+		<p:outputLabel value="Tipo de Beneficio" for="tipo" />
+		<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoBeneficio}"
+			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}" id="tipo"
+			filter="true" filterMatchMode="contains" required="true">
+			<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+			<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
+				itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
+		</p:selectOneMenu>
+
+
+
+
+
+
+
+	</p:panelGrid>
+
+</ui:composition>

@@ -57,12 +57,25 @@
 				</p:panelGrid>
 			</h:panelGroup>
 			<br />
-			<p:commandButton value="Salvar"
-				action="#{cadastroContatoMBean.salvar}" icon="ui-icon-disk"
-				update="@form">
-				<p:confirm header="Cadastro"
-					message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
-			</p:commandButton>
+
+			<h:panelGroup>
+				<p:commandButton value="Salvar"
+					action="#{cadastroContatoMBean.salvar}" icon="ui-icon-disk"
+					update="@form">
+					<p:confirm header="Cadastro"
+						message="Confirma os dados cadastrados?" icon="ui-icon-alert" />
+				</p:commandButton>
+
+				<p:button value="Pré-Impressão"
+					outcome="ConsultaIndividualCliente.xhtml?id=#{cadastroContatoMBean.cli.id}"
+					icon="ui-icon-image" />
+
+				<p:button icon="ui-icon-pencil" value="Editar" title="Editar"
+					outcome="/CadastroCliente">
+					<f:param name="id" value="#{cadastroContatoMBean.cli.id}" />
+				</p:button>
+
+			</h:panelGroup>
 			<p:confirmDialog global="true">
 				<p:commandButton value="Sim" type="button"
 					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />

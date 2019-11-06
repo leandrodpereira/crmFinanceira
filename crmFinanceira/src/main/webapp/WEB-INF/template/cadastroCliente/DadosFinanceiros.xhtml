@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:panelGrid columns="6">
+
+		<p:outputLabel value="Tipo de Conta" for="tipoConta" />
+		<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoConta}"
+			id="tipoConta">
+			<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+			<f:selectItem itemValue="CONTA CORRENTE" itemLabel="CONTA CORRENTE" />
+			<f:selectItem itemValue="POUPANÇA" itemLabel="POUPANÇA" />
+			<f:selectItem itemValue="ORDEM DE PAGAMENTO"
+				itemLabel="ORDEM DE PAGAMENTO" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Banco" for="banco" />
+		<p:autoComplete id="banco" value="#{cadastroClienteMBean.c.banco}"
+			completeMethod="#{cadastroClienteMBean.autoCompletaBanco}"
+			minQueryLength="3"
+			title="Não utilize acentos ou outros caracteres especiais." />
+
+		<p:outputLabel value="Agência" for="agencia" />
+		<p:inputText id="agencia" maxlength="10"
+			value="#{cadastroClienteMBean.c.numeroAgencia}" />
+
+
+		<p:outputLabel value="Conta" for="conta" />
+		<p:inputText id="conta" maxlength="12"
+			value="#{cadastroClienteMBean.c.numeroConta}" />
+
+
+
+
+
+	</p:panelGrid>
+
+</ui:composition>

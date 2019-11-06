@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:panelGrid columns="6">
+
+		<p:selectBooleanCheckbox value="#{cadastroClienteMBean.c.ativo}"
+			id="ativo" required="true" itemLabel="Cliente Ideal Itajubá" />
+
+
+		<p:outputLabel value="Senha" for="senha" />
+		<p:inputText id="senha" value="#{cadastroClienteMBean.c.senha}" />
+
+
+		<p:outputLabel value="Observações" for="obs" />
+		<p:inputTextarea id="obs" autoResize="false"
+			value="#{cadastroClienteMBean.c.observacoes}" />
+
+
+
+
+	</p:panelGrid>
+
+
+</ui:composition>

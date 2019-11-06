@@ -40,7 +40,7 @@ public class CadastroClienteMBean implements Serializable {
 	@Inject
 	private ContatoRepos cre;
 
-	private Cliente c = new Cliente();
+	private Cliente c;
 
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
@@ -49,7 +49,7 @@ public class CadastroClienteMBean implements Serializable {
 	private String msgCliente;
 	private Date hoje;
 	private List<String> estados;
-
+	
 	public void preCadastro() {
 		if (this.c == null) {
 			this.c = new Cliente();
@@ -59,14 +59,17 @@ public class CadastroClienteMBean implements Serializable {
 		this.setContatos(cre.porCliente(c));
 		this.estados = Estado.ESTADOS;
 	}
-
+	
+	public void limpar() {
+		this.c = new Cliente();
+	}
+		
 	public void salvar() throws BusinessException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage msg;
-		String aviso = "";
+		String aviso = "";	
 		try {
-			this.cc.salvar(this.c);
-			this.c = new Cliente();
+			this.c = this.cc.salvar(this.c);			
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
 		} catch (Exception e) {
 			if (cr.porCpf(c.getCpf()) != null)
