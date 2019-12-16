@@ -30,20 +30,24 @@ public class ConsultaClienteMBean implements Serializable {
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes = new ArrayList<>();
 
-	public void mostrarPorCpf() {
-		if(cr.porCpf(this.cpf) != null)
-			this.clientes.add(cr.porCpf(this.cpf));
+	public void limpar() {
+		this.clientes.clear();
 	}
-	
+
+	public void mostrarPorCpf() {
+		limpar();
+		if (cr.porCpf(this.cpf) != null) 
+			this.clientes.add(cr.porCpf(this.cpf));
+		
+	}
+
 	public void mostrarPorNome() {
+		limpar();
 		this.clientes = cr.porNome(this.nome);
 	}
 
-	public void mostrarTodos() {
-		this.clientes = cr.todos();
-	}
-
 	public void mostrarPorCidade() {
+		limpar();
 		this.clientes = cr.porCidade(this.cidade);
 	}
 
@@ -51,7 +55,7 @@ public class ConsultaClienteMBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.excluir(clienteSelecionado);
-			this.mostrarTodos();
+			this.clientes.remove(clienteSelecionado);
 			context.addMessage(null, new FacesMessage("Cliente excluído com sucesso!"));
 		} catch (BusinessException e) {
 			FacesMessage mensagem = new FacesMessage(e.getMessage());
