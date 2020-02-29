@@ -13,12 +13,10 @@ import javax.inject.Named;
 import br.com.idealitajuba.crm.business.BusinessException;
 import br.com.idealitajuba.crm.business.CadastroCliente;
 import br.com.idealitajuba.crm.model.Cliente;
-import br.com.idealitajuba.crm.model.Contato;
 import br.com.idealitajuba.crm.model.FontePagadoraEnum;
 import br.com.idealitajuba.crm.model.SexoEnum;
 import br.com.idealitajuba.crm.model.TipoBeneficio;
 import br.com.idealitajuba.crm.repository.ClienteRepos;
-import br.com.idealitajuba.crm.repository.ContatoRepos;
 import br.com.idealitajuba.crm.repository.TipoBeneficioRepos;
 import br.com.idealitajuba.crm.util.Estado;
 
@@ -37,16 +35,11 @@ public class CadastroClienteMBean implements Serializable {
 	@Inject
 	private ClienteRepos cr;
 
-	@Inject
-	private ContatoRepos cre;
-
 	private Cliente c;
 
 	private SexoEnum[] sexo;
 	private FontePagadoraEnum[] fonte;
 	private List<TipoBeneficio> tipos;
-	private List<Contato> contatos;
-	private String msgCliente;
 	private Date hoje;
 	private List<String> estados;
 	
@@ -54,9 +47,7 @@ public class CadastroClienteMBean implements Serializable {
 		if (this.c == null) {
 			this.c = new Cliente();
 		}
-		this.isCliente();
 		this.setTipos(tbr.todos());
-		this.setContatos(cre.porCliente(c));
 		this.estados = Estado.ESTADOS;
 	}
 	
@@ -104,15 +95,7 @@ public class CadastroClienteMBean implements Serializable {
 	public List<String> autoCompletaBanco(String banco) {
 		return this.cr.bancos(banco);
 	}
-		
 	
-	/**
-	 * Método que identifica quem é ou não cliente da empresa.
-	 */
-	public void isCliente() {
-		this.msgCliente = this.c.isAtivo() ? " é nosso cliente!" : " não é nosso cliente. :(";
-	}
-
 	public Cliente getC() {
 		return c;
 	}
@@ -135,22 +118,6 @@ public class CadastroClienteMBean implements Serializable {
 
 	public void setTipos(List<TipoBeneficio> tipos) {
 		this.tipos = tipos;
-	}
-
-	public String getMsgCliente() {
-		return msgCliente;
-	}
-
-	public void setMsgCliente(String msgCliente) {
-		this.msgCliente = msgCliente;
-	}
-
-	public List<Contato> getContatos() {
-		return contatos;
-	}
-
-	public void setContatos(List<Contato> contatos) {
-		this.contatos = contatos;
 	}
 
 	public Date getHoje() {

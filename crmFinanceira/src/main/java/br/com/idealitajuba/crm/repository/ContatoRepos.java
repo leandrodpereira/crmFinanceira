@@ -24,7 +24,7 @@ public class ContatoRepos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private EntityManager em;	
+	private EntityManager em;
 
 	@Inject
 	public ContatoRepos(EntityManager em) {
@@ -70,10 +70,11 @@ public class ContatoRepos implements Serializable {
 	 * @author Leandro Duarte
 	 */
 	public List<Contato> porData(Date dataInicio, Date dataFim) {
-		TypedQuery<Contato> query = this.em
-				.createQuery("from Contato c where " + "date_format(c.dataHoraContato,'%d/%m/%Y') between '"
-						+ new SimpleDateFormat("dd/MM/yyyy").format(dataInicio) + "' and '"
-						+ new SimpleDateFormat("dd/MM/yyyy").format(dataFim) + "'", Contato.class);
+		TypedQuery<Contato> query = this.em.createQuery(
+				"from Contato c where c.dataHoraContato between '"
+						+new SimpleDateFormat("yyyy-MM-dd").format(dataInicio)+
+						"' and '"+new SimpleDateFormat("yyyy-MM-dd").format(dataFim)+"'", Contato.class);
+	
 		return query.getResultList();
 	}
 
@@ -93,6 +94,24 @@ public class ContatoRepos implements Serializable {
 				Contato.class);
 		return query.getResultList();
 	}
+	
+	
+	/**
+	 * Método que mostra os contatos com agendamento pendentes no dia
+	 * presente.
+	 * 
+	 * @param dataInicio
+	 * @param dataFim
+	 * @return
+	 */
+	public List<Contato> porAgendamentoPendenteDia() {
+		TypedQuery<Contato> query = this.em.createQuery(
+				"from Contato c where " + "c.status.pendencia='1' and date_format(c.dataAgendamento,'%d/%m/%Y') = '"
+						+ new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()) + "'",
+				Contato.class);
+		return query.getResultList();
+	}
+	
 
 	/**
 	 * Método que mostra os contatos com agendamento pendentes.
@@ -102,7 +121,7 @@ public class ContatoRepos implements Serializable {
 	 * @return
 	 */
 	public List<Contato> porAgendamentoPendente() {
-		TypedQuery<Contato> query = this.em.createQuery("from Contato c where " + "c.status.pendencia='1'",
+		TypedQuery<Contato> query = this.em.createQuery("from Contato c where " + "c.status.pendencia='1' order by c.dataAgendamento asc",
 				Contato.class);
 		return query.getResultList();
 	}
