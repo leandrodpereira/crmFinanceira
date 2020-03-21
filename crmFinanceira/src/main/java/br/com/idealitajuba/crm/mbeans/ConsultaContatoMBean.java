@@ -15,6 +15,11 @@ import br.com.idealitajuba.crm.business.CadastroContato;
 import br.com.idealitajuba.crm.model.Contato;
 import br.com.idealitajuba.crm.repository.ContatoRepos;
 
+/**
+ * 
+ * @author leandro
+ *
+ */
 @Named
 @ViewScoped
 public class ConsultaContatoMBean implements Serializable {
@@ -45,8 +50,8 @@ public class ConsultaContatoMBean implements Serializable {
 		this.setContatos(cr.porData(dataInicio, dataFim));
 	}
 	
-	public void mostrarAgendamentoPendentePorUsuario() {
-		this.setContatos(cr.porAgendamentoPendenteUsuario(login.getUsuario()));
+	public void mostrarAgendamentoPendenteDia() {
+		this.setContatos(cr.porAgendamentoPendenteDia());
 	}
 	
 	public void mostrarAgendamentoPendente() {

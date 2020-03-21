@@ -4,10 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-	<f:metadata>
-		<f:viewAction action="#{consultaContatoMBean.mostrarTodos}" />
-	</f:metadata>
+	xmlns:p="http://primefaces.org/ui">	
 	<ui:define name="corpo">
 		<h2>Listas/Alterar Contatos</h2>
 		<p:messages showDetail="false" showSummary="true" closable="true"
@@ -26,12 +23,12 @@
 					id="dataFim" mask="true" navigator="true" required="true">
 				</p:calendar>
 				<p:commandButton icon="ui-icon-search" title="Buscar"
-					action="#{consultaContatoMBean.mostrarPorIntervalo}" update="@all" />
+					action="#{consultaContatoMBean.mostrarPorIntervalo}" update=":frmContatos:mostrarContatos" />
 			</p:panelGrid>
 		</h:form>
 		<br /><br />
-		<h:form>			
-			<p:dataTable value="#{consultaContatoMBean.contatos}" var="contato"
+		<h:form id="frmContatos">			
+			<p:dataTable id="mostrarContatos" value="#{consultaContatoMBean.contatos}" var="contato"
 				border="1" cellspacing="0" cellpadding="2" paginator="true"
 				rows="10" paginatorPosition="bottom"
 				emptyMessage="Sem registros para mostrar">				

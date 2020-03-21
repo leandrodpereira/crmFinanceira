@@ -67,12 +67,12 @@
 				</p:commandButton>
 
 				<p:button value="Pré-Impressão"
-					outcome="ConsultaIndividualCliente.xhtml?id=#{cadastroContatoMBean.cli.id}"
+					outcome="ConsultaIndividualCliente.xhtml?id=#{cadastroContatoMBean.con.cliente.id}"
 					icon="ui-icon-image" />
 
 				<p:button icon="ui-icon-pencil" value="Editar" title="Editar"
 					outcome="/CadastroCliente">
-					<f:param name="id" value="#{cadastroContatoMBean.cli.id}" />
+					<f:param name="id" value="#{cadastroContatoMBean.con.cliente.id}" />
 				</p:button>
 
 			</h:panelGroup>

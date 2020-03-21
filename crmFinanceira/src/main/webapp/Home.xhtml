@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 	<f:metadata>
 		<f:viewAction
-			action="#{consultaContatoMBean.mostrarAgendamentoPendentePorUsuario}" />
+			action="#{consultaContatoMBean.mostrarAgendamentoPendenteDia}" />
 	</f:metadata>
 	<ui:define name="corpo">
 		<h2>Bem vindo #{loginMBean.usuario.nome} !</h2>
@@ -35,6 +35,9 @@
 					<h:outputText value="#{contato.horaAgendamento}">
 						<f:convertDateTime pattern="HH:mm" />
 					</h:outputText>
+				</p:column>
+				<p:column headerText="Usuário" width="50" >
+					<h:outputText value="#{contato.usuario.login}" />
 				</p:column>
 				<p:column headerText="Observações">
 					<h:outputText value="#{contato.observacoes}" />

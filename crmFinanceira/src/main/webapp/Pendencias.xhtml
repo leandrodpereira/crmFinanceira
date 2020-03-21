@@ -4,34 +4,33 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 	<f:metadata>
 		<f:viewAction
 			action="#{consultaContatoMBean.mostrarAgendamentoPendente}" />
 	</f:metadata>
-	<ui:define name="corpo">		
+	<ui:define name="corpo">
 		<h:form>
 			<h3>Agendamentos Pendentes</h3>
 			<p:dataTable value="#{consultaContatoMBean.contatos}" var="contato"
 				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
 				paginatorPosition="bottom" emptyMessage="Sem agendamentos">
 				<p:column headerText="Cliente" sortBy="#{contato.cliente.nome}"
-					width="250">
+					width="250" filterBy="#{contato.cliente.nome}" filterMatchMode="contains">
 					<h:outputText value="#{contato.cliente.nome}" />
 				</p:column>
-				<p:column headerText="Telefones"
-					width="200">
-					<h:outputText value="#{contato.cliente.telefone} -- #{contato.cliente.celular}" />
+				<p:column headerText="Telefones" width="200">
+					<h:outputText
+						value="#{contato.cliente.telefone} -- #{contato.cliente.celular}" />
 				</p:column>
-				<p:column headerText="Data" 
-					sortBy="#{contato.dataAgendamento}" width="70">
+				<p:column headerText="Data" sortBy="#{contato.dataAgendamento}"
+					width="70">
 					<h:outputText value="#{contato.dataAgendamento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="Hora" 
-					sortBy="#{contato.horaAgendamento}" width="70">
+				<p:column headerText="Hora" sortBy="#{contato.horaAgendamento}"
+					width="70">
 					<h:outputText value="#{contato.horaAgendamento}">
 						<f:convertDateTime pattern="HH:mm" />
 					</h:outputText>
@@ -39,15 +38,15 @@
 				<p:column headerText="Observações">
 					<h:outputText value="#{contato.observacoes}" />
 				</p:column>
-				<p:column headerText="Usuário" width="50">
+				<p:column headerText="Usuário" width="110"
+					filterBy="#{contato.usuario.login}" filterMatchMode="contains">
 					<h:outputText value="#{contato.usuario.login}" />
 				</p:column>
-				<p:column  width="153">
-					<p:button icon="ui-icon-circle-check" 
-					title="Baixar Pendência" value="Baixar Pendência"
-						outcome="/CadastroContato">
+				<p:column width="100">
+					<p:button icon="ui-icon-circle-check" title="Baixar Pendência"
+						value="Baixar Pendência" outcome="/CadastroContato">
 						<f:param name="idContato" value="#{contato.id}" />
-					</p:button>					
+					</p:button>
 				</p:column>
 			</p:dataTable>
 		</h:form>

@@ -7,12 +7,12 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 	<ui:define name="corpo">
 		<f:metadata>
-			<o:viewParam name="id" value="#{cadastroClienteMBean.c}" />
-			<f:viewAction action="#{cadastroClienteMBean.preCadastro}"></f:viewAction>
+			<o:viewParam name="id" value="#{consultaIndividualClienteMBean.cliente}" />
+			<f:viewAction action="#{consultaIndividualClienteMBean.carregaContatos}"></f:viewAction>
 		</f:metadata>
 		<h2>Detalhes do Cliente</h2>
-		<h3>Sr(a). #{cadastroClienteMBean.c.nome}
-			#{cadastroClienteMBean.msgCliente}</h3>
+		<h3>Sr(a). #{consultaIndividualClienteMBean.cliente.nome}
+			#{consultaIndividualClienteMBean.cliente.ativo ? " é nosso cliente!" : " não é nosso cliente. :("} </h3> 
 		<h:form>
 			<h:panelGroup>
 				<p:commandButton value="Imprimir" type="button" icon="ui-icon-print"
@@ -20,76 +20,76 @@
 					<p:printer target="areaImpressao" />
 				</p:commandButton>
 				<p:button value="Contato"
-					outcome="CadastroContato.xhtml?id=#{cadastroClienteMBean.c.id}"
+					outcome="CadastroContato.xhtml?id=#{consultaIndividualClienteMBean.cliente.id}"
 					icon="ui-icon-star" />
 
 				<p:button icon="ui-icon-pencil" value="Editar" title="Editar"
 					outcome="/CadastroCliente">
-					<f:param name="id" value="#{cadastroClienteMBean.c.id}" />
+					<f:param name="id" value="#{consultaIndividualClienteMBean.cliente.id}" />
 				</p:button>
 			</h:panelGroup>
 
 			<p:panelGrid columns="2" id="areaImpressao">
 				<p:outputLabel value="Nome completo:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.nome}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.nome}" />
 				<p:outputLabel value="Data de Nascimento:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.dataNascimento}">
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.dataNascimento}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</p:outputLabel>
 				<p:outputLabel value="Idade:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.idade} ANOS" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.idade} ANOS" />
 				<p:outputLabel value="Sexo:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.sexo}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.sexo}" />
 				<p:outputLabel value="CPF:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.cpf}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.cpf}" />
 				<p:outputLabel value="RG:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.rg}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.rg}" />
 				<p:outputLabel value="Endereço:" />
 				<p:outputLabel
-					value="#{cadastroClienteMBean.c.logradouro}, #{cadastroClienteMBean.c.numero}.  
-					#{cadastroClienteMBean.c.complemento} - #{cadastroClienteMBean.c.bairro}. CEP: #{cadastroClienteMBean.c.cep}
-					#{cadastroClienteMBean.c.cidade} - #{cadastroClienteMBean.c.estado}" />
+					value="#{consultaIndividualClienteMBean.cliente.logradouro}, #{consultaIndividualClienteMBean.cliente.numero}.  
+					#{consultaIndividualClienteMBean.cliente.complemento} - #{consultaIndividualClienteMBean.cliente.bairro}. CEP: #{consultaIndividualClienteMBean.cliente.cep}
+					#{consultaIndividualClienteMBean.cliente.cidade} - #{consultaIndividualClienteMBean.cliente.estado}" />
 				<p:outputLabel value="Telefone Fixo:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.telefone}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.telefone}" />
 				<p:outputLabel value="Celular:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.celular}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.celular}" />
 				<p:outputLabel value="Telefone de Recados:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.telefoneRecados}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.telefoneRecados}" />
 				<p:outputLabel value="E-mail:" />
-				<p:link value="#{cadastroClienteMBean.c.email}"
-					href="mailto:#{cadastroClienteMBean.c.email}" />
+				<p:link value="#{consultaIndividualClienteMBean.cliente.email}"
+					href="mailto:#{consultaIndividualClienteMBean.cliente.email}" />
 				<p:outputLabel value="Fonte Pagadora:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.fontePagadora}" />
+				<p:outputLabel value="#{cconsultaIndividualClienteMBean.cliente.fontePagadora}" />
 				<p:outputLabel value="Tipo de Beneficio:" />
 				<p:outputLabel
-					value="#{cadastroClienteMBean.c.tipoBeneficio.descricao}" />
+					value="#{consultaIndividualClienteMBean.cliente.tipoBeneficio.descricao}" />
 				<p:outputLabel value="Número do Benefício:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.matricula}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.matricula}" />
 				<p:outputLabel value="Senha:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.senha}" />
+				<p:outputLabel value="#{cconsultaIndividualClienteMBean.cliente.senha}" />
 				<p:outputLabel value="Renda:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.renda}">
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.renda}">
 					<f:convertNumber type="currency" locale="pt_BR"
 						maxFractionDigits="2" minFractionDigits="2" />
 				</p:outputLabel>
 				<p:outputLabel value="Tipo de Conta:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.tipoConta}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.tipoConta}" />
 				<p:outputLabel value="Banco:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.banco}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.banco}" />
 				<p:outputLabel value="Agência:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.numeroAgencia}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.numeroAgencia}" />
 				<p:outputLabel value="Conta:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.numeroConta}" />
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.numeroConta}" />
 				<p:outputLabel value="Observações:" />
-				<p:outputLabel value="#{cadastroClienteMBean.c.observacoes}"  /> 
+				<p:outputLabel value="#{consultaIndividualClienteMBean.cliente.observacoes}" />
 			</p:panelGrid>
 		</h:form>
 		<br />
 		<h2>Contatos realizados com o cliente
-			#{cadastroClienteMBean.c.nome}</h2>
+			 #{consultaIndividualClienteMBean.cliente.nome}</h2>
 		<br />
 		<h:form>
-			<p:dataTable value="#{cadastroClienteMBean.contatos}" var="contato"
+			<p:dataTable id="contatosCliente" value="#{consultaIndividualClienteMBean.contatos}" var="contato"
 				border="1" cellspacing="0" cellpadding="2" paginator="true" rows="5"
 				paginatorPosition="bottom"
 				emptyMessage="Nenhum contato foi realizado com este cliente">
@@ -107,6 +107,26 @@
 				</p:column>
 				<p:column headerText="Usuario" width="70">
 					<h:outputText value="#{contato.usuario.login}" />
+				</p:column>
+				<p:column headerText="Ações" width="70">
+					<p:button icon="ui-icon-pencil" title="Editar"
+						outcome="/CadastroContato">
+						<f:param name="idContato" value="#{contato.id}" />
+					</p:button>
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						process="@this" update="contatosCliente"
+					action="#{consultaIndividualClienteMBean.excluir}"> 
+						<f:setPropertyActionListener value="#{contato}"
+							target="#{consultaIndividualClienteMBean.contatoSelecionado}" />
+						<p:confirm header="Exclusão" message="Confirma a exclusão?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</h:form>

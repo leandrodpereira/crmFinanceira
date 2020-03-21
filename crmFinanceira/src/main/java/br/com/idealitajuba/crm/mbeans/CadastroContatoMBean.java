@@ -67,15 +67,20 @@ public class CadastroContatoMBean implements Serializable {
 		this.con.setDataHoraContato(Calendar.getInstance().getTime());
 	}
 
-	public void salvar() {
+	/**
+	 * Método que salva o contato e redireciona para a consulta individual.
+	 * @throws Exception
+	 */
+	public void salvar() throws Exception {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.cc.salvar(this.con);			
 			context.addMessage(null, new FacesMessage("Contato registrado com sucesso!"));
+			FacesContext.getCurrentInstance().getExternalContext().redirect("ConsultaIndividualCliente.xhtml?id="+con.getCliente().getId());
 		} catch (BusinessException e) {
 			FacesMessage msg = new FacesMessage(e.getMessage());
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			context.addMessage(null, msg);
+			
 		}		
 	}
 
