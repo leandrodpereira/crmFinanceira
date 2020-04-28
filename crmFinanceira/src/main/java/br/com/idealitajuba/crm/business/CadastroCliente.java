@@ -28,7 +28,7 @@ public class CadastroCliente implements Serializable {
 	 * @param cpf
 	 * @return
 	 */
-	public static boolean valida(String cpf) {
+	public boolean valida(String cpf) {
 		CPFValidator cpfValidator = new CPFValidator();
 		if (cpfValidator.invalidMessagesFor(cpf).isEmpty())
 			return true;
@@ -46,7 +46,7 @@ public class CadastroCliente implements Serializable {
 	public Cliente salvar(Cliente c) throws BusinessException {
 
 		if (!valida(c.getCpf()))
-			throw new BusinessException("CPF inválido.");		
+			throw new BusinessException("Atenção: CPF Inválido.");		
 
 		return this.cr.guardar(c);
 	}

@@ -43,6 +43,9 @@ public class CadastroClienteMBean implements Serializable {
 	private Date hoje;
 	private List<String> estados;
 	
+	FacesContext context;
+	FacesMessage msg;
+	
 	public void preCadastro() {
 		if (this.c == null) {
 			this.c = new Cliente();
@@ -55,10 +58,9 @@ public class CadastroClienteMBean implements Serializable {
 		this.c = new Cliente();
 	}
 		
-	public void salvar() throws BusinessException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage msg;
+	public void salvar() throws BusinessException {		
 		String aviso = "";	
+		this.context = FacesContext.getCurrentInstance();
 		try {
 			this.c = this.cc.salvar(this.c);			
 			context.addMessage(null, new FacesMessage("Salvo com sucesso!"));
@@ -69,10 +71,28 @@ public class CadastroClienteMBean implements Serializable {
 			else
 				aviso = e.getMessage();
 			msg = new FacesMessage(aviso);
-			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);			
 			context.addMessage(null, msg);
 		}
 
+	}
+	
+	/**	
+	 * Método que autocompleta clientes já cadastrados.
+	 * @author leandro  
+	 */
+	public void validaEautoCompletaCadastroExistente() {
+		this.context = FacesContext.getCurrentInstance();
+		if (!this.cc.valida(c.getCpf())){
+			this.msg = new FacesMessage("Atenção: CPF Inválido.");
+			this.msg.setSeverity(FacesMessage.SEVERITY_ERROR);			
+			this.context.addMessage(null, msg);	
+		}else if (cr.porCpf(c.getCpf()) != null) {
+			this.c = cr.porCpf(c.getCpf());
+			this.msg = new FacesMessage("Cliente já cadastrado.");
+			this.msg.setSeverity(FacesMessage.SEVERITY_WARN);			
+			this.context.addMessage(null, msg);				
+		}
 	}
 
 	/**
