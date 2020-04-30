@@ -9,7 +9,10 @@
 	<p:panelGrid columns="4">
 		<p:outputLabel value="CPF" for="cpf" />
 		<p:inputMask mask="999.999.999-99" id="cpf" maxlength="14"
-			value="#{cadastroClienteMBean.c.cpf}" required="true" />
+			value="#{cadastroClienteMBean.c.cpf}" required="true">
+			<p:ajax event="blur" update="@form"
+				listener="#{cadastroClienteMBean.validaEautoCompletaCadastroExistente}" />
+		</p:inputMask>
 		<p:outputLabel value="Nome" for="nome" />
 		<p:inputText id="nome" value="#{cadastroClienteMBean.c.nome}"
 			maxlength="60" required="true" />
@@ -55,8 +58,6 @@
 				itemValue="#{fonte}" itemLabel="#{fonte.descricao}" />
 		</p:selectOneButton>
 
-
-
 		<p:outputLabel value="Matrícula" for="mat" />
 		<p:inputText id="mat" title="Digite apenas números."
 			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}"
@@ -70,12 +71,6 @@
 			<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
 				itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
 		</p:selectOneMenu>
-
-
-
-
-
-
 
 	</p:panelGrid>
 
