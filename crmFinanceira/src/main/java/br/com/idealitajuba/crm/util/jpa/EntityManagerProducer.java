@@ -1,4 +1,4 @@
-package br.com.idealitajuba.crm.util;
+package br.com.idealitajuba.crm.util.jpa;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
@@ -7,6 +7,8 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import org.hibernate.Session;
 
 /**
  * Classe que contêm um método produtor (anotado), que 
@@ -25,8 +27,8 @@ public class EntityManagerProducer {
 
 	@Produces
 	@RequestScoped
-	public EntityManager createEntityManager() {
-		return factory.createEntityManager();
+	public Session createEntityManager() {
+		return (Session) factory.createEntityManager();
 
 	}
 

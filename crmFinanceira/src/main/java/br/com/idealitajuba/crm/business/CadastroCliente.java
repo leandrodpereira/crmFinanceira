@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.idealitajuba.crm.model.Cliente;
 import br.com.idealitajuba.crm.repository.ClienteRepos;
-import br.com.idealitajuba.crm.util.Transactional;
+import br.com.idealitajuba.crm.util.jpa.Transactional;
 
 /**
  * Classe que implementa as regras de negócio.
