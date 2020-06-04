@@ -6,7 +6,7 @@ http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
 	version="1.1" bean-discovery-mode="all">
 	<interceptors>
 		<class>
-			br.com.idealitajuba.crm.util.TransactionInterceptor
+			br.com.idealitajuba.crm.util.jpa.TransactionInterceptor
 		</class>
 	</interceptors>
 </beans>

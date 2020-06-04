@@ -44,6 +44,11 @@
 				<p:menuitem value="Agendamentos"
 					action="/Pendencias?faces-redirect=true" />
 			</p:submenu>
+			<p:submenu label="Relatórios">
+				<p:submenu label="Clientes">
+					<p:menuitem value="Geral" action="#{relatorioTodosClientesMBean.emitir}" ajax="false"/>
+				</p:submenu>
+			</p:submenu>
 			<p:submenu label="Sistema">
 				<p:submenu label="Tipo de Beneficio">
 					<p:menuitem value="Inserir"
@@ -71,7 +76,7 @@
 	<div id="conteudo">
 		<ui:insert name="corpo" />
 	</div>
-	<footer> CRM - Ideal Itajubá v1.0.7</footer>
+	<footer> CRM - Ideal Itajubá v1.0.8</footer>
 </h:body>
 
 </html>

@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import br.com.idealitajuba.crm.mbeans.LoginMBean;
 import br.com.idealitajuba.crm.model.TipoContatoStatus;
 import br.com.idealitajuba.crm.repository.TipoContatoStatusRepos;
-import br.com.idealitajuba.crm.util.Transactional;
+import br.com.idealitajuba.crm.util.jpa.Transactional;
 
 /**
  * Classe que implementa as regras de negócio.
