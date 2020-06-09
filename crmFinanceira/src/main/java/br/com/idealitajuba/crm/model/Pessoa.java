@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -37,6 +38,7 @@ public abstract class Pessoa implements Serializable{
 	}
 	
 	@NotEmpty
+	@NotBlank
 	@Size(max = 60)
 	@Column(length = 60, nullable =	false)
 	public String getNome() {

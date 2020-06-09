@@ -7,7 +7,6 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
 import br.com.idealitajuba.crm.model.Contato;
-import br.com.idealitajuba.crm.model.Usuario;
 import br.com.idealitajuba.crm.repository.ContatoRepos;
 
 /**

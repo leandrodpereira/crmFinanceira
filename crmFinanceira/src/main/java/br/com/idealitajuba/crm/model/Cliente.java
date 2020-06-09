@@ -69,7 +69,7 @@ public class Cliente extends Pessoa {
 		return !isNovo();
 	}
 
-	@NotEmpty
+	@NotEmpty	
 	@Size(max = 14)
 	@Column(length = 14, nullable = false, unique = true)
 	public String getCpf() {
@@ -198,11 +198,16 @@ public class Cliente extends Pessoa {
 
 	@Transient	
 	public Long getIdade() {	
-		if(this.idade != null) {
+		if(this.idade != null && this.getDataNascimento() != null) {
 			this.idade  = (Calendar.getInstance().getTimeInMillis() - this.getDataNascimento().getTime()) + 3600000;
 			return (idade/31536000000L);
 		}
 		return idade;				
+	}
+	
+	@Transient
+	public boolean isIdadeAvancada() {
+		return this.getIdade() >= 70;
 	}
 
 	public void setIdade(Long idade) {
