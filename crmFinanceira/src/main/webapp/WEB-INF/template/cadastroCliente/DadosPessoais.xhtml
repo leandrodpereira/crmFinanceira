@@ -8,7 +8,7 @@
 
 	<p:panelGrid columns="4">
 		<p:outputLabel value="CPF" for="cpf" />
-		<p:inputMask mask="999.999.999-99" id="cpf" maxlength="14"
+		<p:inputMask mask="999.999.999-99" id="cpf"
 			value="#{cadastroClienteMBean.c.cpf}" required="true">
 			<p:ajax event="blur" update="@form"
 				listener="#{cadastroClienteMBean.validaEautoCompletaCadastroExistente}" />
@@ -27,11 +27,21 @@
 			title="Digite apenas letras e números, sem traços e pontos. Ex: MG1111111"
 			maxlength="13" />
 		<p:outputLabel value="Data de Nascimento" for="dataNascimento" />
-		<p:calendar size="12" pattern="dd/MM/yyyy" required="true"
-			value="#{cadastroClienteMBean.c.dataNascimento}" id="dataNascimento"
-			mask="true" navigator="true" yearRange="c-110:c+0" locale="pt"
-			maxdate="#{cadastroClienteMBean.hoje}">
-		</p:calendar>
+		<h:panelGroup id="datas">
+			<p:calendar size="12" pattern="dd/MM/yyyy" required="true"
+				value="#{cadastroClienteMBean.c.dataNascimento}" id="dataNascimento"
+				mask="true" navigator="true" yearRange="c-110:c+0" locale="pt"
+				maxdate="#{cadastroClienteMBean.hoje}">
+				<p:ajax event="dateSelect" process="@this" update="datas" />
+				<p:ajax event="change" process="@this" update="datas" />
+			</p:calendar>
+			<p:outputLabel id="idade"
+				value=" #{cadastroClienteMBean.c.idade} anos "
+				style="#{cadastroClienteMBean.c.idadeAvancada ? 'color : red': ''}" />
+			<p:graphicImage id="alerta" library="img" name="alerta.png"
+				rendered="#{cadastroClienteMBean.c.idadeAvancada}" style="vertical-align: middle;"/>
+			<p:tooltip for="alerta" value="Atenção!"/>
+		</h:panelGroup>
 
 		<p:outputLabel value="Renda" for="renda" />
 		<p:inputText size="12" value="#{cadastroClienteMBean.c.renda}"

@@ -9,9 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.idealitajuba.crm.business.BusinessException;
-import br.com.idealitajuba.crm.business.CadastroTipoBeneficio;
 import br.com.idealitajuba.crm.business.CadastroTipoContatoStatus;
-import br.com.idealitajuba.crm.model.TipoBeneficio;
 import br.com.idealitajuba.crm.model.TipoContatoStatus;
 
 @Named

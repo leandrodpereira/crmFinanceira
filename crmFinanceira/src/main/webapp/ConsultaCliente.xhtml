@@ -14,7 +14,7 @@
 			<h:form>
 				<p:panelGrid columns="3">
 					<p:outputLabel value="CPF" for="cpf" />
-					<p:inputMask mask="999.999.999-99" id="cpf" maxlength="14"
+					<p:inputMask mask="999.999.999-99" id="cpf"
 						value="#{consultaClienteMBean.cpf}" immediate="true"
 						required="true" title="Digite o CPF."
 						requiredMessage="Entre com o CPF que deseja buscar." />
@@ -85,7 +85,7 @@
 						<f:param name="id" value="#{c.id}" />
 					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
-						process="@this" update="@form"
+						process="@this" update="@all"
 						action="#{consultaClienteMBean.excluir}">
 						<f:setPropertyActionListener value="#{c}"
 							target="#{consultaClienteMBean.clienteSelecionado}" />
