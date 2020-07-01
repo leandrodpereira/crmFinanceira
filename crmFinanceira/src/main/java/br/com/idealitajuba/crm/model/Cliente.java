@@ -196,6 +196,13 @@ public class Cliente extends Pessoa {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes.toUpperCase();
 	}
+	
+	@Transient
+	public boolean isFontePagadoraINSS() {
+		if (this.getFontePagadora() != null)
+			return this.getFontePagadora().equals(FontePagadoraEnum.INSS);
+		return false;		
+	}
 
 	@Transient	
 	public Long getIdade() {	

@@ -39,8 +39,9 @@
 				value=" #{cadastroClienteMBean.c.idade} anos "
 				style="#{cadastroClienteMBean.c.idadeAvancada ? 'color : red': ''}" />
 			<p:graphicImage id="alerta" library="img" name="alerta.png"
-				rendered="#{cadastroClienteMBean.c.idadeAvancada}" style="vertical-align: middle;"/>
-			<p:tooltip for="alerta" value="Atenção!"/>
+				rendered="#{cadastroClienteMBean.c.idadeAvancada}"
+				style="vertical-align: middle;" />
+			<p:tooltip for="alerta" value="Atenção!" />
 		</h:panelGroup>
 
 		<p:outputLabel value="Renda" for="renda" />
@@ -61,23 +62,26 @@
 		<p:outputLabel />
 
 		<p:outputLabel value="Fonte Pagadora" for="fonte" />
-		<p:selectOneButton value="#{cadastroClienteMBean.c.fontePagadora}"
-			id="fonte" required="true"
-			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}">
-			<f:selectItems value="#{cadastroClienteMBean.fonte}" var="fonte"
-				itemValue="#{fonte}" itemLabel="#{fonte.descricao}" />
-		</p:selectOneButton>
+		<p:selectOneMenu id="fonte" required="true"
+			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}"
+			value="#{cadastroClienteMBean.c.fontePagadora}">
+			<f:selectItem itemLabel="Selecione" itemValue="" />
+			<f:selectItems value="#{cadastroClienteMBean.fontes}" />
+			<p:ajax event="change" process="@this" update="tipo tipoLabel"
+				listener="#{cadastroClienteMBean.alteraFontePagadoraParaNull}" />
+		</p:selectOneMenu>
 
 		<p:outputLabel value="Matrícula" for="mat" />
 		<p:inputText id="mat" title="Digite apenas números."
 			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}"
 			value="#{cadastroClienteMBean.c.matricula}" required="true" />
 
-		<p:outputLabel value="Tipo de Beneficio" for="tipo" />
+		<p:outputLabel value="Tipo de Beneficio" for="tipo" id="tipoLabel" />
 		<p:selectOneMenu value="#{cadastroClienteMBean.c.tipoBeneficio}"
-			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}" id="tipo"
-			filter="true" filterMatchMode="contains" required="true">
-			<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+			disabled="#{cadastroClienteMBean.c.emprestimoPessoal or !cadastroClienteMBean.c.fontePagadoraINSS}"
+			id="tipo" filter="true" filterMatchMode="contains"
+			required="#{cadastroClienteMBean.c.fontePagadoraINSS}">
+			<f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
 			<f:selectItems value="#{cadastroClienteMBean.tipos}" var="tipoB"
 				itemValue="#{tipoB}" itemLabel="#{tipoB.codigo} #{tipoB.descricao}" />
 		</p:selectOneMenu>
