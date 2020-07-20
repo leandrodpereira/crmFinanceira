@@ -24,7 +24,7 @@
 	<div class="login-dialog">
 		<h:graphicImage library="img" name="logo.jpg" styleClass="logo" />
 		<h:form>
-			<p:messages autoUpdate="true" closable="true" />
+			<p:messages id="mensagem" autoUpdate="true" closable="true" />
 			<h:panelGrid columns="2" styleClass="grid-login">
 				<p:outputLabel value="Usuário" for="usuario" />
 				<p:inputText id="usuario" value="#{loginMBean.login}"
@@ -34,7 +34,7 @@
 					requiredMessage="É preciso digitar sua senha." />
 			</h:panelGrid>
 			<br />
-			<p:commandButton icon=" ui-icon-unlocked" value="Acessar"
+			<p:commandButton icon=" ui-icon-unlocked" value="Acessar" update="mensagem"
 				action="#{loginMBean.fazLogin}" />
 		</h:form>
 	</div>
