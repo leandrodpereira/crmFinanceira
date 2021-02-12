@@ -8,7 +8,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost/crmfinanceira" />
+				value="jdbc:mysql://localhost/crmfinanceira?serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user"
 				value="crmfinanceira" />
 			<property name="javax.persistence.jdbc.password"
