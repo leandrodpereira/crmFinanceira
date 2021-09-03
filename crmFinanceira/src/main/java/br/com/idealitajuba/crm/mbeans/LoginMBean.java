@@ -18,23 +18,23 @@ public class LoginMBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String login;
-	private String senha;	
+	private String senha;
 	private boolean logado;
 
 	@Inject
 	private UsuarioRepos ur;
-	
+
 	private Usuario usuario;
 
 	/**
 	 * Método para autenticar o usuario. *
 	 */
 	public String fazLogin() {
-		
-			FacesContext context = FacesContext.getCurrentInstance();
 
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		try {
 			this.usuario = ur.porLogin(this.login);
-						
 
 			if (this.usuario == null) {
 
@@ -42,10 +42,11 @@ public class LoginMBean implements Serializable {
 				mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 				context.addMessage(null, mensagem);
 
-			} else if (usuario.getLogin().equals(this.login) && usuario.getSenha().equals(this.senha) && usuario.isAtivo()) {
+			} else if (usuario.getLogin().equals(this.login) && usuario.getSenha().equals(this.senha)
+					&& usuario.isAtivo()) {
 
 				this.logado = true;
-				return "/Home?faces-redirect=true";				
+				return "/Home?faces-redirect=true";
 
 			} else {
 
@@ -53,9 +54,12 @@ public class LoginMBean implements Serializable {
 				mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
 				context.addMessage(null, mensagem);
 			}
-				
-		
-		return null;
+
+			return null;
+
+		} catch (Exception e) {
+			return null;
+		}
 
 	}
 
@@ -68,7 +72,6 @@ public class LoginMBean implements Serializable {
 		return "/Login?faces-redirect=true";
 
 	}
-	
 
 	public String getLogin() {
 		return login;

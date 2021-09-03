@@ -9,7 +9,8 @@ package br.com.idealitajuba.crm.model;
 public enum FontePagadoraEnum {
 	// To-Do: Converter este Enum em Entidade.
 	SIAPE("Siape"), INSS("Inss"), SEPLAG("Seplag"), EXERCITO("Exército"), MARINHA("Marinha"),
-	AERONAUTICA("Aeronáutica"), POLICIA_MILITAR("Polícia Militar"), BOMBEIROS("Bombeiros");
+	AERONAUTICA("Aeronáutica"), POLICIA_MILITAR("Polícia Militar"), BOMBEIROS("Bombeiros"),
+	PREFEITURA_ITAJUBA("Prefeitura Itajubá");
 
 	private String descricao;
 

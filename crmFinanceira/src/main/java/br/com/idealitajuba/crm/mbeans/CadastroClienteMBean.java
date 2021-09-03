@@ -40,7 +40,7 @@ public class CadastroClienteMBean implements Serializable {
 
 	private Cliente c;
 
-	private SexoEnum[] sexo;	
+	private SexoEnum[] sexo;
 	private List<TipoBeneficio> tipos;
 	private Date hoje;
 	private List<String> estados;
@@ -49,8 +49,8 @@ public class CadastroClienteMBean implements Serializable {
 	FacesMessage msg;
 
 	private List<SelectItem> fontes;
-	
-	/*	
+
+	/*
 	 * Método que agrupo as Fontes Pagadoras em um SelectItem.
 	 */
 	public void agrupaFontePagadora() {
@@ -69,6 +69,10 @@ public class CadastroClienteMBean implements Serializable {
 		grupoEstado.setSelectItems(
 				new SelectItem[] { new SelectItem(FontePagadoraEnum.SEPLAG, FontePagadoraEnum.SEPLAG.getDescricao()) });
 
+		SelectItemGroup grupoMunicipal = new SelectItemGroup("Municipal");
+		grupoMunicipal.setSelectItems(new SelectItem[] { new SelectItem(FontePagadoraEnum.PREFEITURA_ITAJUBA,
+				FontePagadoraEnum.PREFEITURA_ITAJUBA.getDescricao()) });
+
 		SelectItemGroup grupoSeguranca = new SelectItemGroup("Segurança Pública");
 		grupoSeguranca.setSelectItems(new SelectItem[] {
 				new SelectItem(FontePagadoraEnum.POLICIA_MILITAR, FontePagadoraEnum.POLICIA_MILITAR.getDescricao()),
@@ -81,6 +85,7 @@ public class CadastroClienteMBean implements Serializable {
 		fontes.add(grupoForcarArmadas);
 		fontes.add(grupoEstado);
 		fontes.add(grupoSeguranca);
+		fontes.add(grupoMunicipal);
 	}
 
 	public void preCadastro() {
@@ -96,13 +101,14 @@ public class CadastroClienteMBean implements Serializable {
 	public void limpar() {
 		this.c = new Cliente();
 	}
-	
+
 	public void alteraFontePagadoraParaNull() {
-		if (!this.c.isFontePagadoraINSS()) this.c.setTipoBeneficio(null);
+		if (!this.c.isFontePagadoraINSS())
+			this.c.setTipoBeneficio(null);
 	}
 
 	public void salvar() throws BusinessException {
-		String aviso = "";		
+		String aviso = "";
 		this.context = FacesContext.getCurrentInstance();
 		try {
 			this.c = this.cc.salvar(this.c);
