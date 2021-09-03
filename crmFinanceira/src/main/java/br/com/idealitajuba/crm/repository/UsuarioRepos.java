@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.hibernate.JDBCException;
+
 import br.com.idealitajuba.crm.model.Contato;
 import br.com.idealitajuba.crm.model.Usuario;
 
