@@ -72,6 +72,10 @@ public class CadastroClienteMBean implements Serializable {
 		SelectItemGroup grupoMunicipal = new SelectItemGroup("Municipal");
 		grupoMunicipal.setSelectItems(new SelectItem[] { new SelectItem(FontePagadoraEnum.PREFEITURA_ITAJUBA,
 				FontePagadoraEnum.PREFEITURA_ITAJUBA.getDescricao()) });
+		
+		SelectItemGroup grupoPrivado = new SelectItemGroup("Privado");
+		grupoPrivado.setSelectItems(new SelectItem[] { new SelectItem(FontePagadoraEnum.FGTS,
+				FontePagadoraEnum.FGTS.getDescricao()) });
 
 		SelectItemGroup grupoSeguranca = new SelectItemGroup("Segurança Pública");
 		grupoSeguranca.setSelectItems(new SelectItem[] {
@@ -86,6 +90,7 @@ public class CadastroClienteMBean implements Serializable {
 		fontes.add(grupoEstado);
 		fontes.add(grupoSeguranca);
 		fontes.add(grupoMunicipal);
+		fontes.add(grupoPrivado);
 	}
 
 	public void preCadastro() {

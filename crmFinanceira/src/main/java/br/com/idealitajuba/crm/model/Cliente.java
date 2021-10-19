@@ -203,8 +203,15 @@ public class Cliente extends Pessoa {
 			return this.getFontePagadora().equals(FontePagadoraEnum.INSS);
 		return false;		
 	}
-
-	@Transient	
+	
+	@Transient
+	public boolean isFontePagadoraFGTS() {
+		if (this.getFontePagadora() != null)
+			return this.getFontePagadora().equals(FontePagadoraEnum.FGTS);
+		return false;		
+	}
+	
+		@Transient	
 	public Long getIdade() {	
 		if(this.idade != null && this.getDataNascimento() != null) {
 			this.idade  = (Calendar.getInstance().getTimeInMillis() - this.getDataNascimento().getTime()) + 3600000;

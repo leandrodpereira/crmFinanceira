@@ -10,7 +10,7 @@ public enum FontePagadoraEnum {
 	// To-Do: Converter este Enum em Entidade.
 	SIAPE("Siape"), INSS("Inss"), SEPLAG("Seplag"), EXERCITO("Exército"), MARINHA("Marinha"),
 	AERONAUTICA("Aeronáutica"), POLICIA_MILITAR("Polícia Militar"), BOMBEIROS("Bombeiros"),
-	PREFEITURA_ITAJUBA("Prefeitura Itajubá");
+	PREFEITURA_ITAJUBA("Prefeitura Itajubá"), FGTS ("FGTS");
 
 	private String descricao;
 

@@ -62,18 +62,19 @@
 		<p:outputLabel />
 
 		<p:outputLabel value="Fonte Pagadora" for="fonte" />
-		<p:selectOneMenu id="fonte" required="true"
+		<p:selectOneMenu id="fonte" required="true" 
 			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}"
-			value="#{cadastroClienteMBean.c.fontePagadora}">
+			value="#{cadastroClienteMBean.c.fontePagadora}"> 
 			<f:selectItem itemLabel="Selecione" itemValue="" />
 			<f:selectItems value="#{cadastroClienteMBean.fontes}" />
 			<p:ajax event="change" process="@this" update="tipo tipoLabel"
 				listener="#{cadastroClienteMBean.alteraFontePagadoraParaNull}" />
+			<p:ajax event="change" process="@this" update="mat" />
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Matrícula" for="mat" />
 		<p:inputText id="mat" title="Digite apenas números."
-			disabled="#{cadastroClienteMBean.c.emprestimoPessoal}"
+			disabled="#{cadastroClienteMBean.c.emprestimoPessoal or cadastroClienteMBean.c.fontePagadoraFGTS}"
 			value="#{cadastroClienteMBean.c.matricula}" required="true" />
 
 		<p:outputLabel value="Tipo de Beneficio" for="tipo" id="tipoLabel" />
